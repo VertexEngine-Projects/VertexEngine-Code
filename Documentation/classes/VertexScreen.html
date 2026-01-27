@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VertexScreen | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Vertex Docs</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../search.html">Search</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+        <h2>VertexScreen</h2>
+        <p>
+            <strong>Description:</strong>
+            <code>VertexScreen</code> provides low-level drawing functionality
+            for rendering graphics without using image assets. It is designed
+            for drawing primitive shapes such as lines, rectangles, circles,
+            arcs, and polygons directly to the screen.
+        </p>
+
+        <p>
+            All <code>VertexScreen</code> drawing calls should be placed inside
+            a scene’s <code>draw(surface)</code> method, as they are executed
+            every frame.
+        </p>
+
+        <h3>Features</h3>
+        <ul>
+            <li>Draw 2D primitive shapes</li>
+            <li>No image assets required</li>
+            <li>Immediate-mode rendering</li>
+            <li>Ideal for debug visuals and UI primitives</li>
+        </ul>
+
+        <h3>Example: Usage</h3>
+        <pre><code>from VertexEngine import VertexScreen
+
+vs = VertexScreen()
+
+def draw(surface):
+    vs.Draw.line(surface, (255, 255, 255), (10, 10), (200, 10), 2)
+    vs.Draw.circle(surface, (0, 255, 0), (100, 100), 40, 0)</code></pre>
+
+        <h3>Parameters</h3>
+        <ul>
+            <li>
+                <code>VertexScreen.Draw.[func]()</code> —
+                Any primitive drawing function available in the Draw module,
+                such as <code>line</code>, <code>rect</code>, <code>circle</code>,
+                <code>polygon</code>, and others.
+            </li>
+        </ul>
+
+        <h3>Returns</h3>
+        <p>
+            None. Drawing operations are applied directly to the target surface.
+        </p>
+
+        <h3>Notes</h3>
+        <ul>
+            <li>Best used for shapes, UI elements, and debug overlays</li>
+            <li>Not intended for image rendering (use AssetManager for images)</li>
+            <li>Executed once per frame inside the active scene</li>
+        </ul>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 VertexEngine. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

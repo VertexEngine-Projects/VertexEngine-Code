@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VertexScreen.Draw.aaline | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Vertex Docs</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../search.html">Search</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+<div class="container">
+    <h2>VertexScreen.Draw.aaline(surface, color, start_pos, end_pos, blend)</h2>
+    <p>
+        <strong>Description:</strong>
+        Draws an anti-aliased (smooth) line on the specified surface between
+        <code>start_pos</code> and <code>end_pos</code>. Anti-aliasing reduces
+        jagged edges by blending the line with the background, resulting in
+        smoother and more visually appealing graphics. This method is ideal
+        for UI elements, outlines, guides, or any graphics that require clean
+        line rendering.
+    </p>
+
+    <h3>Usage</h3>
+    <pre><code>from VertexEngine import VertexScreen
+
+vs = VertexScreen()
+vs.Draw.aaline(
+    surface,
+    (255, 255, 255),
+    (50, 50),
+    (200, 150),
+    blend=True
+)</code></pre>
+
+    <h3>Parameters</h3>
+    <ul>
+        <li>
+            <code>surface</code> (<em>Surface</em>):  
+            The target surface on which the line will be drawn, such as the main
+            screen surface or an off-screen buffer.
+        </li>
+        <li>
+            <code>color</code> (<em>tuple</em>):  
+            The RGB color of the line, specified as a tuple
+            <code>(R, G, B)</code>.
+        </li>
+        <li>
+            <code>start_pos</code> (<em>tuple</em>):  
+            The starting coordinates of the line in the format
+            <code>(x, y)</code>.
+        </li>
+        <li>
+            <code>end_pos</code> (<em>tuple</em>):  
+            The ending coordinates of the line in the format
+            <code>(x, y)</code>.
+        </li>
+        <li>
+            <code>blend</code> (<em>bool</em>):  
+            Enables or disables background blending for anti-aliasing.
+            Set to <code>True</code> for smoother lines, or <code>False</code>
+            for slightly faster rendering without blending.
+        </li>
+    </ul>
+
+    <h3>Returns</h3>
+    <p>
+        <strong>None</strong> — This method draws directly onto the surface and
+        does not return a value.
+    </p>
+
+    <h3>Notes</h3>
+    <ul>
+        <li>Anti-aliased lines may appear thinner than standard lines.</li>
+        <li>For performance-critical scenarios, consider using non-anti-aliased line methods.</li>
+        <li>This method is best suited for 1-pixel wide smooth lines.</li>
+    </ul>
+</div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 MyPythonLib. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

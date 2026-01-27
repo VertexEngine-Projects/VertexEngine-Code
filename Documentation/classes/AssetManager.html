@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AssetManager | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Vertex Docs</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../search.html">Search</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+        <h1>Rendering & Asset Management</h1>
+        <p>
+            This module provides image loading and rendering utilities for
+            Vertex-based applications. It bridges <strong>pygame</strong>
+            image assets with <strong>Qt</strong> rendering systems.
+        </p>
+
+        <p>
+            ⚠️ Some classes in this module are <strong>internal-only</strong> and
+            not part of the public API. They are documented for reference and
+            debugging purposes only.
+        </p>
+    </div>
+</section>
+
+<!-- ================= ASSET MANAGER ================= -->
+
+<section class="section">
+    <div class="container">
+        <h2>AssetManager</h2>
+        <p>
+            <strong>Description:</strong>
+            The <code>AssetManager</code> is the <strong>public API</strong> for
+            loading and caching image assets. It ensures images are loaded once
+            and reused efficiently throughout the application.
+        </p>
+
+        <h3>Responsibilities</h3>
+        <ul>
+            <li>Load images from disk</li>
+            <li>Cache loaded images</li>
+            <li>Prevent duplicate loads</li>
+            <li>Gracefully handle missing files</li>
+        </ul>
+
+        <h3>Example</h3>
+        <pre><code>assets = AssetManager()
+
+player_img = assets.load_image("player", "assets/player.png")
+background = assets.load_image("bg", "assets/bg.png")</code></pre>
+
+        <h3>Methods</h3>
+
+        <h4>load_image(name, path)</h4>
+        <p>
+            Loads an image from disk and caches it under the given name.
+        </p>
+
+        <ul>
+            <li><code>name</code> (str): Asset identifier</li>
+            <li><code>path</code> (str): File path</li>
+        </ul>
+
+        <p><strong>Returns:</strong> <code>pygame.Surface</code> or <code>None</code></p>
+
+        <h4>get_image(name)</h4>
+        <p>
+            Retrieves a cached image by name.
+        </p>
+
+        <p><strong>Returns:</strong> <code>pygame.Surface</code> or <code>None</code></p>
+    </div>
+</section>
+
+<!-- ================= INTERNAL API WARNING ================= -->
+
+<section class="section">
+    <div class="container">
+        <h2>⚠️ Internal Rendering APIs</h2>
+        <p>
+            The following classes are <strong>not part of the public API</strong>.
+            They are marked as deprecated and may change or be removed without
+            notice.
+        </p>
+
+        <p>
+            Use <code>AssetManager</code> instead unless you are extending the
+            engine internals.
+        </p>
+    </div>
+</section>
+
+<!-- ================= QT RENDERER ================= -->
+
+<section class="section">
+    <div class="container">
+        <h2>QtRenderer <small>(Deprecated)</small></h2>
+        <p>
+            <strong>Description:</strong>
+            Converts <code>pygame.Surface</code> objects into Qt-compatible
+            textures using <code>QImage</code>. No OpenGL is required.
+        </p>
+
+        <p>
+            This class exists for internal rendering pipelines and engine-level
+            integrations.
+        </p>
+
+        <h3>Pipeline</h3>
+        <ol>
+            <li>Accept a pygame surface</li>
+            <li>Normalize pixel format</li>
+            <li>Convert to raw RGBA bytes</li>
+            <li>Create a deep-copied <code>QImage</code></li>
+        </ol>
+
+        <h3>Method</h3>
+
+        <h4>create_texture(image_asset)</h4>
+        <p>
+            Converts a pygame-backed image asset into a Qt texture.
+        </p>
+
+        <p><strong>Returns:</strong> <code>Texture</code></p>
+    </div>
+</section>
+
+<!-- ================= TEXTURE ================= -->
+
+<section class="section">
+    <div class="container">
+        <h2>Texture <small>(Deprecated)</small></h2>
+        <p>
+            <strong>Description:</strong>
+            A lightweight wrapper around <code>QImage</code> that exposes
+            width and height metadata.
+        </p>
+
+        <h3>Properties</h3>
+        <ul>
+            <li><code>image</code> – QImage instance</li>
+            <li><code>width</code> – Image width</li>
+            <li><code>height</code> – Image height</li>
+        </ul>
+
+        <h3>Debug Output</h3>
+        <pre><code>&lt;Texture 128x128 (QImage)&gt;</code></pre>
+    </div>
+</section>
+
+<!-- ================= IMAGE ASSET ================= -->
+
+<section class="section">
+    <div class="container">
+        <h2>ImageAsset <small>(Deprecated)</small></h2>
+        <p>
+            <strong>Description:</strong>
+            A minimal container for a <code>pygame.Surface</code>.
+        </p>
+
+        <p>
+            This class exists solely for legacy compatibility and internal
+            abstractions.
+        </p>
+
+        <h3>Properties</h3>
+        <ul>
+            <li><code>surface</code> – pygame.Surface</li>
+        </ul>
+    </div>
+</section>
+
+<!-- ================= NOTES ================= -->
+
+<section class="section">
+    <div class="container">
+        <h2>Notes</h2>
+        <ul>
+            <li>Qt rendering uses <code>QImage</code>, not OpenGL</li>
+            <li>Deep-copying image data prevents lifetime bugs</li>
+            <li>Public code should never depend on deprecated classes</li>
+            <li>Future versions may remove internal APIs entirely</li>
+        </ul>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 VertexEngine. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

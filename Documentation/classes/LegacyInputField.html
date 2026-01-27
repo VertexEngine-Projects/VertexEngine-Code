@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LegacyButton | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Vertex Docs</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../search.html">Search</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+        <h2>LegacyInputField</h2>
+        <p>
+            <strong>Description:</strong>
+            <code>LegacyInputField</code> is a simple text input component designed
+            for minimalistic or old-school UI applications and game editors.
+            It provides basic text entry functionality with minimal styling and
+            is ideal for beginners or lightweight tools.
+        </p>
+
+        <p>
+            This component is a thin wrapper around Qt’s
+            <code>QLineEdit</code>, offering direct access to familiar PyQt6
+            behavior without additional abstraction.
+        </p>
+
+        <h3>Status</h3>
+        <ul>
+            <li>⚠️ Currently unfinished</li>
+            <li>API may change in future versions</li>
+            <li>Recommended for experimentation and learning</li>
+        </ul>
+
+        <h3>Example: Usage</h3>
+        <pre><code>from VertexEngine import VertexUI
+
+input_field = VertexUI.LegacyInputField()</code></pre>
+
+        <h3>Parameters</h3>
+        <ul>
+            <li>
+                <code>[UNFINISHED]</code><br>
+                All parameters are optional. Since this class is derived from
+                <code>QLineEdit</code>, most behavior and customization options
+                follow PyQt6’s <code>QLineEdit</code> API.
+            </li>
+        </ul>
+
+        <h3>Returns</h3>
+        <p>
+            A <code>LegacyInputField</code> instance that stores and provides
+            access to the entered text.
+        </p>
+
+        <h3>Notes</h3>
+        <ul>
+            <li>Best suited for simple forms and prototypes</li>
+            <li>For advanced styling and editor use, prefer <code>InputField</code></li>
+            <li>Refer to the PyQt6 <code>QLineEdit</code> documentation for available methods</li>
+        </ul>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 VertexEngine. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

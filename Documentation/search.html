@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VertexEngine | Docs</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Vertex Docs</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+        <h2>Search the Documentation</h2>
+        <input type="text" id="searchInput" placeholder="Search for functions, classes, or modules..." class="search-box"/>
+
+        <ul id="apiList" class="api-list">
+            <li class="api-item"><a href="/classes/AssetManager.html">AssetManager</a></li>
+            <li class="api-item"><a href="/classes/AudioManager.html">AudioManager</a></li>
+            <li class="api-item"><a href="/classes/BaseWindow.html">BaseWindow</a></li>
+            <li class="api-item"><a href="/classes/Draw.html">VertexScreen.Draw</a></li>
+            <li class="api-item"><a href="/classes/FancyButton.html">VertexUI.FancyButton</a></li>
+            <li class="api-item"><a href="/classes/FancyWindow.html">FancyWindow</a></li>
+            <li class="api-item"><a href="/classes/GameEngine.html">GameEngine</a></li>
+            <li class="api-item"><a href="/classes/InputField.html">VertexUI.InputField</a></li>
+            <li class="api-item"><a href="/classes/LegacyButton.html">LegacyButton</a></li>
+            <li class="api-item"><a href="/classes/LegacyInputField.html">InputField</a></li>
+            <li class="api-item"><a href="/classes/LegacyText.html">Text</a></li>
+            <li class="api-item"><a href="/classes/Rect.html">Rect</a></li>
+            <li class="api-item"><a href="/classes/Scene.html">Scenes and Scene System</a></li>
+            <li class="api-item"><a href="/classes/Text.html">VertexUI.Text</a></li>
+            <li class="api-item"><a href="/classes/Vertex.html">VertexEngine.Vertex</a></li>
+            <li class="api-item"><a href="/classes/App.html">App</a></li>
+            <li class="api-item"><a href="/classes/VBox.html">VBox</a></li>
+            <li class="api-item"><a href="/classes/Dialog.html">Dialog System</a></li>
+            <li class="api-item"><a href="/classes/VertexScreen.html">VertexScreen</a></li>
+            <li class="api-item"><a href="/classes/VertexUI.html">VertexUI</a></li>
+            <li class="api-item"><a href="/classes/InputSystem.html">Input System</a></li>
+            <li class="api-item"><a href="/classes/sdraw.html">draw()</a></li>
+            <li class="api-item"><a href="/classes/update.html">update()</a></li>
+            <li class="api-item"><a href="/classes/BrowserToolsTabs.html">Tab System</a></li>
+            <li class="api-item"><a href="/classes/WebEngine.html">WebEngine</a></li>
+            <!-- functions here -->
+            <li class="api-item"><a href="/functions/AudioLoadMusic.html">AudioManager.load_music</a></li>
+            <li class="api-item"><a href="/functions/AudioLoadSound.html">AudioManager.load_sound</a></li>
+            <li class="api-item"><a href="/functions/AudioPlayMusic.html">AudioManager.play_music</a></li>
+            <li class="api-item"><a href="/functions/AudioPlaySound.html">AudioManager.play_sound</a></li>
+            <li class="api-item"><a href="/functions/AudioStopMusic.html">AudioManager.stop_music</a></li>
+            
+            <li class="api-item"><a href="/functions/getImage.html">AssetManager.get_image</a></li>
+            <li class="api-item"><a href="/functions/load_image.html">AssetManager.load_image</a></li>
+
+            <li class="api-item"><a href="/functions/DrawAALine.html">VertexScreen.Draw.aaline</a></li>
+            <li class="api-item"><a href="/functions/DrawAALines.html">VertexScreen.Draw.aalines</a></li>
+            <li class="api-item"><a href="/functions/DrawArc.html">VertexScreen.Draw.arc</a></li>
+            <li class="api-item"><a href="/functions/DrawCircle.html">VertexScreen.Draw.circle</a></li>
+            <li class="api-item"><a href="/functions/DrawElipse.html">VertexScreen.Draw.ellipse</a></li>
+            <li class="api-item"><a href="/functions/DrawLine.html">VertexScreen.Draw.line</a></li>
+            <li class="api-item"><a href="/functions/DrawLines.html">VertexScreen.Draw.lines</a></li>
+            <li class="api-item"><a href="/functions/DrawPolygon.html">VertexScreen.Draw.polygon</a></li>
+            <li class="api-item"><a href="/functions/DrawRect.html">VertexScreen.Draw.rect</a></li>
+        </ul>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 VertexEngine. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+    // Live search filter
+    const searchInput = document.getElementById('searchInput');
+    const apiList = document.getElementById('apiList');
+    const items = apiList.getElementsByClassName('api-item');
+
+    searchInput.addEventListener('input', function() {
+        const filter = this.value.toLowerCase();
+        Array.from(items).forEach(item => {
+            item.style.display = item.textContent.toLowerCase().includes(filter) ? 'block' : 'none';
+        });
+    });
+</script>
+</body>
+</html>

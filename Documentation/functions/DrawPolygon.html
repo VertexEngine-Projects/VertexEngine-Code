@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VertexScreen.Draw.polygon | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Vertex Docs</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../search.html">Search</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+        <h2>VertexScreen.Draw.polygon(surface, color, points, width)</h2>
+        <p>
+            <strong>Description:</strong>
+            Draws a polygon on the specified surface by connecting a series of
+            points in order. The final point is automatically connected back to
+            the first, forming a closed shape. Depending on the <code>width</code>
+            parameter, the polygon can be rendered as either an outlined shape
+            or a filled shape.
+        </p>
+
+        <h3>Usage</h3>
+        <pre><code>from VertexEngine import VertexScreen
+
+vs = VertexScreen()
+points = [(100, 60), (200, 140), (160, 240), (40, 180)]
+
+# Draw a filled polygon
+vs.Draw.polygon(
+    surface,
+    (0, 200, 120),
+    points=points,
+    width=0
+)</code></pre>
+
+        <h3>Parameters</h3>
+        <ul>
+            <li>
+                <code>surface</code> (<em>Surface</em>):  
+                The surface on which the polygon will be drawn, such as the main
+                display surface or an off-screen rendering buffer.
+            </li>
+            <li>
+                <code>color</code> (<em>tuple</em>):  
+                The RGB color of the polygon, specified as <code>(R, G, B)</code>.
+            </li>
+            <li>
+                <code>points</code> (<em>list of tuples</em>):  
+                A list of <code>(x, y)</code> coordinate pairs defining the
+                vertices of the polygon. At least three points are required.
+            </li>
+            <li>
+                <code>width</code> (<em>int</em>):  
+                The thickness of the polygon edges in pixels. Set to
+                <code>0</code> to draw a filled polygon.
+            </li>
+        </ul>
+
+        <h3>Returns</h3>
+        <p>
+            <strong>None</strong> — This method draws directly onto the surface
+            and does not return a value.
+        </p>
+
+        <h3>Notes</h3>
+        <ul>
+            <li>Points should be provided in clockwise or counter-clockwise order.</li>
+            <li>Self-intersecting polygons may produce undefined results.</li>
+            <li>For smooth edges, consider using anti-aliased drawing alternatives if available.</li>
+        </ul>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 MyPythonLib. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

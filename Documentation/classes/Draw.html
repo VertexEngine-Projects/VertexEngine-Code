@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draw | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Vertex Docs</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../search.html">Search</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+        <h2>Draw</h2>
+        <p>
+            <strong>Description:</strong>
+            The <code>Draw</code> class is responsible for all rendering operations
+            in a Vertex game. It provides a unified interface for drawing both
+            2D and 3D graphics, including primitive shapes such as lines, circles,
+            polygons, and other geometric forms.
+        </p>
+
+        <h3>Capabilities</h3>
+        <ul>
+            <li>Render 2D and 3D graphics</li>
+            <li>Draw primitive shapes (lines, rectangles, circles, polygons)</li>
+            <li>Supports filled and outlined shapes</li>
+            <li>Low-level access for custom rendering logic</li>
+        </ul>
+
+        <h3>Example: Usage</h3>
+        <pre><code>from VertexEngine import VertexUI
+
+# Draw a line
+VertexUI.Draw.line(surface, (255, 255, 255), (0, 0), (100, 100), 2)
+
+# Draw a filled rectangle
+VertexUI.Draw.rect(surface, (0, 128, 255), (50, 50, 200, 100))</code></pre>
+
+        <h3>Parameters</h3>
+        <ul>
+            <li>
+                <code>func</code> —
+                A drawing function provided by the Draw class
+            </li>
+        </ul>
+
+        <h3>Returns</h3>
+        <p>
+            Renders a graphic or entity directly onto the target surface.
+        </p>
+
+        <h3>Notes</h3>
+        <ul>
+            <li>All drawing operations occur immediately on the target surface</li>
+            <li>Commonly used within a window or scene draw loop</li>
+            <li>Works seamlessly with VertexScreen and AssetManager</li>
+        </ul>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 VertexEngine. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

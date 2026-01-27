@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AudioManager.load_music | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Vertex Docs</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../search.html">Search</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+        <h2>AudioManager.load_music(path)</h2>
+<p>
+    <strong>Description:</strong>
+    Loads a music track from disk into memory and registers it with the AudioManager.
+    Once loaded, the music can be played, paused, stopped, or looped without needing
+    to reload the file each time. This method is ideal for background music or long
+    audio tracks that will be reused during gameplay.
+</p>
+
+<h3>Usage</h3>
+<pre><code>from VertexEngine.audio import AudioManager
+
+music = AudioManager.load_music("assets/audio/background.mp3")</code></pre>
+
+<h3>Parameters</h3>
+    <ul>
+        <li>
+            <code>path</code> (<em>str</em>):  
+            The file path to the music file to load. Supported formats typically include
+            <code>.mp3</code>, <code>.wav</code>, and <code>.ogg</code>, depending on the
+            underlying audio backend.
+        </li>
+    </ul>
+
+    <h3>Returns</h3>
+    <p>
+        <strong>Music object</strong> — An object representing the loaded music track.
+        This object can be stored in a variable and used to control playback
+        (play, pause, stop, set volume, loop, etc.).
+    </p>
+
+    <h3>Notes</h3>
+    <ul>
+        <li>Calling this method multiple times with the same path may reuse cached data instead of reloading the file.</li>
+        <li>For short sound effects, consider using <code>AudioManager.load_sound()</code> instead.</li>
+        <li>Make sure the file path is valid; otherwise, an error may be raised.</li>
+    </ul>
+
+        </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 MyPythonLib. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

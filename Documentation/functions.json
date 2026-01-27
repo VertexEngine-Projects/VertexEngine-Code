@@ -1,0 +1,248 @@
+[
+  {
+    "type": "function",
+    "title": "AudioManager.load_music",
+    "signature": "AudioManager.load_music(path)",
+    "output_dir": "Documentation/functions",
+    "file": "AudioLoadMusic.html",
+    "description": "Loads a music track into memory so it can be played later.",
+    "usage": "from VertexEngine.audio import AudioManager\n\nAudioManager.load_music(path)",
+    "parameters": [
+      {"name": "path", "type": "str", "description": "Path to the music file to load"}
+    ],
+    "returns": "Music object"
+  },
+  {
+    "type": "function",
+    "title": "AudioManager.load_sound",
+    "signature": "AudioManager.load_sound(name, path)",
+    "output_dir": "Documentation/functions",
+    "file": "AudioLoadSound.html",
+    "description": "Loads a sound effect into memory and assigns it a name for later use.",
+    "usage": "from VertexEngine.audio import AudioManager\n\nAudioManager.load_sound(name, path)",
+    "parameters": [
+      {"name": "name", "type": "str", "description": "Name to assign to the loaded sound"},
+      {"name": "path", "type": "str", "description": "Path to the sound file to load"}
+    ],
+    "returns": "Sound object"
+  },
+  {
+    "type": "function",
+    "title": "AudioManager.play_music",
+    "signature": "AudioManager.play_music(loops=0)",
+    "output_dir": "Documentation/functions",
+    "file": "AudioPlayMusic.html",
+    "description": "Plays the previously loaded music track. Loops specify how many times to repeat; -1 loops forever.",
+    "usage": "from VertexEngine.audio import AudioManager\n\nAudioManager.play_music(loops=-1)",
+    "parameters": [
+      {"name": "loops", "type": "int", "description": "Number of times to repeat playback; -1 for infinite looping"}
+    ],
+    "returns": "None"
+  },
+  {
+    "type": "function",
+    "title": "AudioManager.play_sound",
+    "signature": "AudioManager.play_sound(name, loops=0)",
+    "output_dir": "Documentation/functions",
+    "file": "AudioPlaySound.html",
+    "description": "Plays a previously loaded sound effect. Loops specify how many times to repeat playback.",
+    "usage": "from VertexEngine.audio import AudioManager\n\nAudioManager.play_sound(name, loops=0)",
+    "parameters": [
+      {"name": "name", "type": "str", "description": "Name of the loaded sound to play"},
+      {"name": "loops", "type": "int", "description": "Number of times to repeat playback"}
+    ],
+    "returns": "None"
+  },
+  {
+    "type": "function",
+    "title": "AudioManager.stop_music",
+    "signature": "AudioManager.stop_music()",
+    "output_dir": "Documentation/functions",
+    "file": "AudioStopMusic.html",
+    "description": "Stops the currently playing music immediately.",
+    "usage": "from VertexEngine.audio import AudioManager\n\nAudioManager.stop_music()",
+    "parameters": [],
+    "returns": "None"
+  },
+  {
+    "type": "function",
+    "title": "AssetManager.get_image",
+    "signature": "AssetManager.get_image(name)",
+    "output_dir": "Documentation/functions",
+    "file": "getImage.html",
+    "description": "Retrieves a previously loaded image by its assigned name from the asset manager.",
+    "usage": "from VertexEngine.assets import AssetManager\n\nAssetManager.get_image(name)",
+    "parameters": [
+      {"name": "name", "type": "str", "description": "The name assigned to the loaded image"}
+    ],
+    "returns": "Image object"
+  },
+  {
+    "type": "function",
+    "title": "AssetManager.load_image",
+    "signature": "AssetManager.load_image(name, path)",
+    "output_dir": "Documentation/functions",
+    "file": "load_image.html",
+    "description": "Loads an image into the asset manager and assigns it a name for later retrieval or display.",
+    "usage": "from VertexEngine.assets import AssetManager\n\nAssetManager.load_image(name, path)",
+    "parameters": [
+      {"name": "name", "type": "str", "description": "Name to assign to the loaded image"},
+      {"name": "path", "type": "str", "description": "Path to the image file to load"}
+    ],
+    "returns": "Image object"
+  },
+  {
+      "type": "function",
+      "title": "VertexScreen.Draw.rect",
+      "signature": "VertexScreen.Draw.rect(surface, color, rect=None)",
+      "output_dir": "Documentation/functions",
+      "file": "DrawRect.html",
+      "description": "Draws a solid-colored rectangle on the given surface. Optionally specify the rectangle area.",
+      "usage": "from VertexEngine import VertexScreen\n\nvs = VertexScreen()\nvs.Draw.rect(surface, color, rect)",
+      "parameters": [
+        {"name": "surface", "type": "Surface", "description": "The surface to draw on"},
+        {"name": "color", "type": "tuple", "description": "The color of the rectangle (RGB or RGBA)"},
+        {"name": "rect", "type": "tuple, optional", "description": "Rectangle coordinates (x, y, width, height)"}
+      ],
+      "returns": "None"
+    },
+    {
+      "type": "function",
+      "title": "VertexScreen.Draw.polygon",
+      "signature": "VertexScreen.Draw.polygon(surface, color, points, width)",
+      "output_dir": "Documentation/functions",
+      "file": "DrawPolygon.html",
+      "description": "Draws a polygon on the surface by connecting a series of points. Width controls line thickness.",
+      "usage": "from VertexEngine import VertexScreen\n\nvs = VertexScreen()\nvs.Draw.polygon(surface, color, points, width)",
+      "parameters": [
+        {"name": "surface", "type": "Surface", "description": "The surface to draw on"},
+        {"name": "color", "type": "tuple", "description": "The color of the polygon"},
+        {"name": "points", "type": "list of tuples", "description": "Points defining the polygon vertices"},
+        {"name": "width", "type": "int", "description": "Thickness of the polygon edges"}
+      ],
+      "returns": "None"
+    },
+    {
+      "type": "function",
+      "title": "VertexScreen.Draw.circle",
+      "signature": "VertexScreen.Draw.circle(surface, color, center, radius, width, draw_top_right, draw_top_left, draw_bottom_right, draw_bottom_left)",
+      "output_dir": "Documentation/functions",
+      "file": "DrawCircle.html",
+      "description": "Draws a circle on the given surface with configurable corners, radius, width, and color.",
+      "usage": "from VertexEngine import VertexScreen\n\nvs = VertexScreen()\nvs.Draw.circle(surface, color, center, radius, width, True, True, True, True)",
+      "parameters": [
+        {"name": "surface", "type": "Surface", "description": "The surface to draw on"},
+        {"name": "color", "type": "tuple", "description": "Color of the circle"},
+        {"name": "center", "type": "tuple", "description": "Center coordinates of the circle"},
+        {"name": "radius", "type": "int", "description": "Radius of the circle"},
+        {"name": "width", "type": "int", "description": "Line thickness (0 for filled)"},
+        {"name": "draw_top_right", "type": "bool", "description": "Whether to draw the top-right quarter"},
+        {"name": "draw_top_left", "type": "bool", "description": "Whether to draw the top-left quarter"},
+        {"name": "draw_bottom_right", "type": "bool", "description": "Whether to draw the bottom-right quarter"},
+        {"name": "draw_bottom_left", "type": "bool", "description": "Whether to draw the bottom-left quarter"}
+      ],
+      "returns": "None"
+    },
+    {
+      "type": "function",
+      "title": "VertexScreen.Draw.ellipse",
+      "signature": "VertexScreen.Draw.ellipse(surface, color, rect, width)",
+      "output_dir": "Documentation/functions",
+      "file": "DrawElipse.html",
+      "description": "Draws an ellipse inside the specified rectangle area on the surface.",
+      "usage": "from VertexEngine import VertexScreen\n\nvs = VertexScreen()\nvs.Draw.ellipse(surface, color, rect, width)",
+      "parameters": [
+        {"name": "surface", "type": "Surface", "description": "The surface to draw on"},
+        {"name": "color", "type": "tuple", "description": "Color of the ellipse"},
+        {"name": "rect", "type": "tuple", "description": "Rectangle coordinates (x, y, width, height) to contain the ellipse"},
+        {"name": "width", "type": "int", "description": "Line thickness (0 for filled)"}
+      ],
+      "returns": "None"
+    },
+    {
+      "type": "function",
+      "title": "VertexScreen.Draw.arc",
+      "signature": "VertexScreen.Draw.arc(surface, color, rect, start_angle, stop_angle, width)",
+      "output_dir": "Documentation/functions",
+      "file": "DrawArc.html",
+      "description": "Draws an arc within the given rectangle from start_angle to stop_angle with specified width and color.",
+      "usage": "from VertexEngine import VertexScreen\n\nvs = VertexScreen()\nvs.Draw.arc(surface, color, rect, start_angle, stop_angle, width)",
+      "parameters": [
+        {"name": "surface", "type": "Surface", "description": "The surface to draw on"},
+        {"name": "color", "type": "tuple", "description": "Color of the arc"},
+        {"name": "rect", "type": "tuple", "description": "Rectangle area to contain the arc"},
+        {"name": "start_angle", "type": "float", "description": "Starting angle in radians"},
+        {"name": "stop_angle", "type": "float", "description": "Stopping angle in radians"},
+        {"name": "width", "type": "int", "description": "Line thickness"}
+      ],
+      "returns": "None"
+    },
+    {
+      "type": "function",
+      "title": "VertexScreen.Draw.line",
+      "signature": "VertexScreen.Draw.line(surface, color, start_pos, end_pos, width)",
+      "output_dir": "Documentation/functions",
+      "file": "DrawLine.html",
+      "description": "Draws a straight line between start_pos and end_pos on the surface.",
+      "usage": "from VertexEngine import VertexScreen\n\nvs = VertexScreen()\nvs.Draw.line(surface, color, start_pos, end_pos, width)",
+      "parameters": [
+        {"name": "surface", "type": "Surface", "description": "The surface to draw on"},
+        {"name": "color", "type": "tuple", "description": "Color of the line"},
+        {"name": "start_pos", "type": "tuple", "description": "Starting coordinates (x, y)"},
+        {"name": "end_pos", "type": "tuple", "description": "Ending coordinates (x, y)"},
+        {"name": "width", "type": "int", "description": "Line thickness"}
+      ],
+      "returns": "None"
+    },
+    {
+      "type": "function",
+      "title": "VertexScreen.Draw.lines",
+      "signature": "VertexScreen.Draw.lines(surface, color, closed, points, width)",
+      "output_dir": "Documentation/functions",
+      "file": "DrawLines.html",
+      "description": "Draws multiple connected lines defined by points. Can optionally close the shape.",
+      "usage": "from VertexEngine import VertexScreen\n\nvs = VertexScreen()\nvs.Draw.lines(surface, color, closed, points, width)",
+      "parameters": [
+        {"name": "surface", "type": "Surface", "description": "The surface to draw on"},
+        {"name": "color", "type": "tuple", "description": "Color of the lines"},
+        {"name": "closed", "type": "bool", "description": "Whether to close the shape by connecting last point to first"},
+        {"name": "points", "type": "list of tuples", "description": "List of points for the lines"},
+        {"name": "width", "type": "int", "description": "Line thickness"}
+      ],
+      "returns": "None"
+    },
+    {
+      "type": "function",
+      "title": "VertexScreen.Draw.aaline",
+      "signature": "VertexScreen.Draw.aaline(surface, color, start_pos, end_pos, blend)",
+      "output_dir": "Documentation/functions",
+      "file": "DrawAALine.html",
+      "description": "Draws an anti-aliased (smooth) line between start_pos and end_pos.",
+      "usage": "from VertexEngine import VertexScreen\n\nvs = VertexScreen()\nvs.Draw.aaline(surface, color, start_pos, end_pos, blend)",
+      "parameters": [
+        {"name": "surface", "type": "Surface", "description": "The surface to draw on"},
+        {"name": "color", "type": "tuple", "description": "Color of the line"},
+        {"name": "start_pos", "type": "tuple", "description": "Starting coordinates (x, y)"},
+        {"name": "end_pos", "type": "tuple", "description": "Ending coordinates (x, y)"},
+        {"name": "blend", "type": "bool", "description": "Whether to blend with background for anti-aliasing"}
+      ],
+      "returns": "None"
+    },
+    {
+      "type": "function",
+      "title": "VertexScreen.Draw.aalines",
+      "signature": "VertexScreen.Draw.aalines(surface, color, closed, points, blend)",
+      "output_dir": "Documentation/functions",
+      "file": "DrawAALines.html",
+      "description": "Draws multiple anti-aliased (smooth) lines defined by points. Can optionally close the shape.",
+      "usage": "from VertexEngine import VertexScreen\n\nvs = VertexScreen()\nvs.Draw.aalines(surface, color, closed, points, blend)",
+      "parameters": [
+        {"name": "surface", "type": "Surface", "description": "The surface to draw on"},
+        {"name": "color", "type": "tuple", "description": "Color of the lines"},
+        {"name": "closed", "type": "bool", "description": "Whether to close the shape"},
+        {"name": "points", "type": "list of tuples", "description": "List of points for the lines"},
+        {"name": "blend", "type": "bool", "description": "Whether to blend with background for anti-aliasing"}
+      ],
+      "returns": "None"
+    }
+]

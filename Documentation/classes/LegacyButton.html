@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LegacyButton | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Vertex Docs</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../search.html">Search</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+        <h2>LegacyButton</h2>
+        <p>
+            <strong>Description:</strong>
+            <code>LegacyButton</code> is a simple, classic button designed for
+            minimalistic or old-school UI applications and game editors.
+            It prioritizes ease of use and clarity, making it ideal for
+            beginners or projects that do not require advanced styling.
+        </p>
+
+        <h3>Features</h3>
+        <ul>
+            <li>Lightweight and easy to use</li>
+            <li>Classic flat button appearance</li>
+            <li>Minimal configuration required</li>
+            <li>Beginner-friendly API</li>
+        </ul>
+
+        <h3>Example: Usage</h3>
+        <pre><code>from VertexEngine import VertexUI
+
+button = VertexUI.LegacyButton(
+    text="OK",
+    width=120,
+    height=40,
+    bg_color=(200, 200, 200),
+    text_color=(0, 0, 0),
+    border_width=1,
+    border_color=(0, 0, 0)
+)</code></pre>
+
+        <h3>Parameters</h3>
+        <ul>
+            <li><code>text</code> (str, optional): Text displayed on the button</li>
+            <li><code>width</code> (int, optional): Button width</li>
+            <li><code>height</code> (int, optional): Button height</li>
+            <li><code>bg_color</code> (tuple, optional): Background color</li>
+            <li><code>text_color</code> (tuple, optional): Text color</li>
+            <li><code>border_width</code> (int, optional): Border thickness</li>
+            <li><code>border_color</code> (tuple, optional): Border color</li>
+            <li><code>parent</code> (UI element, optional): Parent container</li>
+        </ul>
+
+        <h3>Returns</h3>
+        <p>
+            A <code>LegacyButton</code> instance capable of handling basic
+            click and interaction events.
+        </p>
+
+        <h3>Notes</h3>
+        <ul>
+            <li>Recommended for simple menus and prototypes</li>
+            <li>Consumes fewer resources than FancyButton</li>
+            <li>Can be upgraded later to FancyButton if needed</li>
+        </ul>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 VertexEngine. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

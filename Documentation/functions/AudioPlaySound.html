@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AudioManager.play_sound | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Vertex Docs</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../search.html">Search</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+<div class="container">
+    <h2>AudioManager.play_sound(name, loops=0)</h2>
+    <p>
+        <strong>Description:</strong>
+        Plays a sound effect that has been previously loaded using
+        <code>AudioManager.load_sound()</code>. Sound effects are designed for
+        short, low-latency audio such as UI clicks, player actions, or game events.
+        The <code>loops</code> parameter controls how many times the sound will
+        repeat after the initial playback.
+    </p>
+
+    <h3>Usage</h3>
+    <pre><code>from VertexEngine.audio import AudioManager
+
+AudioManager.load_sound("jump", "assets/audio/jump.wav")
+AudioManager.play_sound("jump")
+
+AudioManager.play_sound("jump", loops=2)</code></pre>
+
+    <h3>Parameters</h3>
+    <ul>
+        <li>
+            <code>name</code> (<em>str</em>):  
+            The name assigned to the sound when it was loaded. This identifier
+            is used by the AudioManager to locate and play the sound effect.
+        </li>
+        <li>
+            <code>loops</code> (<em>int</em>):  
+            Number of additional times the sound should repeat after the first
+            playback. Use <code>0</code> to play once, or higher values for repeated
+            playback. Unlike music, sound effects typically do not loop infinitely.
+        </li>
+    </ul>
+
+    <h3>Returns</h3>
+    <p>
+        <strong>None</strong> — This method triggers sound playback but does not
+        return a value.
+    </p>
+
+    <h3>Notes</h3>
+    <ul>
+        <li>The sound must be loaded before calling this method.</li>
+        <li>Multiple sound effects can play simultaneously.</li>
+        <li>If the specified sound name does not exist, an error or warning may occur.</li>
+    </ul>
+</div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 MyPythonLib. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

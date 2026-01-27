@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VertexScreen.Draw.lines | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Vertex Docs</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../search.html">Search</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+        <h2>VertexScreen.Draw.lines(surface, color, closed, points, width)</h2>
+        <p>
+            <strong>Description:</strong>
+            Draws a sequence of connected straight lines on the specified surface
+            using a list of points. Each point is connected to the next in order,
+            forming a polyline. When <code>closed</code> is set to <code>True</code>,
+            the final point is automatically connected back to the first, creating
+            a closed outline shape.
+        </p>
+
+        <h3>Usage</h3>
+        <pre><code>from VertexEngine import VertexScreen
+
+vs = VertexScreen()
+points = [(60, 60), (180, 80), (240, 160), (120, 220)]
+
+# Draw a closed shape
+vs.Draw.lines(
+    surface,
+    (255, 255, 255),
+    closed=True,
+    points=points,
+    width=3
+)</code></pre>
+
+        <h3>Parameters</h3>
+        <ul>
+            <li>
+                <code>surface</code> (<em>Surface</em>):  
+                The surface on which the lines will be drawn, such as the main
+                display surface or an off-screen buffer.
+            </li>
+            <li>
+                <code>color</code> (<em>tuple</em>):  
+                The RGB color of the lines, specified as <code>(R, G, B)</code>.
+            </li>
+            <li>
+                <code>closed</code> (<em>bool</em>):  
+                Determines whether the shape should be closed by connecting
+                the last point back to the first.
+            </li>
+            <li>
+                <code>points</code> (<em>list of tuples</em>):  
+                A list of <code>(x, y)</code> coordinate pairs defining the
+                vertices of the polyline. At least two points are required.
+            </li>
+            <li>
+                <code>width</code> (<em>int</em>):  
+                The thickness of the lines in pixels.
+            </li>
+        </ul>
+
+        <h3>Returns</h3>
+        <p>
+            <strong>None</strong> — This method draws directly onto the surface
+            and does not return a value.
+        </p>
+
+        <h3>Notes</h3>
+        <ul>
+            <li>This method draws aliased (non-anti-aliased) lines.</li>
+            <li>For smoother results, use <code>VertexScreen.Draw.aalines()</code>.</li>
+            <li>Useful for outlines, paths, wireframes, and debug visuals.</li>
+        </ul>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 MyPythonLib. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

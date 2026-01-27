@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input System | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Vertex Docs</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../search.html">Search</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+
+        <h2>InputSystem</h2>
+
+        <p>
+            <strong>Description:</strong>
+            The Input System is a system used to detect input.  
+            It is a simplified version of the PyQt6 Input System.
+        </p>
+
+        <p>Syntax for key / mouse inputs:</p>
+
+        <pre><code>
+on_press(self, key, func)
+on_release(self, key, func)
+on_hold(self, key, func)
+        </code></pre>
+
+        <p>
+            <code>self</code> refers to the object instance.  
+            <code>key</code> is the key or mouse button used.
+            Example: binding the <code>a</code> key to move left.
+        </p>
+
+        <h2>List of Keys</h2>
+
+        <ul class="key-list">
+            <li>left</li>
+            <li>right</li>
+            <li>up</li>
+            <li>down</li>
+            <li>space</li>
+            <li>enter</li>
+            <li>return</li>
+            <li>escape</li>
+            <li>esc</li>
+            <li>tab</li>
+            <li>backspace</li>
+            <li>delete</li>
+            <li>insert</li>
+            <li>home</li>
+            <li>end</li>
+            <li>pageup</li>
+            <li>pagedown</li>
+            <li>pause</li>
+            <li>printscreen</li>
+            <li>shift</li>
+            <li>ctrl</li>
+            <li>control</li>
+            <li>alt</li>
+            <li>meta</li>
+            <li>capslock</li>
+            <li>numlock</li>
+            <li>scrolllock</li>
+
+            <li>a–z</li>
+            <li>0–9</li>
+
+            <li>f1 – f12</li>
+
+            <li>minus (-)</li>
+            <li>equals (=)</li>
+            <li>comma (,)</li>
+            <li>period (.)</li>
+            <li>slash (/)</li>
+            <li>backslash (\)</li>
+            <li>semicolon (;)</li>
+            <li>apostrophe (')</li>
+            <li>bracketleft ([)</li>
+            <li>bracketright (])</li>
+            <li>grave (`)</li>
+
+            <li>num_0 – num_9</li>
+            <li>num_add</li>
+            <li>num_sub</li>
+            <li>num_mul</li>
+            <li>num_div</li>
+            <li>num_enter</li>
+            <li>num_decimal</li>
+
+            <li>mouse left</li>
+            <li>mouse right</li>
+            <li>mouse middle</li>
+            <li>x1 (back button)</li>
+            <li>x2 (forward button)</li>
+        </ul>
+
+        <h3>Returns</h3>
+        <p>
+            Input events from keyboard or mouse.  
+            Compatible with VertexEngine and Vertex widgets.
+        </p>
+
+        <h2>List of Functions, Arguments & Examples</h2>
+
+        <pre><code>
+on_click(self, button, action, *args, **kwargs)
+Example:
+Buttons.on_click(play_btn, start_game)
+
+on_double_click(self, button, action, interval=250)
+Example:
+Buttons.on_double_click(delete_btn, hard_delete)
+
+on_hover(self, button, enter_action=None, leave_action=None)
+Example:
+Buttons.on_hover(
+    play_btn,
+    lambda: highlight(play_btn),
+    lambda: unhighlight(play_btn)
+)
+
+on_long_press(self, button, action, duration=600)
+Example:
+Buttons.on_long_press(reset_btn, factory_reset, duration=1500)
+
+on_toggle(self, button, on_action, off_action=None)
+Example:
+Buttons.on_toggle(sound_btn, sound_on, sound_off)
+
+on_click_once(self, button, action)
+Example:
+Buttons.on_click_once(nuke_btn, explode)
+
+set_enabled(self, button, enabled=True)
+Example:
+Buttons.set_enabled(play_btn, False)
+
+on_click_debounced(self, button, action, cooldown=500)
+Example:
+Buttons.on_click_debounced(save_btn, save_game, cooldown=1000)
+        </code></pre>
+
+        <p style="font-size: 0.75rem;">
+            * Recommended to pair with PyQt6
+        </p>
+
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 VertexEngine. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VertexScreen.Draw.line | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Vertex Docs</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../search.html">Search</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+        <h2>VertexScreen.Draw.line(surface, color, start_pos, end_pos, width)</h2>
+        <p>
+            <strong>Description:</strong>
+            Draws a straight line on the specified surface between
+            <code>start_pos</code> and <code>end_pos</code>. This method is ideal
+            for rendering simple shapes, separators, grids, debug visuals,
+            or basic UI elements. The appearance of the line can be customized
+            using the <code>width</code> parameter.
+        </p>
+
+        <h3>Usage</h3>
+        <pre><code>from VertexEngine import VertexScreen
+
+vs = VertexScreen()
+
+# Draw a thick diagonal line
+vs.Draw.line(
+    surface,
+    (255, 255, 255),
+    start_pos=(50, 50),
+    end_pos=(300, 200),
+    width=5
+)</code></pre>
+
+        <h3>Parameters</h3>
+        <ul>
+            <li>
+                <code>surface</code> (<em>Surface</em>):  
+                The surface on which the line will be drawn, such as the main
+                display surface or an off-screen rendering buffer.
+            </li>
+            <li>
+                <code>color</code> (<em>tuple</em>):  
+                The RGB color of the line, specified as <code>(R, G, B)</code>.
+            </li>
+            <li>
+                <code>start_pos</code> (<em>tuple</em>):  
+                The starting coordinates of the line in the format
+                <code>(x, y)</code>.
+            </li>
+            <li>
+                <code>end_pos</code> (<em>tuple</em>):  
+                The ending coordinates of the line in the format
+                <code>(x, y)</code>.
+            </li>
+            <li>
+                <code>width</code> (<em>int</em>):  
+                The thickness of the line in pixels. Higher values produce
+                thicker lines.
+            </li>
+        </ul>
+
+        <h3>Returns</h3>
+        <p>
+            <strong>None</strong> — This method draws directly onto the surface
+            and does not return a value.
+        </p>
+
+        <h3>Notes</h3>
+        <ul>
+            <li>Lines with a width of <code>1</code> are the most performant.</li>
+            <li>For smoother edges, use <code>VertexScreen.Draw.aaline()</code>.</li>
+            <li>This method draws aliased (non-smoothed) lines.</li>
+        </ul>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 MyPythonLib. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

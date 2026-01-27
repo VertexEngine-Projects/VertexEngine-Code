@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VertexScreen.Draw.aalines | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Vertex Docs</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../search.html">Search</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+<div class="container">
+    <h2>VertexScreen.Draw.aalines(surface, color, closed, points, blend)</h2>
+    <p>
+        <strong>Description:</strong>
+        Draws a sequence of connected anti-aliased (smooth) lines on the specified
+        surface using a list of points. Each point is connected to the next in order.
+        When <code>closed</code> is set to <code>True</code>, the final point is
+        automatically connected back to the first, forming a closed shape.
+        Anti-aliasing blends the lines with the background to reduce jagged edges,
+        resulting in smoother and more visually appealing outlines.
+    </p>
+
+    <h3>Usage</h3>
+    <pre><code>from VertexEngine import VertexScreen
+
+vs = VertexScreen()
+points = [(50, 50), (150, 80), (200, 150), (100, 200)]
+
+vs.Draw.aalines(
+    surface,
+    (0, 255, 0),
+    closed=True,
+    points=points,
+    blend=True
+)</code></pre>
+
+    <h3>Parameters</h3>
+    <ul>
+        <li>
+            <code>surface</code> (<em>Surface</em>):  
+            The surface on which the lines will be drawn, such as the main screen
+            or an off-screen rendering surface.
+        </li>
+        <li>
+            <code>color</code> (<em>tuple</em>):  
+            The RGB color of the lines, specified as <code>(R, G, B)</code>.
+        </li>
+        <li>
+            <code>closed</code> (<em>bool</em>):  
+            Determines whether the sequence of lines should form a closed shape.
+            If <code>True</code>, the last point connects back to the first.
+        </li>
+        <li>
+            <code>points</code> (<em>list of tuples</em>):  
+            A list of <code>(x, y)</code> coordinate pairs defining the vertices
+            of the line path. At least two points are required.
+        </li>
+        <li>
+            <code>blend</code> (<em>bool</em>):  
+            Enables or disables background blending for anti-aliasing.
+            Set to <code>True</code> for smoother lines, or <code>False</code>
+            for slightly faster rendering.
+        </li>
+    </ul>
+
+    <h3>Returns</h3>
+    <p>
+        <strong>None</strong> — This method draws directly onto the surface and
+        does not return a value.
+    </p>
+
+    <h3>Notes</h3>
+    <ul>
+        <li>Anti-aliased lines are typically 1 pixel wide.</li>
+        <li>Use this method for outlines, paths, and wireframe-style shapes.</li>
+        <li>For filled shapes, use the corresponding polygon or fill methods.</li>
+    </ul>
+</div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 MyPythonLib. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

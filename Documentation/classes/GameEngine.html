@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameEngine | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Vertex Docs</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../search.html">Search</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+        <h2>GameEngine</h2>
+        <p>
+            <strong>Description:</strong>
+            The <code>GameEngine</code> class is the core controller of a Vertex
+            game. It is responsible for creating and managing the main window,
+            controlling the game loop, enforcing FPS limits, and coordinating
+            scene updates and rendering.
+        </p>
+
+        <p>
+            This class acts as the backbone of your game, connecting the window,
+            scene system, rendering pipeline, and update loop into a single,
+            unified engine instance.
+        </p>
+
+        <h3>Example: Usage</h3>
+        <pre><code>from VertexEngine.engine import GameEngine
+from PyQt6.QtWidgets import QApplication
+from PyQt6.QtGui import QIcon
+import sys
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)  # Create Qt application
+
+    # Initialize the game engine
+    engine = GameEngine(
+        fps=60,
+        width=1920,
+        height=1080,
+        title="Screen.com/totally-not-virus"
+    )
+
+    engine.setWindowTitle("Screen.com/totally-not-virus")  # Window title
+    engine.setWindowIcon(QIcon("snake.ico"))                # Window icon
+    engine.show()                                           # Show window
+
+    main_scene = Main(engine)  # Initialize main scene
+
+    engine.scene_manager.add_scene("main", main_scene)      # Register scene
+    engine.scene_manager.switch_to("main")                  # Activate scene
+
+    app.exec()  # Start the application loop
+</code></pre>
+
+        <h3>Responsibilities</h3>
+        <ul>
+            <li>Creates and manages the main application window</li>
+            <li>Controls the main game loop (update + draw)</li>
+            <li>Maintains a consistent frame rate (FPS)</li>
+            <li>Handles scene management and transitions</li>
+            <li>Executes rendering and update logic</li>
+        </ul>
+
+        <h3>Common Parameters</h3>
+        <ul>
+            <li><code>fps</code> (int): Target frames per second</li>
+            <li><code>width</code> (int): Width of the game window</li>
+            <li><code>height</code> (int): Height of the game window</li>
+            <li><code>title</code> (str): Title of the application window</li>
+        </ul>
+
+        <h3>Returns</h3>
+        <p>
+            A fully initialized game engine instance that runs your game,
+            manages FPS, controls rendering quality, and handles scene execution.
+        </p>
+
+        <h3>Notes</h3>
+        <ul>
+            <li>Only one <code>GameEngine</code> instance should exist per game</li>
+            <li>Scenes rely on the engine for timing, rendering, and transitions</li>
+            <li>Typically created inside the <code>__main__</code> entry point</li>
+        </ul>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 VertexEngine. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

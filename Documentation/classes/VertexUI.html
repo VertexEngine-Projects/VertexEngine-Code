@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VertexUI | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Vertex Docs</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../search.html">Search</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+        <h2>VertexUI</h2>
+        <p>
+            <strong>Description:</strong>
+            Added in the UI Update (<code>1.0rc2</code>), <code>VertexUI</code>
+            is the main user interface module of VertexEngine. It allows you to
+            create modern, customizable UI components such as fancy buttons,
+            text elements, and input fields for professional UI applications
+            and game editors.
+        </p>
+
+        <h3>Features</h3>
+        <ul>
+            <li>Modern, customizable UI widgets</li>
+            <li>Built for tools, editors, and in-game UI</li>
+            <li>Mouse interaction and event handling</li>
+            <li>Consistent styling across UI elements</li>
+        </ul>
+
+        <h3>Example: Usage</h3>
+        <pre><code>from VertexEngine import VertexUI
+
+button = VertexUI.FancyButton(
+    text="Play",
+    width=200,
+    height=60
+)</code></pre>
+
+        <h3>Parameters</h3>
+        <ul>
+            <li>
+                <code>VertexUI.[UIElement]()</code> —
+                <code>UIElement</code> refers to any UI class provided by
+                <code>VertexUI</code>, such as <code>FancyButton</code>,
+                <code>InputField</code>, <code>LegacyButton</code>, and others.
+            </li>
+        </ul>
+
+        <h3>Returns</h3>
+        <p>
+            UI elements with built-in rendering, interaction, and event handling.
+        </p>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 VertexEngine. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AudioManager.stop_music | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Vertex Docs</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../search.html">Search</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+<div class="container">
+    <h2>AudioManager.stop_music()</h2>
+    <p>
+        <strong>Description:</strong>
+        Immediately stops playback of the currently playing music track.
+        Once stopped, the music position is reset, and calling
+        <code>AudioManager.play_music()</code> will start the track again
+        from the beginning. This method is commonly used when switching
+        scenes, pausing gameplay, or transitioning between menus.
+    </p>
+
+    <h3>Usage</h3>
+    <pre><code>from VertexEngine.audio import AudioManager
+
+AudioManager.stop_music()</code></pre>
+
+    <h3>Parameters</h3>
+    <ul>
+        <li><em>None</em></li>
+    </ul>
+
+    <h3>Returns</h3>
+    <p>
+        <strong>None</strong> — This method stops music playback and does not
+        return a value.
+    </p>
+
+    <h3>Notes</h3>
+    <ul>
+        <li>If no music is currently playing, calling this method has no effect.</li>
+        <li>This method stops music instantly without fading.</li>
+    </ul>
+</div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 MyPythonLib. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

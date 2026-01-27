@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VertexEngine-WebEngine | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Vertex Docs</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../search.html">Search</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+        <h1>VertexEngine WebEngine</h1>
+        <p>
+            <strong>Description:</strong>
+            The VertexEngine WebEngine module provides an embedded web browser
+            powered by <code>QWebEngine</code>. It supports custom browser
+            profiles, JavaScript-to-Python communication, and secure page
+            loading. This system is ideal for launchers, editors, dashboards,
+            and web-powered UI tools. use <code>pip install VertexEngine-WebEngine</code>
+            to use it.
+        </p>
+    </div>
+</section>
+
+<!-- ================= WEBENGINE ================= -->
+
+<section class="section">
+    <div class="container">
+        <h2>WebEngine</h2>
+        <p>
+            <strong>Description:</strong>
+            The main web view widget. It combines a custom browser profile,
+            page controller, web channel, and JavaScript bridge into a single,
+            easy-to-use component.
+        </p>
+
+        <h3>Features</h3>
+        <ul>
+            <li>Embedded Chromium-based browser</li>
+            <li>Custom user agent and storage paths</li>
+            <li>JavaScript ↔ Python communication</li>
+            <li>Automatic WebChannel setup</li>
+        </ul>
+
+        <h3>Example: Usage</h3>
+        <pre><code>from VertexEngine.WebView import WebEngine
+
+web = WebEngine()
+web.load_url("https://example.com")
+web.show()</code></pre>
+
+        <h3>Functions</h3>
+        <ul>
+            <li>
+                <code>load_url(url: str)</code><br>
+                Loads the given URL into the web view.
+            </li>
+        </ul>
+
+        <h3>Returns</h3>
+        <p>A fully configured web browser widget.</p>
+    </div>
+</section>
+
+<!-- ================= WEBPROFILE ================= -->
+
+<section class="section">
+    <div class="container">
+        <h2>WebProfile</h2>
+        <p>
+            <strong>Description:</strong>
+            A custom browser profile that controls cookies, cache, storage,
+            and the user agent. Each WebEngine instance uses this profile.
+        </p>
+
+        <h3>Behavior</h3>
+        <ul>
+            <li>Custom user agent (<code>VertexWebEngine/1.0</code>)</li>
+            <li>Persistent cookies enabled</li>
+            <li>Disk-based cache and storage</li>
+        </ul>
+
+        <h3>Storage Paths</h3>
+        <ul>
+            <li><code>webcache/</code> – HTTP cache</li>
+            <li><code>webstorage/</code> – Local & persistent storage</li>
+        </ul>
+
+        <h3>Returns</h3>
+        <p>A reusable web browser profile.</p>
+    </div>
+</section>
+
+<!-- ================= WEBPAGE ================= -->
+
+<section class="section">
+    <div class="container">
+        <h2>WebPage</h2>
+        <p>
+            <strong>Description:</strong>
+            A custom page controller connected to the WebProfile and WebChannel.
+            Handles page-level behavior and JavaScript integration.
+        </p>
+
+        <p>
+            <em>Note:</em> This class is internally managed by
+            <code>WebEngine</code> and does not need to be created manually.
+        </p>
+
+        <h3>Returns</h3>
+        <p>The active web page instance.</p>
+    </div>
+</section>
+
+<!-- ================= JSBRIDGE ================= -->
+
+<section class="section">
+    <div class="container">
+        <h2>JSBridge</h2>
+        <p>
+            <strong>Description:</strong>
+            A bridge object exposed to JavaScript via
+            <code>QWebChannel</code>. Allows JavaScript code to call Python
+            methods directly.
+        </p>
+
+        <h3>Available Methods</h3>
+        <ul>
+            <li>
+                <code>log(message: str)</code><br>
+                Sends a message from JavaScript to Python and prints it to the console.
+            </li>
+        </ul>
+
+        <h3>JavaScript Example</h3>
+        <pre><code>bridge.log("Hello from JavaScript!")</code></pre>
+
+        <h3>Python Output</h3>
+        <pre><code>[JS → Python] Hello from JavaScript!</code></pre>
+
+        <h3>Returns</h3>
+        <p>Cross-language communication between JavaScript and Python.</p>
+    </div>
+</section>
+
+<!-- ================= JS COMMUNICATION ================= -->
+
+<section class="section">
+    <div class="container">
+        <h2>JavaScript ↔ Python Communication</h2>
+        <p>
+            The WebEngine automatically registers a JavaScript object named
+            <code>bridge</code> using <code>QWebChannel</code>.
+        </p>
+
+        <h3>How It Works</h3>
+        <ol>
+            <li>Python creates a <code>JSBridge</code> object</li>
+            <li>The object is registered as <code>bridge</code></li>
+            <li>JavaScript can call exposed Python slots</li>
+        </ol>
+
+        <h3>Use Cases</h3>
+        <ul>
+            <li>Web-based UI controls</li>
+            <li>Debug consoles</li>
+            <li>Editor dashboards</li>
+            <li>Hybrid desktop/web apps</li>
+        </ul>
+    </div>
+</section>
+
+<!-- ================= WARNING ================= -->
+
+<section class="section">
+    <div class="container">
+        <h2>⚠️ Important Notes</h2>
+        <ul>
+            <li>This system is <strong>not intended for games</strong></li>
+            <li>Designed for tools, editors, and UI-heavy applications</li>
+            <li>Requires <code>PyQt6-WebEngine</code></li>
+        </ul>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 VertexEngine. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

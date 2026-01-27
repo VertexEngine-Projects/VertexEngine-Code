@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AudioManager.load_sound | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Vertex Docs</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../search.html">Search</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+        <h2>AudioManager.load_sound(name, path)</h2>
+<p>
+    <strong>Description:</strong>
+    Loads a short sound effect from disk into memory and registers it under a
+    user-defined name. Once loaded, the sound can be played instantly by referencing
+    its name, making this method ideal for frequently used effects such as button
+    clicks, explosions, jumps, or UI feedback sounds.
+</p>
+
+<h3>Usage</h3>
+<pre><code>from VertexEngine.audio import AudioManager
+
+AudioManager.load_sound("click", "assets/audio/click.wav")</code></pre>
+
+<h3>Parameters</h3>
+<ul>
+    <li>
+        <code>name</code> (<em>str</em>):  
+        A unique identifier assigned to the sound. This name is later used to
+        play or control the sound through the AudioManager.
+    </li>
+    <li>
+        <code>path</code> (<em>str</em>):  
+        The file path to the sound effect file to load. Common supported formats
+        include <code>.wav</code>, <code>.mp3</code>, and <code>.ogg</code>, depending
+        on the audio backend.
+    </li>
+</ul>
+
+<h3>Returns</h3>
+<p>
+    <strong>Sound object</strong> — An object representing the loaded sound effect.
+    This object may be used directly or managed internally by the AudioManager
+    for playback and volume control.
+</p>
+
+    <h3>Notes</h3>
+    <ul>
+        <li>Sound effects are typically short and fully loaded into memory for low-latency playback.</li>
+        <li>Each sound name should be unique; loading a sound with an existing name may overwrite the previous one.</li>
+        <li>For long or looping audio such as background music, use <code>AudioManager.load_music()</code> instead.</li>
+    </ul>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 VertexEngine. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AssetManager.load_image | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Vertex Docs</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../search.html">Search</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+        <h2>AssetManager.load_image(name, path)</h2>
+        <p>
+            <strong>Description:</strong>
+            Loads an image file from disk into the AssetManager and registers it
+            under a user-defined name. Once loaded, the image can be retrieved
+            instantly using <code>AssetManager.get_image()</code>, allowing assets
+            to be reused across scenes and systems without repeated disk access.
+        </p>
+
+        <h3>Usage</h3>
+        <pre><code>from VertexEngine.assets import AssetManager
+
+player_img = AssetManager.load_image(
+    "player",
+    "assets/images/player.png"
+)</code></pre>
+
+        <h3>Parameters</h3>
+        <ul>
+            <li>
+                <code>name</code> (<em>str</em>):  
+                A unique identifier assigned to the image. This name is later
+                used to retrieve the image from the AssetManager.
+            </li>
+            <li>
+                <code>path</code> (<em>str</em>):  
+                The file path to the image to load. Common supported formats
+                include <code>.png</code>, <code>.jpg</code>, and <code>.bmp</code>,
+                depending on the image backend.
+            </li>
+        </ul>
+
+        <h3>Returns</h3>
+        <p>
+            <strong>Image object</strong> — The loaded image. This object can be
+            stored in a variable, drawn to surfaces, transformed, or managed
+            internally by the AssetManager.
+        </p>
+
+        <h3>Notes</h3>
+        <ul>
+            <li>Each image name should be unique; loading an image with an existing name may overwrite the previous asset.</li>
+            <li>Images are typically loaded once during initialization or scene setup.</li>
+            <li>For best performance, load assets before entering performance-critical loops.</li>
+        </ul>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 MyPythonLib. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

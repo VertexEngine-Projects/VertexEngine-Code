@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VertexEngine | Documentation</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="logo">Vertex</h1>
+            <nav>
+                <ul>
+                    <li><a href="#quickstart">Quick Start</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="/search.html">Find...</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h2>Powerful. Simple. Pythonic.</h2>
+            <p>The ultimate library for making your Python apps faster and easier.</p>
+            <a href="search.html" class="btn">Get Started</a>
+            <a href="#quickstart" class="btn">Copyable template</a>
+        </div>
+    </section>
+
+    <section id="quickstart" class="section">
+        <div class="container">
+            <h2>Quick Start</h2>
+            <pre><code>pip install VertexEngine
+    ----------------------------------------------------    
+    from VertexEngine.engine import GameEngine
+    from VertexEngine import VertexScreen
+    from VertexEngine.audio import AudioManager
+    from VertexEngine.scenes import Scene
+    import pygame
+    import sys
+    from PyQt6.QtGui import QIcon
+    # from PyQt6.QtCore import Qt
+    from PyQt6.QtWidgets import QApplication
+
+    class Main(Scene):
+        def __init__(self, engine):
+            super().__init__(engine)
+            self.width = engine.width
+            self.height = engine.height
+
+        def update(self):
+            pass
+
+        def draw(self, surface):
+            VertexScreen.Draw.rect(VertexScreen.Draw, surface, (0, 255, 0), (-570, 350, 5000, 500))
+
+    if __name__ == '__main__':
+        app = QApplication(sys.argv) # <- create app
+        engine = GameEngine(fps=60, width=1920, height=1080, title="Screen.com/totally-not-virus") # <- initialize a 1080p window at 60 FPS
+        engine.setWindowTitle('Screen.com/totally-not-virus') # <- name the app
+        engine.setWindowIcon(QIcon('snake.ico')) # <- icon
+        engine.show() # <- show window
+        main_scene = Main(engine) # <- intialize the scene
+
+        engine.scene_manager.add_scene('main', main_scene) # <- name scene
+        engine.scene_manager.switch_to('main') # <- switch to the main scene pls
+
+        app.exec()</code></pre>
+        </div>
+    </section>
+
+    <section id="features" class="section features">
+        <div class="container">
+            <h2>Features</h2>
+            <ul>
+                <li>⚡ Lightning-fast execution</li>
+                <li>🛠️ Easy-to-use API</li>
+                <li>📚 Extensive documentation</li>
+                <li>🔧 Fully customizable</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 VertexEngine. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

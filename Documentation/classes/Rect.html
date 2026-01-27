@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rect | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Vertex Docs</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../search.html">Search</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+        <h2>Rect</h2>
+        <p>
+            <strong>Description:</strong>
+            <code>Rect</code> is a rectangle utility object used for positioning,
+            sizing, and collision-style calculations within VertexEngine.
+            Its parameters and behavior are fully compatible with
+            <code>pygame.Rect</code>, allowing you to directly reuse or copy
+            existing pygame code without modification.
+        </p>
+
+        <h3>Features</h3>
+        <ul>
+            <li>Identical parameter order to <code>pygame.Rect</code></li>
+            <li>Useful for UI layout, positioning, and bounds</li>
+            <li>Lightweight and easy to construct</li>
+            <li>Beginner-friendly and familiar</li>
+        </ul>
+
+        <h3>Example: Usage</h3>
+        <pre><code>from VertexEngine import Rect
+
+rect = Rect(50, 50, 200, 100)</code></pre>
+
+        <h3>Parameters</h3>
+        <ul>
+            <li><code>left</code> (int, optional): X-coordinate of the rectangle</li>
+            <li><code>top</code> (int, optional): Y-coordinate of the rectangle</li>
+            <li><code>width</code> (int, optional): Rectangle width</li>
+            <li><code>height</code> (int, optional): Rectangle height</li>
+        </ul>
+
+        <h3>Returns</h3>
+        <p>
+            A <code>Rect</code> object representing a rectangular area and its
+            configuration.
+        </p>
+
+        <h3>Notes</h3>
+        <ul>
+            <li>Commonly used for layout calculations and UI positioning</li>
+            <li>Can be passed directly to drawing and collision-related functions</li>
+            <li>If you know pygame, you already know how to use this</li>
+        </ul>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 VertexEngine. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

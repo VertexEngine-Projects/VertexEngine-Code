@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InputField | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Vertex Docs</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../search.html">Search</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+        <h2>InputField</h2>
+        <p>
+            <strong>Description:</strong>
+            <code>InputField</code> is an upgraded and highly customizable text
+            input component designed for UI applications and game editors.
+            It allows users to enter text, supports placeholder hints, and
+            offers full control over fonts, colors, and sizing.
+        </p>
+
+        <h3>Features</h3>
+        <ul>
+            <li>Placeholder text support</li>
+            <li>Custom fonts, sizes, and colors</li>
+            <li>Configurable width and height</li>
+            <li>Editor-friendly design</li>
+            <li>Keyboard input handling</li>
+        </ul>
+
+        <h3>Example: Usage</h3>
+        <pre><code>from VertexEngine import VertexUI
+
+input_field = VertexUI.InputField(
+    placeholder="Enter your name...",
+    width=300,
+    height=40,
+    text_color=(255, 255, 255),
+    bg_color=(30, 30, 30),
+    font_name="Arial",
+    font_size=16
+)</code></pre>
+
+        <h3>Parameters</h3>
+        <ul>
+            <li><code>placeholder</code> (str, optional): Grey hint text shown when the field is empty</li>
+            <li><code>width</code> (int, optional): Width of the input field</li>
+            <li><code>height</code> (int, optional): Height of the input field</li>
+            <li><code>text_color</code> (tuple, optional): Color of entered text</li>
+            <li><code>bg_color</code> (tuple, optional): Background color</li>
+            <li><code>font_name</code> (str, optional): Font family</li>
+            <li><code>font_size</code> (int, optional): Font size</li>
+            <li><code>parent</code> (UI element, optional): Parent container</li>
+        </ul>
+
+        <h3>Returns</h3>
+        <p>
+            An <code>InputField</code> instance that stores and provides access
+            to the user-entered text.
+        </p>
+
+        <h3>Notes</h3>
+        <ul>
+            <li>Ideal for forms, settings menus, and debug tools</li>
+            <li>Can be extended with validation or input masks</li>
+            <li>Works seamlessly with other VertexUI components</li>
+        </ul>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 VertexEngine. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

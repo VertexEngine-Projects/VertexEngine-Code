@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AudioManager | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Vertex Docs</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../search.html">Search</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+        <h2>AudioManager</h2>
+        <p>
+            <strong>Description:</strong>
+            The <code>AudioManager</code> class handles loading, managing, and
+            playing audio assets in a VertexEngine game. Audio files are loaded
+            once and cached for efficient reuse. Supported formats include
+            <code>.mp3</code> and <code>.ogg</code>.
+        </p>
+
+        <h3>Example: Usage</h3>
+        <pre><code>from VertexEngine.assets import AudioManager
+
+# Load audio files
+AudioManager.load_sound("click", "assets/audio/click.ogg")
+AudioManager.load_music("theme", "assets/audio/theme.mp3")
+
+# Play audio
+AudioManager.play_sound("click")
+AudioManager.play_music("theme")</code></pre>
+
+        <h3>Managed Audio Types</h3>
+        <ul>
+            <li>Sound effects (short audio clips)</li>
+            <li>Music (longer background tracks)</li>
+        </ul>
+
+        <h3>Common Methods</h3>
+        <ul>
+            <li><code>load_sound(name, path)</code> — Loads a sound effect</li>
+            <li><code>load_music(name, path)</code> — Loads background music</li>
+            <li><code>play_sound(name)</code> — Plays a sound effect</li>
+            <li><code>play_music(name, loop=True)</code> — Plays background music</li>
+            <li><code>stop_music()</code> — Stops currently playing music</li>
+        </ul>
+
+        <h3>Returns</h3>
+        <p>
+            AudioManager methods either load and return an audio object or
+            control playback of previously loaded audio.
+        </p>
+
+        <h3>Notes</h3>
+        <ul>
+            <li>Audio files should be loaded before playback.</li>
+            <li>Each audio asset name must be unique.</li>
+            <li>Sound effects are recommended for short clips, music for loops.</li>
+        </ul>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 VertexEngine. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

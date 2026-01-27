@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VBox | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Vertex Docs</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../search.html">Search</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+        <h2>VBox</h2>
+        <p><strong>Description:</strong>
+            A convenience widget that wraps a <code>QVBoxLayout</code>.
+            Allows quick vertical stacking of widgets.
+        </p>
+
+        <h3>Example: Usage</h3>
+        <pre><code>from VertexEngine.Vertex import VBox
+from PyQt6.QtWidgets import QLabel
+
+box = VBox()
+box.add(QLabel("Hello"))
+box.add(QLabel("World"))</code></pre>
+
+        <h3>Functions</h3>
+        <ul>
+            <li>
+                <code>add(widget)</code><br>
+                Adds a widget to the vertical layout.
+            </li>
+        </ul>
+
+        <h3>Returns</h3>
+        <p>A vertical layout container.</p>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 VertexEngine. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

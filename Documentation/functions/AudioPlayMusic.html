@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AudioManager.play_music | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Vertex Docs</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../search.html">Search</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+<div class="container">
+    <h2>AudioManager.play_music(loops=0)</h2>
+    <p>
+        <strong>Description:</strong>
+        Begins playback of the currently loaded music track. The music must be
+        loaded first using <code>AudioManager.load_music()</code>. The optional
+        <code>loops</code> parameter controls how many times the track will repeat
+        after the initial playthrough, allowing for single-play tracks or
+        continuously looping background music.
+    </p>
+
+    <h3>Usage</h3>
+    <pre><code>from VertexEngine.audio import AudioManager
+
+AudioManager.load_music("assets/audio/theme.mp3")
+AudioManager.play_music(loops=-1)</code></pre>
+
+    <h3>Parameters</h3>
+    <ul>
+        <li>
+            <code>loops</code> (<em>int</em>):  
+            Number of additional times the music should repeat after the first
+            playback. Use <code>0</code> to play once, or <code>-1</code> to loop
+            indefinitely.
+        </li>
+    </ul>
+
+    <h3>Returns</h3>
+    <p>
+        <strong>None</strong> — This method starts music playback but does not
+        return a value.
+    </p>
+
+    <h3>Notes</h3>
+    <ul>
+        <li>The music track must be loaded before calling this method.</li>
+        <li>Only one music track can play at a time; calling this again will restart playback.</li>
+        <li>Ideal for background music such as menus, levels, or ambient tracks.</li>
+    </ul>
+</div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 VertexEngine All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

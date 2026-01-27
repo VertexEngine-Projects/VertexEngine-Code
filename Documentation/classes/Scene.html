@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scenes and Scene System | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Vertex Docs</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../search.html">Search</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+        <h2>Scene</h2>
+        <p>
+            <strong>Description:</strong>
+            A <code>Scene</code> represents a single state of your game
+            (e.g. Main Menu, Gameplay, Pause Screen).
+            Each Scene is a <code>QWidget</code> and is managed by the
+            <code>SceneManager</code>.
+        </p>
+
+        <p>
+            Scenes handle game logic in <code>update()</code> and rendering
+            in <code>draw()</code>. Only one scene can be active at a time.
+        </p>
+
+        <h3>Example: Usage</h3>
+        <pre><code>from VertexEngine.scenes import Scene
+
+class Main(Scene):
+    def __init__(self, engine):
+        super().__init__(engine)
+
+    def update(self):
+        print("Updating game logic")
+
+    def draw(self, surface):
+        # Draw your game here
+        pass</code></pre>
+
+        <h3>Lifecycle Methods</h3>
+        <ul>
+            <li>
+                <code>on_enter()</code><br>
+                Called automatically when the scene becomes active.
+                The scene receives focus here.
+            </li>
+            <li>
+                <code>on_exit()</code><br>
+                Called when the scene is removed or replaced.
+                Use this to clean up timers, sounds, or resources.
+            </li>
+        </ul>
+
+        <h3>Main Methods</h3>
+        <ul>
+            <li>
+                <code>update()</code><br>
+                Runs every frame. Put all game logic here
+                (input handling, physics, AI, state changes).
+            </li>
+            <li>
+                <code>draw(surface)</code><br>
+                Runs every frame. Put all rendering code here.
+            </li>
+        </ul>
+
+        <h3>Parameters</h3>
+        <ul>
+            <li>
+                <code>engine</code> (GameEngine)<br>
+                The main engine instance. Used as the parent widget
+                and to access engine systems.
+            </li>
+        </ul>
+
+        <h3>Notes</h3>
+        <ul>
+            <li>Only the active scene receives updates and draw calls</li>
+            <li>Scenes automatically inherit the engine's focus policy</li>
+            <li>Designed to work with <code>SceneManager</code></li>
+        </ul>
+    </div>
+</section>

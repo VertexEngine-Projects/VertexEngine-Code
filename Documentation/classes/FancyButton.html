@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FancyButton | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Vertex Docs</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../search.html">Search</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+        <h2>FancyButton</h2>
+        <p>
+            <strong>Description:</strong>
+            <code>FancyButton</code> is an upgraded, highly customizable UI button
+            designed for professional UI applications and in-engine editors.
+            It supports advanced styling, hover effects, rounded corners,
+            borders, and custom fonts out of the box.
+        </p>
+
+        <h3>Features</h3>
+        <ul>
+            <li>Hover color transitions</li>
+            <li>Rounded corners with adjustable radius</li>
+            <li>Fully customizable borders</li>
+            <li>Custom fonts, sizes, and weights</li>
+            <li>Optional parent container support</li>
+        </ul>
+
+        <h3>Example: Usage</h3>
+        <pre><code>from VertexEngine import VertexUI
+
+button = VertexUI.FancyButton(
+    text="Play",
+    width=200,
+    height=50,
+    bg_color=(40, 40, 40),
+    hover_color=(60, 60, 60),
+    text_color=(255, 255, 255),
+    border_radius=12,
+    border_color=(255, 255, 255),
+    border_width=2,
+    font_name="Arial",
+    font_size=18,
+    font_weight="bold"
+)</code></pre>
+
+        <h3>Parameters</h3>
+        <ul>
+            <li><code>text</code> (str, optional): Text displayed on the button</li>
+            <li><code>width</code> (int, optional): Button width</li>
+            <li><code>height</code> (int, optional): Button height</li>
+            <li><code>bg_color</code> (tuple, optional): Background color</li>
+            <li><code>hover_color</code> (tuple, optional): Color when hovering over the button</li>
+            <li><code>text_color</code> (tuple, optional): Text color</li>
+            <li><code>border_radius</code> (int, optional): Corner roundness</li>
+            <li><code>border_color</code> (tuple, optional): Border color</li>
+            <li><code>border_width</code> (int, optional): Border thickness</li>
+            <li><code>font_name</code> (str, optional): Font family name</li>
+            <li><code>font_size</code> (int, optional): Font size</li>
+            <li><code>font_weight</code> (str, optional): Font weight (e.g. normal, bold)</li>
+            <li><code>parent</code> (UI element, optional): Parent container</li>
+        </ul>
+
+        <h3>Returns</h3>
+        <p>
+            A <code>FancyButton</code> instance capable of handling click,
+            hover, and interaction events.
+        </p>
+
+        <h3>Notes</h3>
+        <ul>
+            <li>Ideal for menus, editors, and in-game UI panels</li>
+            <li>Designed to feel modern and responsive</li>
+            <li>Can be extended for animations or sound effects</li>
+        </ul>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 VertexEngine. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

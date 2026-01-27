@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legacy Text | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<section class="section">
+    <div class="container">
+        <h2>LegacyText</h2>
+        <p>
+            <strong>Description:</strong>
+            <code>LegacyText</code> is a basic text-rendering component for UI
+            applications and game editors. It is intended for displaying static
+            or minimally interactive text such as labels, captions, or debug
+            information.
+        </p>
+
+        <p>
+            This component is currently a lightweight wrapper around PyQt6’s
+            text-related widgets and follows their default behavior.
+        </p>
+
+        <h3>Status</h3>
+        <ul>
+            <li>⚠️ Currently unfinished</li>
+            <li>API and behavior may change</li>
+            <li>Recommended for simple or experimental use</li>
+        </ul>
+
+        <h3>Example: Usage</h3>
+        <pre><code>from VertexEngine import VertexUI
+
+label = VertexUI.LegacyText("Hello, Vertex!")</code></pre>
+
+        <h3>Parameters</h3>
+        <ul>
+            <li>
+                <code>[UNFINISHED]</code><br>
+                All parameters are optional. Most text-related attributes are
+                self-explanatory (text content, color, font, size, alignment).
+                For advanced configuration, refer to the PyQt6 text widget
+                documentation.
+            </li>
+        </ul>
+
+        <h3>Returns</h3>
+        <p>
+            A <code>LegacyText</code> instance that displays text on the screen.
+        </p>
+
+        <h3>Notes</h3>
+        <ul>
+            <li>Best used for labels, HUD elements, and debug text</li>
+            <li>Not intended for user text input</li>
+            <li>For advanced styling and layout control, future text components may be added</li>
+        </ul>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 VertexEngine. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

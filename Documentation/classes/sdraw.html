@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>draw() | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Vertex Docs</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../search.html">Search</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+        <h2>Scene</h2>
+        <p>
+            <strong>Description:</strong>
+            A <code>Scene</code> represents a single state or screen in your game,
+            such as a main menu, level, or editor view. All rendering logic lives
+            inside the scene’s <code>draw()</code> method, which is automatically
+            called every frame by the <code>GameEngine</code>.
+        </p>
+
+        <p>
+            Without a Scene, nothing is drawn and no game logic can run.
+            Every Vertex game must have at least one active scene.
+        </p>
+
+        <h3>Example: Usage</h3>
+        <pre><code>from VertexEngine.scenes import Scene
+
+class Main(Scene):
+    def __init__(self, engine):
+        super().__init__(engine)
+
+    def draw(self, surface):
+        # Put all drawing code here
+        # Example: draw images, shapes, UI, etc.
+        pass</code></pre>
+
+        <h3>Scene Lifecycle</h3>
+        <ul>
+            <li><code>__init__()</code> – Initialize scene data</li>
+            <li><code>draw(surface)</code> – Called every frame to render visuals</li>
+            <li><code>update(delta_time)</code> – (Optional) Update game logic</li>
+        </ul>
+
+        <h3>Parameters</h3>
+        <ul>
+            <li>
+                <code>surface</code> —
+                The surface to draw on. All rendering operations for the scene
+                should be performed on this surface.
+            </li>
+        </ul>
+
+        <h3>Returns</h3>
+        <p>
+            None. The scene renders directly to the screen each frame.
+        </p>
+
+        <h3>Notes</h3>
+        <ul>
+            <li>This method is executed once per frame</li>
+            <li>All draw calls (images, shapes, UI) should be placed here</li>
+            <li>Scenes are managed by the engine’s SceneManager</li>
+            <li>Switching scenes changes what is drawn and updated</li>
+        </ul>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 VertexEngine. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

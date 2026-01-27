@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AssetManager | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Vertex Docs</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../search.html">Search</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+        <h2>Dialog</h2>
+        <p><strong>Description:</strong>
+            Base dialog class built on <code>QDialog</code>.
+            Supports modal and non-modal dialogs.
+        </p>
+
+        <h3>Parameters</h3>
+        <ul>
+            <li><code>parent</code> (QWidget): Parent window</li>
+            <li><code>title</code> (str): Dialog title</li>
+            <li><code>size</code> (tuple): Width and height</li>
+            <li><code>modal</code> (bool): Whether the dialog is modal</li>
+        </ul>
+
+        <h3>Functions</h3>
+        <ul>
+            <li><code>open_dialog()</code> – Opens the dialog</li>
+            <li><code>close_dialog()</code> – Closes the dialog</li>
+        </ul>
+
+        <h3>Returns</h3>
+        <p>A dialog window.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2>MessageDialog</h2>
+        <p><strong>Description:</strong>
+            Displays a simple message dialog with an OK button.
+        </p>
+
+        <h3>Example: Usage</h3>
+        <pre><code>MessageDialog(parent, "Hello World").open_dialog()</code></pre>
+
+        <h3>Returns</h3>
+        <p>A modal message dialog.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2>ConfirmDialog</h2>
+        <p><strong>Description:</strong>
+            Displays a confirmation dialog with Yes / No options.
+        </p>
+
+        <h3>Example: Usage</h3>
+        <pre><code>result = ConfirmDialog.ask(parent, "Are you sure?")
+if result:
+    print("User confirmed")</code></pre>
+
+        <h3>Functions</h3>
+        <ul>
+            <li>
+                <code>ask(parent, message, title="Confirm")</code><br>
+                Opens the dialog and returns <code>True</code> if accepted.
+            </li>
+        </ul>
+
+        <h3>Returns</h3>
+        <p>Boolean result.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2>InputDialog</h2>
+        <p><strong>Description:</strong>
+            Displays a dialog that asks the user for text input.
+        </p>
+
+        <h3>Example: Usage</h3>
+        <pre><code>value = InputDialog.get(parent, "Enter your name:")
+print(value)</code></pre>
+
+        <h3>Functions</h3>
+        <ul>
+            <li><code>value()</code> – Returns the entered text</li>
+            <li>
+                <code>get(parent, label, title="Input")</code><br>
+                Opens the dialog and returns text or <code>None</code>.
+            </li>
+        </ul>
+
+        <h3>Returns</h3>
+        <p>User-entered text or <code>None</code>.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2>Dialogs</h2>
+        <p><strong>Description:</strong>
+            A static helper class that provides quick access
+            to common dialogs.
+        </p>
+
+        <h3>Example: Usage</h3>
+        <pre><code>Dialogs.message(parent, "Hello!")
+confirmed = Dialogs.confirm(parent, "Continue?")
+text = Dialogs.input(parent, "Your name:")</code></pre>
+
+        <h3>Functions</h3>
+        <ul>
+            <li><code>message(parent, text)</code> – Shows a message dialog</li>
+            <li><code>confirm(parent, text)</code> – Returns True / False</li>
+            <li><code>input(parent, text)</code> – Returns text or None</li>
+        </ul>
+
+        <h3>Returns</h3>
+        <p>Dialog results.</p>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 VertexEngine. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

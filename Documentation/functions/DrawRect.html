@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VertexScreen.Draw.rect | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Vertex Docs</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../search.html">Search</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+        <h2>VertexScreen.Draw.rect(surface, color, rect=None)</h2>
+        <p>
+            <strong>Description:</strong>
+            Draws a solid-colored rectangle on the specified surface. When a
+            rectangle area is provided, the rectangle is drawn at the given
+            position and size. If <code>rect</code> is set to <code>None</code>,
+            the rectangle fills the entire surface. This method is commonly used
+            for backgrounds, panels, UI elements, and screen clearing.
+        </p>
+
+        <h3>Usage</h3>
+        <pre><code>from VertexEngine import VertexScreen
+
+vs = VertexScreen()
+
+# Fill the entire surface with a background color
+vs.Draw.rect(surface, (30, 30, 30))
+
+# Draw a UI panel
+vs.Draw.rect(
+    surface,
+    (0, 120, 255),
+    rect=(100, 80, 300, 200)
+)</code></pre>
+
+        <h3>Parameters</h3>
+        <ul>
+            <li>
+                <code>surface</code> (<em>Surface</em>):  
+                The surface on which the rectangle will be drawn, such as the main
+                display surface or an off-screen rendering buffer.
+            </li>
+            <li>
+                <code>color</code> (<em>tuple</em>):  
+                The color of the rectangle, specified as an RGB
+                <code>(R, G, B)</code> or RGBA <code>(R, G, B, A)</code> tuple.
+            </li>
+            <li>
+                <code>rect</code> (<em>tuple</em>, optional):  
+                A rectangle defined as <code>(x, y, width, height)</code>.
+                If omitted or set to <code>None</code>, the rectangle fills
+                the entire surface.
+            </li>
+        </ul>
+
+        <h3>Returns</h3>
+        <p>
+            <strong>None</strong> — This method draws directly onto the surface
+            and does not return a value.
+        </p>
+
+        <h3>Notes</h3>
+        <ul>
+            <li>Using RGBA colors allows transparency if the surface supports alpha.</li>
+            <li>This method always draws a filled rectangle.</li>
+            <li>For outlined rectangles, use a rectangle method with a width parameter if available.</li>
+        </ul>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 MyPythonLib. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

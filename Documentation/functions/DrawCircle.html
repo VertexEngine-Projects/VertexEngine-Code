@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VertexScreen.Draw.circle | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Vertex Docs</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../search.html">Search</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+        <h2>
+            VertexScreen.Draw.circle(
+            surface, color, center, radius, width,
+            draw_top_right, draw_top_left,
+            draw_bottom_right, draw_bottom_left)
+        </h2>
+        <p>
+            <strong>Description:</strong>
+            Draws a circle on the specified surface with fine-grained control over
+            which quadrants are rendered. This allows partial circles to be drawn,
+            enabling advanced visual effects such as progress indicators, segmented
+            UI elements, or stylized outlines. The circle can be rendered as either
+            an outline or a filled shape depending on the <code>width</code> value.
+        </p>
+
+        <h3>Usage</h3>
+        <pre><code>from VertexEngine import VertexScreen
+
+vs = VertexScreen()
+
+# Draw a full outlined circle
+vs.Draw.circle(
+    surface,
+    (0, 120, 255),
+    center=(200, 200),
+    radius=80,
+    width=4,
+    draw_top_right=True,
+    draw_top_left=True,
+    draw_bottom_right=True,
+    draw_bottom_left=True
+)</code></pre>
+
+        <h3>Parameters</h3>
+        <ul>
+            <li>
+                <code>surface</code> (<em>Surface</em>):  
+                The surface on which the circle will be drawn, such as the main
+                display surface or an off-screen rendering buffer.
+            </li>
+            <li>
+                <code>color</code> (<em>tuple</em>):  
+                The RGB color of the circle, specified as <code>(R, G, B)</code>.
+            </li>
+            <li>
+                <code>center</code> (<em>tuple</em>):  
+                The center point of the circle in the format <code>(x, y)</code>.
+            </li>
+            <li>
+                <code>radius</code> (<em>int</em>):  
+                The radius of the circle in pixels.
+            </li>
+            <li>
+                <code>width</code> (<em>int</em>):  
+                The thickness of the circle outline. Set to <code>0</code> to draw
+                a filled circle.
+            </li>
+            <li>
+                <code>draw_top_right</code> (<em>bool</em>):  
+                If <code>True</code>, renders the top-right quadrant of the circle.
+            </li>
+            <li>
+                <code>draw_top_left</code> (<em>bool</em>):  
+                If <code>True</code>, renders the top-left quadrant of the circle.
+            </li>
+            <li>
+                <code>draw_bottom_right</code> (<em>bool</em>):  
+                If <code>True</code>, renders the bottom-right quadrant of the circle.
+            </li>
+            <li>
+                <code>draw_bottom_left</code> (<em>bool</em>):  
+                If <code>True</code>, renders the bottom-left quadrant of the circle.
+            </li>
+        </ul>
+
+        <h3>Returns</h3>
+        <p>
+            <strong>None</strong> — This method draws directly onto the surface and
+            does not return a value.
+        </p>
+
+        <h3>Notes</h3>
+        <ul>
+            <li>Disabling specific quadrants allows partial or segmented circles.</li>
+            <li>Filled circles (<code>width = 0</code>) ignore quadrant flags in some implementations.</li>
+            <li>This method is well-suited for UI meters, radial indicators, and decorative elements.</li>
+        </ul>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 MyPythonLib. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

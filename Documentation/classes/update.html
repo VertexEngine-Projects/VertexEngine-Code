@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update() | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Vertex Docs</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../search.html">Search</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+        <h2>Scene.update()</h2>
+        <p>
+            <strong>Description:</strong>
+            The <code>update()</code> method contains all game logic that must run
+            continuously while the scene is active. This method is automatically
+            called every frame by the <code>GameEngine</code> and is responsible
+            for handling input, movement, physics, timers, and other logical
+            operations.
+        </p>
+
+        <p>
+            Without <code>update()</code>, your game would render visuals but
+            nothing would move, react, or respond to player input.
+        </p>
+
+        <h3>Example: Usage</h3>
+        <pre><code>from VertexEngine.scenes import Scene
+
+class Main(Scene):
+    def __init__(self, engine):
+        super().__init__(engine)
+
+    def update(self):
+        # Handle input
+        # Update positions
+        # Run game logic
+        pass</code></pre>
+
+        <h3>Parameters</h3>
+        <ul>
+            <li>
+                <code>self</code> —
+                Refers to the current scene instance. It allows access to
+                scene variables, the engine, and other systems.
+            </li>
+        </ul>
+
+        <h3>Responsibilities</h3>
+        <ul>
+            <li>Process player input</li>
+            <li>Update entity positions and states</li>
+            <li>Run timers, animations, and logic</li>
+            <li>Control game rules and conditions</li>
+        </ul>
+
+        <h3>Returns</h3>
+        <p>
+            None. This method updates the internal state of the scene each frame.
+        </p>
+
+        <h3>Notes</h3>
+        <ul>
+            <li>Called once per frame before or alongside <code>draw()</code></li>
+            <li>Should not contain drawing code</li>
+            <li>Heavy logic should be optimized to avoid FPS drops</li>
+        </ul>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 VertexEngine. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

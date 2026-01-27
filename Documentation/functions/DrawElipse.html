@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VertexScreen.Draw.ellipse | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Vertex Docs</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../search.html">Search</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+        <h2>VertexScreen.Draw.ellipse(surface, color, rect, width)</h2>
+        <p>
+            <strong>Description:</strong>
+            Draws an ellipse that fits perfectly inside the specified rectangular
+            area on the given surface. The ellipse can be rendered as either an
+            outlined shape or a filled shape depending on the <code>width</code>
+            parameter. This method is commonly used for buttons, highlights,
+            indicators, and decorative UI elements.
+        </p>
+
+        <h3>Usage</h3>
+        <pre><code>from VertexEngine import VertexScreen
+
+vs = VertexScreen()
+
+# Draw a filled ellipse
+vs.Draw.ellipse(
+    surface,
+    (255, 200, 0),
+    rect=(100, 150, 300, 180),
+    width=0
+)</code></pre>
+
+        <h3>Parameters</h3>
+        <ul>
+            <li>
+                <code>surface</code> (<em>Surface</em>):  
+                The surface on which the ellipse will be drawn, such as the main
+                display surface or an off-screen rendering buffer.
+            </li>
+            <li>
+                <code>color</code> (<em>tuple</em>):  
+                The RGB color of the ellipse, specified as <code>(R, G, B)</code>.
+            </li>
+            <li>
+                <code>rect</code> (<em>tuple</em>):  
+                A rectangle defined as <code>(x, y, width, height)</code> that
+                determines the size and position of the ellipse.
+            </li>
+            <li>
+                <code>width</code> (<em>int</em>):  
+                The thickness of the ellipse outline in pixels. Set to
+                <code>0</code> to draw a filled ellipse.
+            </li>
+        </ul>
+
+        <h3>Returns</h3>
+        <p>
+            <strong>None</strong> — This method draws directly onto the surface and
+            does not return a value.
+        </p>
+
+        <h3>Notes</h3>
+        <ul>
+            <li>If the rectangle is a square, the ellipse becomes a circle.</li>
+            <li>Filled ellipses (<code>width = 0</code>) are useful for UI backgrounds.</li>
+            <li>For smoother edges, consider anti-aliased drawing methods if available.</li>
+        </ul>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 MyPythonLib. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

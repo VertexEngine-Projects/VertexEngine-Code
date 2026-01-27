@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base Window | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Vertex Docs</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../search.html">Search</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+        <h2>BaseWindow</h2>
+        <p>
+            <strong>Description:</strong>
+            <code>BaseWindow</code> is the foundational window class in
+            VertexEngine. All window types inherit from this class, providing
+            shared functionality such as rendering, event handling, and
+            lifecycle control. Developers can extend this class to create
+            custom windows with specialized behavior.
+        </p>
+
+        <h3>Purpose</h3>
+        <ul>
+            <li>Acts as the root window class for all UI and game windows</li>
+            <li>Provides common window logic and structure</li>
+            <li>Designed to be subclassed and customized</li>
+        </ul>
+
+        <h3>Example: Inheritance</h3>
+        <pre><code>from VertexEngine.window import BaseWindow
+
+class GameWindow(BaseWindow):
+    def __init__(self):
+        super().__init__()
+        # Custom setup here
+
+    def update(self, dt):
+        pass
+
+    def draw(self, surface):
+        pass</code></pre>
+
+        <h3>Returns</h3>
+        <p>
+            An instance of a Base Window or a subclass derived from it.
+        </p>
+
+        <h3>Notes</h3>
+        <ul>
+            <li>Should not be used directly for gameplay in most cases</li>
+            <li>Extend this class to implement custom window behavior</li>
+            <li>Ensures consistent behavior across all window types</li>
+        </ul>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 VertexEngine. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>
