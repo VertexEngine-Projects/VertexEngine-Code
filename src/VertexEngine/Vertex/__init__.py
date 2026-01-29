@@ -4,9 +4,18 @@ import sys
 from PyQt6.QtWidgets import (
     QApplication, QWidget, 
     QVBoxLayout, QDialog, 
-    QLabel, QPushButton,
+    QLabel, QPushButton, QHBoxLayout,
     QHBoxLayout, QLineEdit)
 
+class HBox(QWidget):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.layout = QHBoxLayout()
+        self.setLayout(self.layout)
+
+    def add(self, widget):
+        self.layout.addWidget(widget)
+        
 class VBox(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
