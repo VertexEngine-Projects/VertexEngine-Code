@@ -7,7 +7,15 @@ from PyQt6.QtWidgets import (
     QLabel, QPushButton, QHBoxLayout,
     QHBoxLayout, QLineEdit)
 
-class HBox(QWidget):
+class VWidget(QWidget):
+    """
+    Base widget class.
+    """
+
+    def __init__(self):
+        super().__init__()
+
+class HBox(VWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.layout = QHBoxLayout()
@@ -16,7 +24,7 @@ class HBox(QWidget):
     def add(self, widget):
         self.layout.addWidget(widget)
         
-class VBox(QWidget):
+class VBox(VWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.layout = QVBoxLayout()

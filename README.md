@@ -1,7 +1,14 @@
 # VertexEngine/Vertex
 VertexEngine is a GUI and Game Engine for python applications, it works best if you use py installer
-
+## Offical Extensions:
+[VertexEngine-WebEngine](https://pypi.org/project/VertexEngine-WebEngine)
+[VertexEngine-CLI](https://pypi.org/project/VertexEngine-CLI/1.0/)
 ## Change Logs (1.0rc1 - 1.2rc3), NEW!
+### 1.2rc4
+- Final RC!
+- Docs will be updated on Feb 04, 2026.
+- New Library!:
+~ VertexEngine.AdvancedWidgets
 ### 1.2rc3
 - Added 1 New Library:
 ~ HBox, VBox but horizontally not vertically.

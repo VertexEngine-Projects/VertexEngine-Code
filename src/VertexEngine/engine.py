@@ -3,10 +3,10 @@ from PyQt6.QtGui import QImage, QPainter
 from PyQt6.QtCore import QTimer, Qt
 import pygame
 from .scenes import SceneManager
-
+from .Vertex import VWidget
 pygame.init()
 
-class GameEngine(QWidget):
+class GameEngine(VWidget):
     def __init__(self, width=800, height=600, fps=60):
         super().__init__()
         self.width = width

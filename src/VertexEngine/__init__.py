@@ -32,11 +32,6 @@ from PyQt6.QtGui import QCursor
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QLabel
 from typing_extensions import deprecated as dep
-print(
-    "Vertex 3 (SDL {}.{}.{}, Python {}.{}.{})".format(  # pylint: disable=consider-using-f-string
-        ver, *get_sdl_version() + sys.version_info[0:3]
-    )
-)
 
 class VertexScreen():
     """Draw on VertexEngine's Screen."""

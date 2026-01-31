@@ -1,7 +1,7 @@
 # scenes/scene.py
-from PyQt6.QtWidgets import QWidget
+from .Vertex import VWidget
 
-class Scene(QWidget):
+class Scene(VWidget):
     def __init__(self, engine):
         super().__init__(engine)  # parent = engine widget
         self.engine = engine

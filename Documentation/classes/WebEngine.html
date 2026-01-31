@@ -21,177 +21,275 @@
 
 <section class="section">
     <div class="container">
-        <h1>VertexEngine WebEngine</h1>
+        <h1>VertexWebEngineWidgets.EngineView</h1>
+
         <p>
-            <strong>Description:</strong>
-            The VertexEngine WebEngine module provides an embedded web browser
-            powered by <code>QWebEngine</code>. It supports custom browser
-            profiles, JavaScript-to-Python communication, and secure page
-            loading. This system is ideal for launchers, editors, dashboards,
-            and web-powered UI tools. use <code>pip install VertexEngine-WebEngine</code>
-            to use it.
+            The <code>EngineView</code> system is VertexEngine’s built-in
+            <strong>Web Scene Engine</strong>. It allows you to load
+            HTML-based scenes inside a Qt WebEngine window and switch them
+            dynamically using JavaScript.
+        </p>
+
+        <p>
+            This module is designed for:
+        </p>
+
+        <ul>
+            <li>Web-powered menus</li>
+            <li>HTML-based UI editors</li>
+            <li>Custom launchers</li>
+            <li>Scene-based web applications inside Vertex</li>
+        </ul>
+
+        <p>
+            ⚠️ This is not intended for real-time game rendering.
+            Use <code>GameEngine</code> for pygame-based games.
         </p>
     </div>
 </section>
 
-<!-- ================= WEBENGINE ================= -->
+<!-- ===================================================== -->
+<!-- ENGINE VIEW -->
+<!-- ===================================================== -->
 
 <section class="section">
     <div class="container">
-        <h2>WebEngine</h2>
+        <h2>WebEngine (EngineView)</h2>
+
         <p>
             <strong>Description:</strong>
-            The main web view widget. It combines a custom browser profile,
-            page controller, web channel, and JavaScript bridge into a single,
-            easy-to-use component.
+            The <code>WebEngine</code> class is the main web container.
+            It extends <code>QWebEngineView</code> and automatically enables:
+        </p>
+
+        <ul>
+            <li>Scene loading through <code>SceneManager</code></li>
+            <li>JavaScript → Python calls through <code>JSBridge</code></li>
+            <li>Qt WebChannel communication</li>
+        </ul>
+
+        <h3>Initialization Flow</h3>
+
+        <ol>
+            <li>Create the Scene Manager</li>
+            <li>Attach the JSBridge</li>
+            <li>Register the bridge in a WebChannel</li>
+            <li>Load the first scene (<code>menu</code>)</li>
+        </ol>
+
+        <h3>Source Example</h3>
+
+        <pre><code>from PyQt6.QtWebEngineWidgets import QWebEngineView
+from PyQt6.QtWebChannel import QWebChannel
+
+from VertexWebEngineCore.WebScene import SceneManager
+from VertexWebEngineCore.JSBridge import JSBridge
+
+class WebEngine(QWebEngineView):
+    def __init__(self):
+        super().__init__()
+
+        # Scene system
+        self.scene_manager = SceneManager(self)
+
+        # Bridge
+        self.bridge = JSBridge(self.scene_manager)
+
+        # Channel
+        self.channel = QWebChannel()
+        self.channel.registerObject("bridge", self.bridge)
+
+        self.page().setWebChannel(self.channel)
+
+        # Start on menu
+        self.scene_manager.load_scene("menu")</code></pre>
+    </div>
+</section>
+
+<!-- ===================================================== -->
+<!-- SCENE MANAGER -->
+<!-- ===================================================== -->
+
+<section class="section">
+    <div class="container">
+        <h2>SceneManager (WebScene.py)</h2>
+
+        <p>
+            <strong>Description:</strong>
+            The <code>SceneManager</code> is responsible for loading HTML scenes
+            from the <code>scenes/</code> folder and injecting the Vertex bridge.
+        </p>
+
+        <h3>Scene Folder Structure</h3>
+
+        <pre><code>project/
+ ├─ scenes/
+ │   ├─ menu.html
+ │   ├─ settings.html
+ │   ├─ editor.html</code></pre>
+
+        <h3>Scene Loading</h3>
+
+        <p>
+            When a scene is loaded:
+        </p>
+
+        <ul>
+            <li>The file is read from disk</li>
+            <li>The HTML is wrapped in a full document</li>
+            <li>The Qt WebChannel script is injected</li>
+            <li>The JS bridge becomes available as <code>Vertex</code></li>
+        </ul>
+
+        <h3>Source Example</h3>
+
+        <pre><code>from pathlib import Path
+
+class SceneManager:
+    def __init__(self, webview):
+        self.webview = webview
+        self.scene_path = Path("scenes")
+
+    def load_scene(self, name: str):
+        file = self.scene_path / f"{name}.html"
+
+        if not file.exists():
+            print("❌ Scene not found:", file)
+            return
+
+        html = file.read_text(encoding="utf-8")
+
+        full_html = f"""
+        &lt;!DOCTYPE html&gt;
+        &lt;html&gt;
+        &lt;head&gt;
+            &lt;script src="qrc:///qtwebchannel/qwebchannel.js"&gt;&lt;/script&gt;
+        &lt;/head&gt;
+
+        &lt;body&gt;
+            &lt;div id="scene"&gt;
+                {html}
+            &lt;/div&gt;
+
+            &lt;script&gt;
+                let Vertex;
+
+                new QWebChannel(qt.webChannelTransport, function(channel) {{
+                    Vertex = channel.objects.bridge;
+                    console.log("✅ Vertex Bridge Ready!");
+                }});
+            &lt;/script&gt;
+        &lt;/body&gt;
+        &lt;/html&gt;
+        """
+
+        print(f"🗺️ Loading Scene: {name}")
+        self.webview.setHtml(full_html)</code></pre>
+    </div>
+</section>
+
+<!-- ===================================================== -->
+<!-- JS BRIDGE -->
+<!-- ===================================================== -->
+
+<section class="section">
+    <div class="container">
+        <h2>JSBridge (JavaScript → Python)</h2>
+
+        <p>
+            <strong>Description:</strong>
+            The <code>JSBridge</code> exposes Python functions directly into
+            JavaScript, allowing web scenes to control the engine.
         </p>
 
         <h3>Features</h3>
+
         <ul>
-            <li>Embedded Chromium-based browser</li>
-            <li>Custom user agent and storage paths</li>
-            <li>JavaScript ↔ Python communication</li>
-            <li>Automatic WebChannel setup</li>
+            <li>Scene switching from JavaScript</li>
+            <li>Qt Signals for engine events</li>
+            <li>Expandable API for future web tools</li>
         </ul>
 
-        <h3>Example: Usage</h3>
-        <pre><code>from VertexEngine.WebView import WebEngine
+        <h3>Available Slots</h3>
 
-web = WebEngine()
-web.load_url("https://example.com")
-web.show()</code></pre>
+        <h4>loadScene(name)</h4>
+        <p>
+            Loads another HTML scene from the <code>scenes/</code> folder.
+        </p>
 
-        <h3>Functions</h3>
-        <ul>
-            <li>
-                <code>load_url(url: str)</code><br>
-                Loads the given URL into the web view.
-            </li>
-        </ul>
+        <h3>Source Example</h3>
 
-        <h3>Returns</h3>
-        <p>A fully configured web browser widget.</p>
+        <pre><code>from PyQt6.QtCore import QObject, pyqtSlot, pyqtSignal
+
+class JSBridge(QObject):
+
+    sceneChanged = pyqtSignal(str)
+
+    def __init__(self, scene_manager):
+        super().__init__()
+        self.scene_manager = scene_manager
+
+    @pyqtSlot(str)
+    def loadScene(self, name):
+        print("🎮 JS Requested Scene:", name)
+
+        self.scene_manager.load_scene(name)
+        self.sceneChanged.emit(name)</code></pre>
     </div>
 </section>
 
-<!-- ================= WEBPROFILE ================= -->
+<!-- ===================================================== -->
+<!-- JAVASCRIPT USAGE -->
+<!-- ===================================================== -->
 
 <section class="section">
     <div class="container">
-        <h2>WebProfile</h2>
+        <h2>Using Scenes in JavaScript</h2>
+
         <p>
-            <strong>Description:</strong>
-            A custom browser profile that controls cookies, cache, storage,
-            and the user agent. Each WebEngine instance uses this profile.
+            Once the WebChannel is ready, the bridge becomes accessible
+            inside HTML as a global object named <code>Vertex</code>.
         </p>
 
-        <h3>Behavior</h3>
+        <h3>Example Button Scene</h3>
+
+        <pre><code>&lt;h1&gt;Main Menu&lt;/h1&gt;
+
+&lt;button onclick="Vertex.loadScene('settings')"&gt;
+    Go to Settings
+&lt;/button&gt;</code></pre>
+
+        <p>
+            Clicking this button triggers:
+        </p>
+
         <ul>
-            <li>Custom user agent (<code>VertexWebEngine/1.0</code>)</li>
-            <li>Persistent cookies enabled</li>
-            <li>Disk-based cache and storage</li>
-        </ul>
-
-        <h3>Storage Paths</h3>
-        <ul>
-            <li><code>webcache/</code> – HTTP cache</li>
-            <li><code>webstorage/</code> – Local & persistent storage</li>
-        </ul>
-
-        <h3>Returns</h3>
-        <p>A reusable web browser profile.</p>
-    </div>
-</section>
-
-<!-- ================= WEBPAGE ================= -->
-
-<section class="section">
-    <div class="container">
-        <h2>WebPage</h2>
-        <p>
-            <strong>Description:</strong>
-            A custom page controller connected to the WebProfile and WebChannel.
-            Handles page-level behavior and JavaScript integration.
-        </p>
-
-        <p>
-            <em>Note:</em> This class is internally managed by
-            <code>WebEngine</code> and does not need to be created manually.
-        </p>
-
-        <h3>Returns</h3>
-        <p>The active web page instance.</p>
-    </div>
-</section>
-
-<!-- ================= JSBRIDGE ================= -->
-
-<section class="section">
-    <div class="container">
-        <h2>JSBridge</h2>
-        <p>
-            <strong>Description:</strong>
-            A bridge object exposed to JavaScript via
-            <code>QWebChannel</code>. Allows JavaScript code to call Python
-            methods directly.
-        </p>
-
-        <h3>Available Methods</h3>
-        <ul>
-            <li>
-                <code>log(message: str)</code><br>
-                Sends a message from JavaScript to Python and prints it to the console.
-            </li>
-        </ul>
-
-        <h3>JavaScript Example</h3>
-        <pre><code>bridge.log("Hello from JavaScript!")</code></pre>
-
-        <h3>Python Output</h3>
-        <pre><code>[JS → Python] Hello from JavaScript!</code></pre>
-
-        <h3>Returns</h3>
-        <p>Cross-language communication between JavaScript and Python.</p>
-    </div>
-</section>
-
-<!-- ================= JS COMMUNICATION ================= -->
-
-<section class="section">
-    <div class="container">
-        <h2>JavaScript ↔ Python Communication</h2>
-        <p>
-            The WebEngine automatically registers a JavaScript object named
-            <code>bridge</code> using <code>QWebChannel</code>.
-        </p>
-
-        <h3>How It Works</h3>
-        <ol>
-            <li>Python creates a <code>JSBridge</code> object</li>
-            <li>The object is registered as <code>bridge</code></li>
-            <li>JavaScript can call exposed Python slots</li>
-        </ol>
-
-        <h3>Use Cases</h3>
-        <ul>
-            <li>Web-based UI controls</li>
-            <li>Debug consoles</li>
-            <li>Editor dashboards</li>
-            <li>Hybrid desktop/web apps</li>
+            <li>JavaScript → Python slot call</li>
+            <li>SceneManager loads <code>settings.html</code></li>
+            <li>The view updates instantly</li>
         </ul>
     </div>
 </section>
 
-<!-- ================= WARNING ================= -->
+<!-- ===================================================== -->
+<!-- NOTES -->
+<!-- ===================================================== -->
 
 <section class="section">
     <div class="container">
-        <h2>⚠️ Important Notes</h2>
+        <h2>Notes & Future Expansion</h2>
+
         <ul>
-            <li>This system is <strong>not intended for games</strong></li>
-            <li>Designed for tools, editors, and UI-heavy applications</li>
-            <li>Requires <code>PyQt6-WebEngine</code></li>
+            <li>Scenes are pure HTML files inside <code>scenes/</code></li>
+            <li>The bridge can expose more engine APIs later</li>
+            <li>Perfect for launchers, editors, UI-heavy tools</li>
+            <li>Not designed for high-performance rendering</li>
         </ul>
+
+        <p>
+            🚀 VertexWebEngine is the foundation for future web-powered
+            editor workflows inside VertexEngine.
+        </p>
     </div>
 </section>
 

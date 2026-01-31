@@ -1,5 +1,5 @@
 from PyQt6.QtCore import Qt
-
+from PyQt6.QtGui import QShortcut, QKeySequence
 KEY_MAP = {
     # Arrows
     "left": Qt.Key.Key_Left,
@@ -57,3 +57,8 @@ class Input:
     @classmethod
     def is_released(cls, key):
         return KEY_MAP[key] in cls._just_released
+
+    class VShortcut(QShortcut):
+        def __init__(self, key, parent, callback):
+            super().__init__(QKeySequence(key), parent)
+            self.activated.connect(callback)
