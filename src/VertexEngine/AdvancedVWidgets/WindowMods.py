@@ -3,12 +3,29 @@ from PyQt6.QtWidgets import (
     QTableWidget, QTableWidgetItem,
     QSplitter,
     QScrollArea,
-    QDockWidget,
-    QGraphicsView, QGraphicsScene,
+    QDockWidget, QWidget
 )
-from PyQt6.QtGui import QKeySequence, QShortcut
 from PyQt6.QtCore import Qt, QThread, pyqtSignal, QSettings
-from PyQt6.QtWebEngineWidgets import QWebEngineView
+from PyQt6.QtGui import QPainter, QFont
+
+class StarRating(QWidget):
+    def __init__(self, stars=5):
+        super().__init__()
+        self.stars = stars
+        self.rating = 0
+        self.setFixedSize(150, 30)
+
+    def mousePressEvent(self, event):
+        self.rating = int(event.position().x() // 30) + 1
+        self.update()
+
+    def paintEvent(self, event):
+        painter = QPainter(self)
+        painter.setFont(QFont("Arial", 18))
+
+        for i in range(self.stars):
+            star = "★" if i < self.rating else "☆"
+            painter.drawText(i * 30, 22, star)
 
 class VTree(QTreeWidget):
     def __init__(self, headers=["Name"]):
