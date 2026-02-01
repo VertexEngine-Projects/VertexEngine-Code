@@ -20,277 +20,176 @@
 </header>
 
 <section class="section">
-    <div class="container">
-        <h1>VertexWebEngineWidgets.EngineView</h1>
-
-        <p>
-            The <code>EngineView</code> system is VertexEngine’s built-in
-            <strong>Web Scene Engine</strong>. It allows you to load
-            HTML-based scenes inside a Qt WebEngine window and switch them
-            dynamically using JavaScript.
-        </p>
-
-        <p>
-            This module is designed for:
-        </p>
-
-        <ul>
-            <li>Web-powered menus</li>
-            <li>HTML-based UI editors</li>
-            <li>Custom launchers</li>
-            <li>Scene-based web applications inside Vertex</li>
-        </ul>
-
-        <p>
-            ⚠️ This is not intended for real-time game rendering.
-            Use <code>GameEngine</code> for pygame-based games.
-        </p>
-    </div>
-</section>
-
-<!-- ===================================================== -->
-<!-- ENGINE VIEW -->
-<!-- ===================================================== -->
-
-<section class="section">
-    <div class="container">
-        <h2>WebEngine (EngineView)</h2>
-
-        <p>
-            <strong>Description:</strong>
-            The <code>WebEngine</code> class is the main web container.
-            It extends <code>QWebEngineView</code> and automatically enables:
-        </p>
-
-        <ul>
-            <li>Scene loading through <code>SceneManager</code></li>
-            <li>JavaScript → Python calls through <code>JSBridge</code></li>
-            <li>Qt WebChannel communication</li>
-        </ul>
-
-        <h3>Initialization Flow</h3>
-
-        <ol>
-            <li>Create the Scene Manager</li>
-            <li>Attach the JSBridge</li>
-            <li>Register the bridge in a WebChannel</li>
-            <li>Load the first scene (<code>menu</code>)</li>
-        </ol>
-
-        <h3>Source Example</h3>
-
-        <pre><code>from PyQt6.QtWebEngineWidgets import QWebEngineView
-from PyQt6.QtWebChannel import QWebChannel
-
-from VertexWebEngineCore.WebScene import SceneManager
-from VertexWebEngineCore.JSBridge import JSBridge
-
-class WebEngine(QWebEngineView):
-    def __init__(self):
-        super().__init__()
-
-        # Scene system
-        self.scene_manager = SceneManager(self)
-
-        # Bridge
-        self.bridge = JSBridge(self.scene_manager)
-
-        # Channel
-        self.channel = QWebChannel()
-        self.channel.registerObject("bridge", self.bridge)
-
-        self.page().setWebChannel(self.channel)
-
-        # Start on menu
-        self.scene_manager.load_scene("menu")</code></pre>
-    </div>
-</section>
-
-<!-- ===================================================== -->
-<!-- SCENE MANAGER -->
-<!-- ===================================================== -->
-
-<section class="section">
-    <div class="container">
-        <h2>SceneManager (WebScene.py)</h2>
-
-        <p>
-            <strong>Description:</strong>
-            The <code>SceneManager</code> is responsible for loading HTML scenes
-            from the <code>scenes/</code> folder and injecting the Vertex bridge.
-        </p>
-
-        <h3>Scene Folder Structure</h3>
-
-        <pre><code>project/
- ├─ scenes/
- │   ├─ menu.html
- │   ├─ settings.html
- │   ├─ editor.html</code></pre>
+  <div class="container">
 
-        <h3>Scene Loading</h3>
+    <h1>VertexWebEngineCore Documentation</h1>
 
-        <p>
-            When a scene is loaded:
-        </p>
+    <p>
+      <strong>VertexWebEngineCore</strong> is the internal browser framework inside VertexEngine.
+      It provides tools for building full web browsers, launchers, editors, and hybrid HTML-based scenes.
+    </p>
 
-        <ul>
-            <li>The file is read from disk</li>
-            <li>The HTML is wrapped in a full document</li>
-            <li>The Qt WebChannel script is injected</li>
-            <li>The JS bridge becomes available as <code>Vertex</code></li>
-        </ul>
+    <p>This system includes:</p>
+    <ul>
+      <li>Request interception and blocking</li>
+      <li>Custom browser page behavior</li>
+      <li>Persistent profiles (cookies/cache)</li>
+      <li>Navigation UI toolbars</li>
+      <li>Download management</li>
+    </ul>
 
-        <h3>Source Example</h3>
+    <hr>
 
-        <pre><code>from pathlib import Path
+    <!-- ======================= VertexInterceptor ======================= -->
 
-class SceneManager:
-    def __init__(self, webview):
-        self.webview = webview
-        self.scene_path = Path("scenes")
-
-    def load_scene(self, name: str):
-        file = self.scene_path / f"{name}.html"
+    <h2>VertexInterceptor</h2>
 
-        if not file.exists():
-            print("❌ Scene not found:", file)
-            return
+    <p>
+      <strong>Description:</strong>
+      The <code>VertexInterceptor</code> allows Vertex browsers to block unwanted URLs
+      such as ads, trackers, or unsafe domains.
+    </p>
 
-        html = file.read_text(encoding="utf-8")
+    <h3>Usage</h3>
+    <pre><code>from VertexWebEngineCore.Interceptor import VertexInterceptor
+from PyQt6.QtWebEngineCore import QWebEngineProfile
 
-        full_html = f"""
-        &lt;!DOCTYPE html&gt;
-        &lt;html&gt;
-        &lt;head&gt;
-            &lt;script src="qrc:///qtwebchannel/qwebchannel.js"&gt;&lt;/script&gt;
-        &lt;/head&gt;
+profile = QWebEngineProfile()
 
-        &lt;body&gt;
-            &lt;div id="scene"&gt;
-                {html}
-            &lt;/div&gt;
-
-            &lt;script&gt;
-                let Vertex;
-
-                new QWebChannel(qt.webChannelTransport, function(channel) {{
-                    Vertex = channel.objects.bridge;
-                    console.log("✅ Vertex Bridge Ready!");
-                }});
-            &lt;/script&gt;
-        &lt;/body&gt;
-        &lt;/html&gt;
-        """
-
-        print(f"🗺️ Loading Scene: {name}")
-        self.webview.setHtml(full_html)</code></pre>
-    </div>
-</section>
-
-<!-- ===================================================== -->
-<!-- JS BRIDGE -->
-<!-- ===================================================== -->
-
-<section class="section">
-    <div class="container">
-        <h2>JSBridge (JavaScript → Python)</h2>
-
-        <p>
-            <strong>Description:</strong>
-            The <code>JSBridge</code> exposes Python functions directly into
-            JavaScript, allowing web scenes to control the engine.
-        </p>
-
-        <h3>Features</h3>
-
-        <ul>
-            <li>Scene switching from JavaScript</li>
-            <li>Qt Signals for engine events</li>
-            <li>Expandable API for future web tools</li>
-        </ul>
-
-        <h3>Available Slots</h3>
-
-        <h4>loadScene(name)</h4>
-        <p>
-            Loads another HTML scene from the <code>scenes/</code> folder.
-        </p>
-
-        <h3>Source Example</h3>
-
-        <pre><code>from PyQt6.QtCore import QObject, pyqtSlot, pyqtSignal
-
-class JSBridge(QObject):
-
-    sceneChanged = pyqtSignal(str)
-
-    def __init__(self, scene_manager):
-        super().__init__()
-        self.scene_manager = scene_manager
-
-    @pyqtSlot(str)
-    def loadScene(self, name):
-        print("🎮 JS Requested Scene:", name)
-
-        self.scene_manager.load_scene(name)
-        self.sceneChanged.emit(name)</code></pre>
-    </div>
-</section>
-
-<!-- ===================================================== -->
-<!-- JAVASCRIPT USAGE -->
-<!-- ===================================================== -->
-
-<section class="section">
-    <div class="container">
-        <h2>Using Scenes in JavaScript</h2>
-
-        <p>
-            Once the WebChannel is ready, the bridge becomes accessible
-            inside HTML as a global object named <code>Vertex</code>.
-        </p>
-
-        <h3>Example Button Scene</h3>
-
-        <pre><code>&lt;h1&gt;Main Menu&lt;/h1&gt;
-
-&lt;button onclick="Vertex.loadScene('settings')"&gt;
-    Go to Settings
-&lt;/button&gt;</code></pre>
-
-        <p>
-            Clicking this button triggers:
-        </p>
-
-        <ul>
-            <li>JavaScript → Python slot call</li>
-            <li>SceneManager loads <code>settings.html</code></li>
-            <li>The view updates instantly</li>
-        </ul>
-    </div>
-</section>
-
-<!-- ===================================================== -->
-<!-- NOTES -->
-<!-- ===================================================== -->
-
-<section class="section">
-    <div class="container">
-        <h2>Notes & Future Expansion</h2>
-
-        <ul>
-            <li>Scenes are pure HTML files inside <code>scenes/</code></li>
-            <li>The bridge can expose more engine APIs later</li>
-            <li>Perfect for launchers, editors, UI-heavy tools</li>
-            <li>Not designed for high-performance rendering</li>
-        </ul>
-
-        <p>
-            🚀 VertexWebEngine is the foundation for future web-powered
-            editor workflows inside VertexEngine.
-        </p>
-    </div>
+# Attach interceptor
+profile.setUrlRequestInterceptor(VertexInterceptor())</code></pre>
+
+    <p><strong>Returns:</strong> Blocks unwanted requests automatically.</p>
+
+    <hr>
+
+    <!-- ======================= VertexWebPage ======================= -->
+
+    <h2>VertexWebPage</h2>
+
+    <p>
+      <strong>Description:</strong>
+      VertexWebPage extends Qt’s browser page system to provide debugging features like:
+    </p>
+
+    <ul>
+      <li>JavaScript console logging</li>
+      <li>Navigation event tracking</li>
+    </ul>
+
+    <h3>Usage</h3>
+    <pre><code>from VertexWebEngineCore.WebPage import VertexWebPage
+from PyQt6.QtWebEngineWidgets import QWebEngineView
+
+view = QWebEngineView()
+view.setPage(VertexWebPage(view))
+
+view.load("https://example.com")</code></pre>
+
+    <p><strong>Returns:</strong> A browser page with console + navigation output enabled.</p>
+
+    <hr>
+
+    <!-- ======================= VertexProfile ======================= -->
+
+    <h2>VertexProfile</h2>
+
+    <p>
+      <strong>Description:</strong>
+      VertexProfile manages browser cookies, cache, and storage settings.
+      This allows persistent login sessions and saved web data.
+    </p>
+
+    <h3>Usage</h3>
+    <pre><code>from VertexWebEngineCore.Profile import VertexProfile
+from PyQt6.QtWebEngineWidgets import QWebEngineView
+
+view = QWebEngineView()
+
+# Use persistent Vertex profile
+profile = VertexProfile()
+view.page().setProfile(profile)</code></pre>
+
+    <p><strong>Returns:</strong> A persistent browser profile.</p>
+
+    <hr>
+
+    <!-- ======================= WebEngine ======================= -->
+
+    <h2>WebEngine</h2>
+
+    <p>
+      <strong>Description:</strong>
+      The main Vertex browser widget.
+      It automatically integrates:
+    </p>
+
+    <ul>
+      <li>Scene loading (HTML menus)</li>
+      <li>JavaScript → Python bridge</li>
+      <li>Qt WebChannel support</li>
+    </ul>
+
+    <h3>Usage</h3>
+    <pre><code>from VertexWebEngineWidgets.EngineView import WebEngine
+
+browser = WebEngine()
+browser.show()</code></pre>
+
+    <p><strong>Returns:</strong> A full Vertex web browser view.</p>
+
+    <hr>
+
+    <!-- ======================= NavBar ======================= -->
+
+    <h2>NavBar</h2>
+
+    <p>
+      <strong>Description:</strong>
+      NavBar is a browser toolbar widget with built-in controls:
+    </p>
+
+    <ul>
+      <li>Back / Forward</li>
+      <li>Reload</li>
+      <li>New Tab</li>
+      <li>URL Input Bar</li>
+    </ul>
+
+    <h3>Usage</h3>
+    <pre><code>from VertexBrowserUI.NavBar import NavBar
+from VertexBrowserTools.Tabs import BrowserTabs
+
+tabs = BrowserTabs()
+navbar = NavBar(tabs)
+
+window.addToolBar(navbar)</code></pre>
+
+    <p><strong>Returns:</strong> A navigation toolbar connected to browser tabs.</p>
+
+    <hr>
+
+    <!-- ======================= DownloadManager ======================= -->
+
+    <h2>DownloadManager</h2>
+
+    <p>
+      <strong>Description:</strong>
+      Handles downloads triggered inside the Vertex browser.
+      All files are automatically stored in the <code>downloads/</code> folder.
+    </p>
+
+    <h3>Usage</h3>
+    <pre><code>from VertexBrowserTools.Downloads import DownloadManager
+
+downloads = DownloadManager()
+
+# Hook into Qt download system
+profile.downloadRequested.connect(downloads.handle_download)</code></pre>
+
+    <p><strong>Returns:</strong> Accepts and manages browser downloads.</p>
+
+  </div>
 </section>
 
 <footer>

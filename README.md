@@ -3,6 +3,9 @@ VertexEngine is a GUI and Game Engine for python applications, it works best if 
 ## Offical Extensions:
 [VertexEngine-WebEngine](https://pypi.org/project/VertexEngine-WebEngine)
 [VertexEngine-CLI](https://pypi.org/project/VertexEngine-CLI/1.0/)
+## Community
+🚧 Discord coming soon!
+For now, open an issue or discussion.
 ## Change Logs (1.0rc1 - 1.2rc3), NEW!
 ### 1.2rc4
 - Final RC!
