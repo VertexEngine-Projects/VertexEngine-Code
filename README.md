@@ -9,7 +9,11 @@ VertexEngine is a GUI and Game Engine for python applications, it works best if 
 ## Community
 🚧 Discord coming in TEN DAYS!
 For now, open an issue or discussion. if you get an error, go!
-## Change Logs (1.0rc1 - 1.3rc1), NEW!
+## Change Logs (1.0rc1 - 1.3rc2), NEW!
+### 1.3rc2
+- Added 2 new VertexUI APIs:
+- AutoFontLabel > Automatically Adapts to screen size!
+- Card > A mini VBox in card layout for card based UI!
 ### 1.3rc1
 - No more docs for RCs as the new functions are ("expirimental")
 - Moved SimpleGUI and AdvancedVWidgets into VertexEngine.VertexWidgets

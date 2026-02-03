@@ -3,7 +3,7 @@
 # This library/SDK is free. You can redistribute it.
 # Tyrel Gomez (email as annbasilan)
 # annbasilan0828@gmail.com
-"""Vertex 3 is an SDK for RainOS GameDev. It's also supported by many others.
+"""VertexEngine is an SDK for Application Development. It's also supported by many others.
 
 Supported OSes 
 --------------
@@ -24,15 +24,11 @@ from .assets import AssetManager
 from .audio import AudioManager
 from pygame.base import *  # pylint: disable=wildcard-import; lgtm[py/polluting-import]
 from pygame import *  # pylint: disable=wildcard-import; lgtm[py/polluting-import]
-import sys
-from PyQt6.QtWidgets import QPushButton, QLineEdit
-from PyQt6.QtGui import QFont
-from PyQt6.QtWidgets import QPushButton
-from PyQt6.QtGui import QCursor
+from PyQt6.QtWidgets import QPushButton, QLineEdit, QLabel, QWidget
+from PyQt6.QtGui import QFont, QCursor, QFontMetrics
 from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import QLabel
 from typing_extensions import deprecated as dep
-
+from VertexEngine.Vertex import VBox
 class VertexScreen():
     """Draw on VertexEngine's Screen."""
     def __init__(self):
@@ -163,6 +159,30 @@ class VertexUI():
     def __init__(self):
         pass
 
+    class AutoFontLabel(QLabel):
+        def __init__(self, text="", parent=None):
+            super().__init__(text, parent)
+            self.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        def resizeEvent(self, event):
+            self.adjustFont()
+            super().resizeEvent(event)
+
+        def adjustFont(self):
+            if not self.text():
+                return
+            # Start with a large font and shrink until it fits
+            font = self.font()
+            font_size = self.height()  # start big
+            font.setPointSize(font_size)
+            metrics = QFontMetrics(font)
+
+            while metrics.width(self.text()) > self.width() and font_size > 1:
+                font_size -= 1
+                font.setPointSize(font_size)
+                metrics = QFontMetrics(font)
+            self.setFont(font)
+
     class FancyButton(QPushButton):
         def __init__(
             self,
@@ -259,6 +279,23 @@ class VertexUI():
 
         def set_color(self, color):
             self.setStyleSheet(self.styleSheet() + f"color: {color};")
+
+    class Card(QWidget):
+        def __init__(self, parent=None):
+            super().__init__(parent)
+            self.layout = VBox()
+            self.setLayout(self.layout)
+            self.setStyleSheet("""
+            QWidget {
+                border: 1px solid #ccc;
+                border-radius: 10px;
+                padding: 10px;
+                background-color: #f9f9f9;
+            }
+            """)
+
+    def addWidget(self, widget):
+        self.layout.addWidget(widget)
 
     class InputField(QLineEdit):
         def __init__(
