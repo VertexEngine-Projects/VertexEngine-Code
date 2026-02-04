@@ -1,6 +1,6 @@
 [project]
 name = "VertexEngine"
-version = "1.3rc3"
+version = "1.3rc4"
 description = "An SDK for Python Development."
 authors = [
   { name = "Tyrel Miguel", email = "annbasilan0828@gmail.com" }
@@ -18,6 +18,6 @@ dependencies = [
 Documentation = "https://vertexenginedocs.netlify.app/"
 Source = "https://github.com/TyrelGomez/VertexEngine-Code"
 Issues = "https://github.com/TyrelGomez/VertexEngine-Code/issues"
-
+Discord = "https://discord.com/channels/1468208686869643327/1468208687670890588"
 [tool.setuptools.packages.find]
 where = ["src"]
