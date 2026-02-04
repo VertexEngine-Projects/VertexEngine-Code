@@ -9,11 +9,10 @@ readme = "README.md"
 license = { text = "MIT" }
 requires-python = ">=3.10"
 
-# Dependencies: pin latest compatible for PyQt6 and pygame
 dependencies = [
-  "pygame-ce>=2.5.0; python_version >= '3.14'",  # optimized for 3.14+
-  "pygame>=2.6; python_version < '3.14'",   # fallback for <=3.13
-  "PyQt6>=6.7"
+  "PyQt6>=6.7",
+  "pygame>=2.6; python_version < '3.14'",
+  "pygame-ce>=2.5.0; python_version >= '3.14'"
 ]
 
 [project.urls]
@@ -24,11 +23,3 @@ Discord = "https://discord.com/channels/1468208686869643327/1468208687670890588"
 
 [tool.setuptools.packages.find]
 where = ["src"]
-
-[tool.setuptools]
-zip_safe = false  # avoids weird import issues on Windows
-include_package_data = true
-
-[tool.setuptools.entry-points.console_scripts]
-# if you later want CLI support
-vertexengine-cli = "VertexEngine.cli:main"

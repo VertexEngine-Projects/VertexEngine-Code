@@ -294,8 +294,8 @@ class VertexUI():
             }
             """)
 
-    def addWidget(self, widget):
-        self.layout.addWidget(widget)
+        def addWidget(self, widget):
+            self.layout.addWidget(widget)
 
     class InputField(QLineEdit):
         def __init__(

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoFontLabel | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Vertex Docs</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../search.html">Search</a></li>
+            </ul>
+        </nav>
+    </div>
+</head>
+<section class="section">
+  <div class="container">
+
+    <h2>AutoFontLabel</h2>
+
+    <p>
+      <strong>Description:</strong> 
+      A QLabel subclass that automatically adjusts its font size to fit the text within the label's width. 
+      The text is centered by default and will dynamically resize whenever the label's size changes.
+    </p>
+
+    <h3>Usage</h3>
+    <pre><code>from PyQt6.QtWidgets import QApplication
+from VertexEngine.VertexUI import AutoFontLabel
+
+app = QApplication([])
+
+label = AutoFontLabel("Resizable Text")
+label.resize(200, 50)
+label.show()
+
+app.exec()</code></pre>
+
+    <h3>Parameters</h3>
+    <ul>
+      <li><code>text</code> (str, optional): Initial text to display. Defaults to an empty string.</li>
+      <li><code>parent</code> (QWidget, optional): Parent widget. Defaults to <code>None</code>.</li>
+    </ul>
+
+    <h3>Methods</h3>
+    <ul>
+      <li><code>adjustFont()</code>: Adjusts the font size to fit the text inside the current width of the label.</li>
+    </ul>
+
+    <h3>Events</h3>
+    <ul>
+      <li><code>resizeEvent(event)</code>: Automatically calls <code>adjustFont()</code> whenever the label is resized.</li>
+    </ul>
+
+    <h3>Behavior</h3>
+    <ul>
+      <li>Text is centered horizontally and vertically.</li>
+      <li>Font size starts at the label's height and decreases until the text fits the width.</li>
+      <li>Minimum font size is 1 pt.</li>
+    </ul>
+
+  </div>
+</section>
+<footer>
+    <div class="container">
+        <p>&copy; 2026 VertexEngine. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

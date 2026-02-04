@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Vertex Docs</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../search.html">Search</a></li>
+            </ul>
+        </nav>
+    </div>
+</head>
+<section class="section">
+  <div class="container">
+
+    <h2>Card</h2>
+
+    <p>
+      <strong>Description:</strong> 
+      A Card widget for UI layouts. It provides a styled container with rounded borders, padding, and a light background color.
+      You can add other widgets inside the Card using <code>addWidget()</code>.
+    </p>
+
+    <h3>Usage</h3>
+    <pre><code>from PyQt6.QtWidgets import QApplication
+from VertexEngine.VertexUI import Card, VBox, FancyButton, Text
+
+app = QApplication([])
+
+card = Card()
+card.addWidget(Text("Hello inside a card!"))
+card.addWidget(FancyButton("Click Me"))
+
+card.show()
+app.exec()</code></pre>
+
+    <h3>Parameters</h3>
+    <ul>
+      <li><code>parent</code> (QWidget, optional): The parent widget of the Card. Defaults to <code>None</code>.</li>
+    </ul>
+
+    <h3>Methods</h3>
+    <ul>
+      <li><code>addWidget(widget)</code>: Adds a child widget to the card's internal vertical layout (<code>VBox</code>).</li>
+    </ul>
+
+    <h3>Returns</h3>
+    <p>The <code>Card</code> itself is a QWidget, so it can be placed in any layout or shown directly.</p>
+
+    <h3>Style</h3>
+    <ul>
+      <li>Border: 1px solid #ccc</li>
+      <li>Border radius: 10px</li>
+      <li>Padding: 10px</li>
+      <li>Background color: #f9f9f9</li>
+    </ul>
+
+  </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 VertexEngine. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>
