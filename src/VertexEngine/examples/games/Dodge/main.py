@@ -1,13 +1,11 @@
 import sys
 import random
 from PyQt6.QtWidgets import QApplication
-from PyQt6.QtCore import Qt
-
 from VertexEngine.engine import GameEngine
 from VertexEngine.scenes import Scene
 from VertexEngine import VertexScreen
 from VertexEngine.InputSystem.KeyInputs import Input
-
+from PyQt6.QtCore import Qt
 # =====================
 # CONFIG
 # =====================
@@ -196,35 +194,16 @@ class MainScene(Scene):
                 s.pos(VIRTUAL_WIDTH // 2, VIRTUAL_HEIGHT // 2)
             )
 
-
-# =====================
-# ENGINE (Qt INPUT HERE)
-# =====================
-class DogpileEngine(GameEngine):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
-
-    def keyPressEvent(self, event):
-        Input.key_down(event.key())
-
-    def keyReleaseEvent(self, event):
-        Input.key_up(event.key())
-
-
 # =====================
 # RUN
 # =====================
 if __name__ == "__main__":
     app = QApplication(sys.argv)
 
-    engine = DogpileEngine(
-        fps=60,
-        width=1000,
-        height=800,
-    )
+    engine = GameEngine()
     engine.setWindowTitle("Dogpile Dodger (VertexEngine)")
     engine.setMinimumSize(VIRTUAL_WIDTH, VIRTUAL_HEIGHT)
+    engine.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
     engine.show()
 
     scene = MainScene(engine)

@@ -3,6 +3,7 @@ from PyQt6.QtGui import QImage, QPainter
 from PyQt6.QtCore import QTimer, Qt
 import pygame
 from .scenes import SceneManager
+from VertexEngine.InputSystem.KeyInputs import Input
 pygame.init()
 
 class GameEngine(QWidget):
@@ -64,7 +65,7 @@ class GameEngine(QWidget):
     # ---------------------- INPUT ----------------------
 
     def keyPressEvent(self, event):
-        self.keys_down.add(event.key())
+        Input.key_down(event.key())
 
     def keyReleaseEvent(self, event):
-        self.keys_down.discard(event.key())
+        Input.key_up(event.key())
