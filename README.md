@@ -9,7 +9,11 @@ VertexEngine is a GUI and Game Engine for python applications, it works best if 
 ## Community
 Discord is out NOW!
 [Discord Server](https://discord.com/channels/1468208686869643327/1468208687670890588)
-## Change Logs (1.0rc1 - 1.3.0), NEW!
+## Change Logs (1.0rc1 - 1.4.0), NEW!
+### 1.4.0
+- Fixed a lot of bugs
+- Updated outdated templates!
+- Docs update!
 ### 1.4rc2
 - Final RC!
 - Fixed internals for the WebEngine and CLI.

@@ -13,6 +13,8 @@
             <h1 class="logo">Vertex</h1>
             <nav>
                 <ul>
+                    <li><a href="https://vertexengine.onrender.com/">Home</a></li>
+                    <li><a href="https://discord.com/channels/1468208686869643327/1468208687670890588">Discord</a></li>
                     <li><a href="#quickstart">Quick Start</a></li>
                     <li><a href="#features">Features</a></li>
                     <li><a href="/search.html">Find...</a></li>
@@ -28,48 +30,73 @@
             <a href="search.html" class="btn">Get Started</a>
             <a href="#quickstart" class="btn">Copyable template</a>
         </div>
-        <p>Discord Soon!</p>
     </section>
 
     <section id="quickstart" class="section">
         <div class="container">
             <h2>Quick Start</h2>
             <pre><code>pip install VertexEngine
-    ----------------------------------------------------    
-    from VertexEngine.engine import GameEngine
-    from VertexEngine import VertexScreen
-    from VertexEngine.audio import AudioManager
-    from VertexEngine.scenes import Scene
-    import pygame
-    import sys
-    from PyQt6.QtGui import QIcon
-    # from PyQt6.QtCore import Qt
-    from PyQt6.QtWidgets import QApplication
+                -------------------------------------------------------------------------------------
+                from VertexEngine.Vertex import App from VertexEngine.engine import GameEngine
+                from VertexEngine.scenes import Scene 
+                from VertexEngine import VertexScreen 
+                from VertexEngine.InputSystem.KeyInputs import Input 
+                from VertexEngine.InputSystem.Events import ButtonEvents 
+                from VertexEngine import VertexUI 
+                from PyQt6.QtWidgets import QVBoxLayout 
+                import sys 
+                RED = (255, 0, 0) 
+                class Player: 
+                    def __init__(self): 
+                        self.x = 250 
+                        self.y = 200 
+                        self.width = 80 
+                        self.height = 80 
 
-    class Main(Scene):
-        def __init__(self, engine):
-            super().__init__(engine)
-            self.width = engine.width
-            self.height = engine.height
+                    def update(self): 
+                        if Input.is_pressed("w") or Input.is_pressed("up"): 
+                            self.y -= 5 
 
-        def update(self):
-            pass
+                        if Input.is_pressed("s") or Input.is_pressed("down"):   
+                            self.y += 5
 
-        def draw(self, surface):
-            VertexScreen.Draw.rect(VertexScreen.Draw, surface, (0, 255, 0), (-570, 350, 5000, 500))
+                        if Input.is_pressed("a") or Input.is_pressed("left"): 
+                            self.x -= 5
 
-    if __name__ == '__main__':
-        app = QApplication(sys.argv) # <- create app
-        engine = GameEngine(fps=60, width=1920, height=1080, title="Screen.com/totally-not-virus") # <- initialize a 1080p window at 60 FPS
-        engine.setWindowTitle('Screen.com/totally-not-virus') # <- name the app
-        engine.setWindowIcon(QIcon('snake.ico')) # <- icon
-        engine.show() # <- show window
-        main_scene = Main(engine) # <- intialize the scene
+                        if Input.is_pressed("d") or Input.is_pressed("right"): 
+                            self.x += 5 
+                        class Main(Scene): 
+                            def __init__(self, engine): 
+                                super().__init__(engine) 
+                                self.engine = engine 
+                                self.button1 = VertexUI.FancyButton("Hallo") 
+                                events = ButtonEvents() 
+                                events.on_click(self.button1, self.do_something) 
+                                layout = QVBoxLayout() 
+                                layout.addWidget(self.button1) 
+                                self.setLayout(layout) 
+                                self.player = Player() 
 
-        engine.scene_manager.add_scene('main', main_scene) # <- name scene
-        engine.scene_manager.switch_to('main') # <- switch to the main scene pls
-
-        app.exec()</code></pre>
+                            def do_something(self): 
+                                ("click clickity click click :D") 
+                                
+                            def update(self): 
+                                self.player.update() 
+                                Input.input_update() 
+                                
+                            def draw(self, surface): 
+                                draw = VertexScreen.Draw() 
+                                draw.rect(surface, RED, (self.player.x, self.player.y, self.player.width, self.player.height)) 
+                            
+                            if __name__ == "__main__": 
+                                app = App() 
+                                engine = GameEngine() # defaults to 800x600@60 
+                                engine.setWindowTitle("VertexEngine Full template!") 
+                                engine.show()
+                                scene1 = Main(engine) 
+                                engine.scene_manager.set_scene(scene1) 
+                                sys.exit(app.exec()) # make it loop forever until 'x' button is clicked
+            </code></pre>
         </div>
     </section>
 

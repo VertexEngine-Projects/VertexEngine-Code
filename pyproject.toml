@@ -1,6 +1,6 @@
 [project]
 name = "VertexEngine"
-version = "1.4dev1"
+version = "1.4rc1"
 description = "A high-performance SDK for Python Development."
 authors = [
   { name = "Tyrel Miguel", email = "annbasilan0828@gmail.com" }
