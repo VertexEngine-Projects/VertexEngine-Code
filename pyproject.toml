@@ -16,6 +16,7 @@ dependencies = [
 ]
 
 [project.urls]
+Homepage = "https://vertexengine.onrender.com"
 Documentation = "https://vertexenginedocs.netlify.app/"
 Source = "https://github.com/TyrelGomez/VertexEngine-Code"
 Issues = "https://github.com/TyrelGomez/VertexEngine-Code/issues"
