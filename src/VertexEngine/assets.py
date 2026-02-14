@@ -47,11 +47,12 @@ class AssetManager:
         self.images = {}
 
     def load_image(self, name: str, path: str):
+        """Load an image with a name to accompany it to not manually type the path. `Path` is the place that `name` points to."""
         if name in self.images:
             return self.images[name]
 
         try:
-            surface = pygame.image.load(path).convert_alpha()
+            surface = pygame.image.load(path)
             self.images[name] = surface
             return surface
 
@@ -60,4 +61,13 @@ class AssetManager:
             return None
 
     def get_image(self, name: str):
+        """Get an image by using it's `name` as the identifier"""
         return self.images.get(name)
+
+    def draw(self, target_surface, name, pos=(0, 0)):
+        """Blit the image with the given name onto target_surface at position pos."""
+        img = self.images.get(name)
+        if img:
+            target_surface.blit(img, pos)
+        else:
+            print(f"[Warning] Image '{name}' not loaded!")
