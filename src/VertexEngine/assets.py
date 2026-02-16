@@ -56,7 +56,7 @@ class AssetManager:
             return self.images[name]
 
         try:
-            surface = pygame.image.load(path).convert_alpha()
+            surface = pygame.image.load(path)
             self.images[name] = surface
             return surface
 
