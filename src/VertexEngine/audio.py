@@ -18,6 +18,16 @@ class AudioManager:
         pygame.mixer.music.load(path)
 
     def play_music(self, loops=-1):
+        """Music uses the `.mp3` format. It is a way to play looping music.
+
+        # Values
+        There is only 1 value/perameter which is `loops`
+
+        ## loops
+        loops is how many times it will loop, 0 means the music only plays once
+        -1 means it loops forever until `stop_music()` manually cancells it.
+
+        """
         if self.music:
             pygame.mixer.music.play(loops=loops)
 

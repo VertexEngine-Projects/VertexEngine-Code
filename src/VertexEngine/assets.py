@@ -43,16 +43,20 @@ class ImageAsset:
         self.surface = surface  # pygame.Surface
 
 class AssetManager:
+    """The `AssetManager` is a class to draw and load images and assets of any kind."""
     def __init__(self):
         self.images = {}
+        self._scaled_cache = {}  # cache for scaled versions
 
     def load_image(self, name: str, path: str):
-        """Load an image with a name to accompany it to not manually type the path. `Path` is the place that `name` points to."""
+        """Load an image with `path` and `name`, `name` can be thought as a variable that represents `path`.
+        It can be acessed by any other `AssetManager` function.
+        """
         if name in self.images:
             return self.images[name]
 
         try:
-            surface = pygame.image.load(path)
+            surface = pygame.image.load(path).convert_alpha()
             self.images[name] = surface
             return surface
 
@@ -61,13 +65,36 @@ class AssetManager:
             return None
 
     def get_image(self, name: str):
-        """Get an image by using it's `name` as the identifier"""
         return self.images.get(name)
 
-    def draw(self, target_surface, name, pos=(0, 0)):
-        """Blit the image with the given name onto target_surface at position pos."""
+    def draw(self, target_surface, name, pos=(0, 0), size=None):
+        """
+        Draw image.
+        size = (width, height) to rescale.
+        If size is None, original size is used.
+        target_surface is the surface to draw the actual image
+        pos is where to draw it in coordinates
+        name is the identity of the image. make sure it's loaded in by `load_image`
+        """
         img = self.images.get(name)
-        if img:
-            target_surface.blit(img, pos)
-        else:
+
+        if not img:
             print(f"[Warning] Image '{name}' not loaded!")
+            return
+
+        # If no scaling requested → draw normally
+        if size is None:
+            target_surface.blit(img, pos)
+            return
+
+        # Use cache key
+        cache_key = (name, size)
+
+        # Check if scaled version exists
+        if cache_key not in self._scaled_cache:
+            scaled_img = pygame.transform.smoothscale(img, size)
+            self._scaled_cache[cache_key] = scaled_img
+        else:
+            scaled_img = self._scaled_cache[cache_key]
+
+        target_surface.blit(scaled_img, pos)

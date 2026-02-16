@@ -7,10 +7,19 @@ from VertexEngine.InputSystem.KeyInputs import Input
 pygame.init()
 
 class GameEngine(QWidget):
-    def __init__(self, width=800, height=600, fps=60):
+    """`GameEngine()` is a class to create the window for your VertexEngine game. \n
+        `width` is the resolution of your window in WIDTH. \n
+        `height` is the resolution of your window in HEIGHT. \n
+        The standard notation for checking resolution is `(width x height)`. \n
+        Aspect ratio is the ratio of `height:width` and is crucial if you want scaling by window size. \n
+        `color` is the actual color of the Background of the window. It is a tuple in `(R, G, B)`. \n
+        `fps` is the amount of calculations that the engine makes every second. It's recomended to be less than your screen refresh rate.
+    """
+    def __init__(self, width=800, height=600, color=(50, 50, 100), fps=60):
         super().__init__()
         self.width = width
         self.height = height
+        self.color = color
         self.fps = fps
 
         # Qt key tracking
@@ -32,11 +41,11 @@ class GameEngine(QWidget):
     # ---------------------- RENDER ----------------------
 
     def paintEvent(self, event):
-        self.screen.fill((50, 50, 100))
+        self.screen.fill(self.color)
 
         self.scene_manager.draw(self.screen)
 
-        raw = pygame.image.tostring(self.screen, "RGBA")
+        raw = pygame.image.tobytes(self.screen, "RGBA")
         img = QImage(
             raw,
             self.width,
