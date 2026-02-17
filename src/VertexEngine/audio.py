@@ -1,12 +1,22 @@
 import pygame
 
 class AudioManager:
+    """The `AudioManager` class allows you to play audio in your VertexEngine app. It has only 4 functions for sound and music."""
     def __init__(self):
         pygame.mixer.init()
         self.sounds = {}
         self.music = None
 
     def load_sound(self, name, path):
+        """
+        This function allows you to load the sound with `name` and `path`.
+
+        # Values
+        There's 2 values/perameters for this function: `name` and `path`.
+        
+        :param name: An identity that points to the file path
+        :param path: The actual path to get the audio from.
+        """
         self.sounds[name] = pygame.mixer.Sound(path)
 
     def play_sound(self, name, loops=0):
@@ -14,6 +24,15 @@ class AudioManager:
             self.sounds[name].play(loops=loops)
 
     def load_music(self, path):
+        """ This function loads the music track that you will currently use. You cannot have multiple
+        tracks playing at once.
+
+        # Values
+        There is only 1 value/perameter which is `path`
+
+        ## path
+        This refers to the path that we will load the track from. It has to be a filepath instead of a generic path.
+        """
         self.music = path
         pygame.mixer.music.load(path)
 

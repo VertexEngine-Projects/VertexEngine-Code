@@ -4,6 +4,7 @@ from PyQt6.QtCore import QTimer, Qt
 import pygame
 from .scenes import SceneManager
 from VertexEngine.InputSystem.KeyInputs import Input
+
 pygame.init()
 
 class GameEngine(QWidget):
@@ -13,14 +14,16 @@ class GameEngine(QWidget):
         The standard notation for checking resolution is `(width x height)`. \n
         Aspect ratio is the ratio of `height:width` and is crucial if you want scaling by window size. \n
         `color` is the actual color of the Background of the window. It is a tuple in `(R, G, B)`. \n
-        `fps` is the amount of calculations that the engine makes every second. It's recomended to be less than your screen refresh rate.
+        `fps` is the amount of calculations that the engine makes every second. It's recommended to be less than your screen refresh rate. \n
+        `position` is the window position on screen as a tuple `(x, y)`. `(0, 0)` is the top-left corner.
     """
-    def __init__(self, width=800, height=600, color=(50, 50, 100), fps=60):
+    def __init__(self, width=800, height=600, color=(50, 50, 100), fps=60, position=(0, 0)):
         super().__init__()
         self.width = width
         self.height = height
         self.color = color
         self.fps = fps
+        self.position = position  # (x, y)
 
         # Qt key tracking
         self.keys_down = set()
@@ -37,6 +40,10 @@ class GameEngine(QWidget):
         self.timer.start(1000 // self.fps)
 
         self.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
+
+        # Set window size and position
+        self.resize(self.width, self.height)
+        self.move(*self.position)
 
     # ---------------------- RENDER ----------------------
 

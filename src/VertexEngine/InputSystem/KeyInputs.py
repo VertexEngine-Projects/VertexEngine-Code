@@ -1,5 +1,6 @@
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QShortcut, QKeySequence
+
 KEY_MAP = {
     # Arrows
     "left": Qt.Key.Key_Left,
@@ -20,6 +21,61 @@ KEY_MAP = {
 # Letters
 for c in "abcdefghijklmnopqrstuvwxyz":
     KEY_MAP[c] = getattr(Qt.Key, f"Key_{c.upper()}")
+
+# Numbers
+for n in "0123456789":
+    KEY_MAP[n] = getattr(Qt.Key, f"Key_{n}")
+
+# Numpad keys
+for n in "0123456789":
+    KEY_MAP[f"numpad{n}"] = getattr(Qt.Key, f"Key_{n}Pad")
+
+# Function keys
+for i in range(1, 13):
+    KEY_MAP[f"f{i}"] = getattr(Qt.Key, f"Key_F{i}")
+
+# Basic punctuation keys
+punctuation_map = {
+    "`": "Backquote",
+    "-": "Minus",
+    "=": "Equal",
+    "[": "BracketLeft",
+    "]": "BracketRight",
+    "\\": "Backslash",
+    ";": "Semicolon",
+    "'": "Apostrophe",
+    ",": "Comma",
+    ".": "Period",
+    "/": "Slash",
+    # Shifted versions
+    "!": "Exclam",
+    "@": "At",
+    "#": "NumberSign",
+    "$": "Dollar",
+    "%": "Percent",
+    "^": "AsciiCircum",
+    "&": "Ampersand",
+    "*": "Asterisk",
+    "(": "ParenLeft",
+    ")": "ParenRight",
+    "_": "Underscore",
+    "+": "Plus",
+    "{": "BraceLeft",
+    "}": "BraceRight",
+    "|": "Bar",
+    ":": "Colon",
+    '"': "QuoteDbl",
+    "<": "Less",
+    ">": "Greater",
+    "?": "Question"
+}
+
+for key, qt_name in punctuation_map.items():
+    try:
+        KEY_MAP[key] = getattr(Qt.Key, f"Key_{qt_name}")
+    except AttributeError:
+        # Some symbols might not exist in PyQt6's Qt.Key
+        pass
 
 class Input:
     _pressed = set()
