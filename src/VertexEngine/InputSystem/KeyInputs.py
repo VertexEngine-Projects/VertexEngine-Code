@@ -26,10 +26,6 @@ for c in "abcdefghijklmnopqrstuvwxyz":
 for n in "0123456789":
     KEY_MAP[n] = getattr(Qt.Key, f"Key_{n}")
 
-# Numpad keys
-for n in "0123456789":
-    KEY_MAP[f"numpad{n}"] = getattr(Qt.Key, f"Key_{n}Pad")
-
 # Function keys
 for i in range(1, 13):
     KEY_MAP[f"f{i}"] = getattr(Qt.Key, f"Key_F{i}")
