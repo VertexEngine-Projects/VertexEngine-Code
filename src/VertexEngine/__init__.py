@@ -187,6 +187,8 @@ class VertexUI():
         def __init__(
             self,
             text="Button",
+            x=0,
+            y=0,
             width=120,
             height=40,
             bg_color="#4CAF50",
@@ -200,6 +202,88 @@ class VertexUI():
             font_weight=QFont.Weight.Bold,
             parent=None
         ):
+            class FancyButton(QPushButton):
+                """
+                A customizable Button with enhanced styling and hover effects, 
+                allowing easy position placement within a parent widget.
+
+                Features:
+                - Customizable background, hover, and text colors.
+                - Adjustable border radius, color, and width.
+                - Custom font settings (name, size, weight).
+                - Hover effect with automatic style change.
+                - Positioning via (x, y) coordinates relative to parent widget.
+                - Cursor changes to a pointing hand on hover.
+
+                Parameters:
+                -----------
+                text : str, optional
+                    The text displayed on the button. Default is "Button".
+
+                width : int, optional
+                    The minimum width of the button in pixels. Default is 120.
+
+                height : int, optional
+                    The minimum height of the button in pixels. Default is 40.
+
+                x : int, optional
+                    The horizontal position of the button relative to its parent widget's top-left corner.
+                    Default is 0 (top-left).
+
+                y : int, optional
+                    The vertical position of the button relative to its parent widget's top-left corner.
+                    Default is 0 (top-left).
+
+                bg_color : str, optional
+                    Background color of the button in normal state (CSS color format). Default is "#4CAF50".
+
+                hover_color : str, optional
+                    Background color of the button when hovered over. Default is "#45A049".
+
+                text_color : str, optional
+                    Color of the button text. Default is "white".
+
+                border_radius : int, optional
+                    Radius of the button corners in pixels. Default is 10.
+
+                border_color : str, optional
+                    Color of the button border. Default is "#388E3C".
+
+                border_width : int, optional
+                    Width of the button border in pixels. Default is 2.
+
+                font_name : str, optional
+                    Name of the font used for the button text. Default is "Arial".
+
+                font_size : int, optional
+                    Size of the font used for the button text. Default is 12.
+
+                font_weight : QFont.Weight, optional
+                    Weight of the font (e.g., QFont.Weight.Bold). Default is QFont.Weight.Bold.
+
+                parent : QWidget, optional
+                    The parent widget in which the button will be placed. Default is None.
+
+                Example Usage:
+                --------------
+                btn = FancyButton(
+                    text="Click Me",
+                    width=150,
+                    height=50,
+                    x=50,
+                    y=100,
+                    bg_color="#2196F3",
+                    hover_color="#1976D2",
+                    text_color="white",
+                    border_radius=15,
+                    border_color="#0D47A1",
+                    border_width=3,
+                    font_name="Verdana",
+                    font_size=14,
+                    font_weight=QFont.Weight.Bold,
+                    parent=self
+                )
+                """
             super().__init__(text, parent)
 
             # Store params
@@ -212,7 +296,7 @@ class VertexUI():
             self.setFont(QFont(font_name, font_size, font_weight))
             self.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
             self.setMinimumSize(width, height)
-
+            self.move(x, y)
             # Apply default style
             self.setStyleSheet(self.default_style())
 
@@ -245,11 +329,82 @@ class VertexUI():
             """
 
     class Text(QLabel):
+        """
+        A customizable QLabel with enhanced styling, positioning, and text control.
+
+        Features:
+        - Custom font settings (name, size, weight).
+        - Adjustable text and background color.
+        - Padding and border-radius for a styled label.
+        - Supports alignment and positioning within a parent widget.
+        - Methods to update text and text color dynamically.
+
+        Parameters:
+        -----------
+        text : str, optional
+            The text displayed by the label. Default is "Text".
+
+        font_name : str, optional
+            Name of the font used for the text. Default is "Arial".
+
+        font_size : int, optional
+            Size of the font in points. Default is 14.
+
+        x : int, optional
+            Horizontal position of the label relative to the parent widget's top-left corner. Default is 0.
+
+        y : int, optional
+            Vertical position of the label relative to the parent widget's top-left corner. Default is 0.
+
+        font_weight : QFont.Weight, optional
+            Weight of the font (e.g., QFont.Weight.Normal or QFont.Weight.Bold). Default is QFont.Weight.Normal.
+
+        text_color : str, optional
+            Color of the text (CSS format). Default is "#FFFFFF".
+
+        bg_color : str or None, optional
+            Background color of the label (CSS format). If None, background is transparent. Default is None.
+
+        padding : int, optional
+            Padding inside the label in pixels. Default is 8.
+
+        border_radius : int, optional
+            Radius of the label's corners in pixels. Default is 8.
+
+        alignment : Qt.AlignmentFlag, optional
+            Text alignment inside the label. Default is Qt.AlignmentFlag.AlignCenter.
+
+        parent : QWidget, optional
+            Parent widget in which the label will be placed. Default is None.
+
+        Example Usage:
+        --------------
+        lbl = Text(
+            text="Hello World",
+            font_name="Verdana",
+            font_size=16,
+            x=50,
+            y=100,
+            font_weight=QFont.Weight.Bold,
+            text_color="#FFDD00",
+            bg_color="#333333",
+            padding=10,
+            border_radius=12,
+            alignment=Qt.AlignmentFlag.AlignLeft,
+            parent=self
+        )
+
+        lbl.set_text("New Text")
+        lbl.set_color("#00FF00")
+        """
+
         def __init__(
             self,
-            text="Text",
+            text="Text",    
             font_name="Arial",
             font_size=14,
+            x=0,
+            y=0,
             font_weight=QFont.Weight.Normal,
             text_color="#FFFFFF",
             bg_color=None,
@@ -262,6 +417,7 @@ class VertexUI():
 
             self.setFont(QFont(font_name, font_size, font_weight))
             self.setAlignment(alignment)
+            self.move(x, y)
 
             bg = "transparent" if bg_color is None else bg_color
 
