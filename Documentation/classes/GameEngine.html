@@ -47,14 +47,14 @@ if __name__ == '__main__':
 
     # Initialize the game engine
     engine = GameEngine(
-        fps=60,
-        width=1920,
-        height=1080,
-        title="Screen.com/totally-not-virus"
+        fps=60, # Amount of calculation steps/second
+        width=1920, # window resolution width (px)
+        height=1080, # window resolution height (px)
+        color=(0,0,0) # the color in (R, G, B)
     )
 
-    engine.setWindowTitle("Screen.com/totally-not-virus")  # Window title
-    engine.setWindowIcon(QIcon("snake.ico"))                # Window icon
+    engine.setWindowTitle("Screen.com/totally-not-virus")  # Window title DEFAULTS TO 'python3'
+    engine.setWindowIcon(QIcon("snake.ico"))                # Window icon OPTIONAL
     engine.show()                                           # Show window
 
     main_scene = Main(engine)  # Initialize main scene

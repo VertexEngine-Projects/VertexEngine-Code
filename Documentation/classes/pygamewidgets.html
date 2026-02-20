@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Widgets | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Vertex Docs</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../search.html">Search</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+<div class="container">
+
+<h2>UI Widget System</h2>
+<p>
+<strong>Description:</strong>
+The UI Widget system provides a flexible and extensible framework for building
+graphical user interfaces inside games and applications. It includes base
+components, styling support, interaction handling, and layout-friendly design.
+</p>
+
+<hr>
+
+<h2>Style</h2>
+
+<p><strong>Description:</strong> Defines visual styling for widgets including colors, fonts, borders, and padding.</p>
+
+<h3>Example: Usage</h3>
+<pre><code>style = Style(
+    bg_color=(40,40,40),
+    hover_color=(60,60,60),
+    active_color=(20,20,20),
+    text_color=(255,255,255)
+)
+</code></pre>
+
+<h3>Common Parameters</h3>
+<ul>
+<li><code>bg_color</code> (tuple): Background color</li>
+<li><code>hover_color</code> (tuple): Color when hovered</li>
+<li><code>active_color</code> (tuple): Color when pressed</li>
+<li><code>border_color</code> (tuple): Border color</li>
+<li><code>text_color</code> (tuple): Text color</li>
+<li><code>border_width</code> (int): Border thickness</li>
+<li><code>padding</code> (int): Inner spacing</li>
+<li><code>font_size</code> (int): Font size</li>
+</ul>
+
+<h3>Returns</h3>
+<p>A style configuration object used by widgets for rendering.</p>
+
+<hr>
+
+<h2>Widget</h2>
+
+<p><strong>Description:</strong> Base class for all UI elements providing positioning, visibility, and interaction state.</p>
+
+<h3>Example: Usage</h3>
+<pre><code>class CustomWidget(Widget):
+    def draw(self, surface):
+        pygame.draw.rect(surface, (255,0,0), self.rect)
+</code></pre>
+
+<h3>Responsibilities</h3>
+<ul>
+<li>Stores widget position and size</li>
+<li>Tracks hover and active states</li>
+<li>Handles visibility and enabled state</li>
+<li>Provides base event handling</li>
+</ul>
+
+<h3>Common Parameters</h3>
+<ul>
+<li><code>x</code> (int): X position</li>
+<li><code>y</code> (int): Y position</li>
+<li><code>width</code> (int): Width</li>
+<li><code>height</code> (int): Height</li>
+<li><code>style</code> (Style): Visual styling</li>
+<li><code>visible</code> (bool): Visibility flag</li>
+<li><code>enabled</code> (bool): Interaction flag</li>
+</ul>
+
+<h3>Returns</h3>
+<p>A base widget object ready to be extended.</p>
+
+<hr>
+
+<h2>Button</h2>
+
+<p><strong>Description:</strong> Interactive clickable widget supporting hover, press, toggle state, and callbacks.</p>
+
+<h3>Example: Usage</h3>
+<pre><code>def on_click():
+    print("Clicked!")
+
+btn = Button("Play", 300, 200, callback=on_click)
+</code></pre>
+
+<h3>Responsibilities</h3>
+<ul>
+<li>Handles mouse hover detection</li>
+<li>Triggers callback on click</li>
+<li>Supports toggle mode</li>
+<li>Renders styled button with text</li>
+</ul>
+
+<h3>Common Parameters</h3>
+<ul>
+<li><code>text</code> (str): Button label</li>
+<li><code>x, y</code> (int): Position</li>
+<li><code>width, height</code> (int): Size</li>
+<li><code>callback</code> (callable): Function called on click</li>
+<li><code>style</code> (Style): Visual style</li>
+<li><code>toggle</code> (bool): Toggle mode</li>
+</ul>
+
+<h3>Returns</h3>
+<p>A fully interactive button widget.</p>
+
+<h3>Notes</h3>
+<ul>
+<li>Supports toggle state tracking</li>
+<li>Automatically handles hover and press states</li>
+<li>Can be disabled via <code>enabled=False</code></li>
+</ul>
+
+<hr>
+
+<h2>Slider</h2>
+
+<p><strong>Description:</strong> Horizontal slider widget allowing users to select a numeric value within a range.</p>
+
+<h3>Example: Usage</h3>
+<pre><code>def on_change(val):
+    print(val)
+
+slider = Slider(250, 300, min_val=0, max_val=100, on_change=on_change)
+</code></pre>
+
+<h3>Responsibilities</h3>
+<ul>
+<li>Handles dragging input</li>
+<li>Updates value dynamically</li>
+<li>Triggers change callback</li>
+<li>Displays draggable knob</li>
+</ul>
+
+<h3>Common Parameters</h3>
+<ul>
+<li><code>x, y</code> (int): Position</li>
+<li><code>width</code> (int): Slider width</li>
+<li><code>min_val</code> (float): Minimum value</li>
+<li><code>max_val</code> (float): Maximum value</li>
+<li><code>start_val</code> (float): Initial value</li>
+<li><code>style</code> (Style): Visual style</li>
+<li><code>on_change</code> (callable): Change callback</li>
+</ul>
+
+<h3>Returns</h3>
+<p>A slider widget with draggable control.</p>
+
+<hr>
+
+<h2>UIManager</h2>
+
+<p><strong>Description:</strong> Central manager responsible for updating, drawing, and dispatching events to all widgets.</p>
+
+<h3>Example: Usage</h3>
+<pre><code>ui = UIManager()
+ui.add(Button("Play", 100,100))
+ui.add(Slider(200,200))
+</code></pre>
+
+<h3>Responsibilities</h3>
+<ul>
+<li>Stores widget collection</li>
+<li>Dispatches events to widgets</li>
+<li>Updates widget logic</li>
+<li>Handles rendering order</li>
+</ul>
+
+<h3>Common Methods</h3>
+<ul>
+<li><code>add(widget)</code>: Add widget</li>
+<li><code>remove(widget)</code>: Remove widget</li>
+<li><code>handle_event(event)</code>: Send input events</li>
+<li><code>update()</code>: Update widgets</li>
+<li><code>draw(surface)</code>: Render widgets</li>
+</ul>
+
+<h3>Returns</h3>
+<p>A manager instance controlling all UI components.</p>
+
+<hr>
+
+<h2>Full Example</h2>
+
+<pre><code>ui = UIManager()
+
+btn = Button("Play", 300, 200)
+slider = Slider(250, 300)
+
+ui.add(btn)
+ui.add(slider)
+</code></pre>
+
+</div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 VertexEngine. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>
