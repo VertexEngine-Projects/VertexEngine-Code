@@ -513,3 +513,94 @@ class VertexUI():
 
         def set_value(self, value):
             self.setText(value)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# This comment serves as a warning to the next developer.
+# If you are reading this, you have probably found a bug or an issue with the code.
+# Your problem.
+# Hours Wasted: 24
+# ----------------------------------------------------------------------
+# Btw ur balls are big and i like them. I hope you have a nice day. :)
+# ~ VSCode Copilot auto-generated comment.

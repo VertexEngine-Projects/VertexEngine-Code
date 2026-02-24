@@ -85,3 +85,20 @@ class GameEngine(QWidget):
 
     def keyReleaseEvent(self, event):
         Input.key_up(event.key())
+
+    def mousePressEvent(self, event):
+        pygame_event = pygame.event.Event(
+            pygame.MOUSEBUTTONDOWN,
+            {"pos": (event.position().x(), event.position().y()), "button": event.button()}
+        )
+        self.scene_manager.handle_event(pygame_event)
+
+    def mouseReleaseEvent(self, event):
+        pygame_event = pygame.event.Event(
+            pygame.MOUSEBUTTONUP,
+            {"pos": (event.position().x(), event.position().y()), "button": event.button()}
+        )
+        self.scene_manager.handle_event(pygame_event)
+
+    def mouseMoveEvent(self, event):
+        pygame.mouse.set_pos((event.position().x(), event.position().y()))
