@@ -7,51 +7,94 @@ class Widget:
     Provides core functionality such as positioning, visibility,
     parenting hierarchy, styling, and basic lifecycle methods.
 
-    All UI elements should inherit from this class.
-
     Attributes:
         x (int): Local x position.
         y (int): Local y position.
         width (int): Widget width.
         height (int): Widget height.
-        visible (bool): Whether widget is rendered.
+        visible (bool): Whether the widget is rendered.
         children (list[Widget]): Child widgets.
         parent (Widget | None): Parent widget.
-        style (Style): Styling object.
+        style (Style): Visual styling object.
     """
-    def __init__(self, x, y, width, height):
+
+    def __init__(self, x, y, width, height, style=None):
+        """
+        Initializes the widget.
+
+        Args:
+            x (int): X position.
+            y (int): Y position.
+            width (int): Width of the widget.
+            height (int): Height of the widget.
+            style (Style | None): Style object for appearance.
+        """
         self.x = x
         self.y = y
         self.width = width
         self.height = height
-
         self.visible = True
         self.children = []
         self.parent = None
+        self.style = style or Style()
 
     def add_child(self, widget):
+        """
+        Adds a child widget to this widget.
+
+        Args:
+            widget (Widget): Child to add.
+        """
         widget.parent = self
         self.children.append(widget)
 
     def global_position(self):
+        """
+        Computes the global position of the widget, including parent offsets.
+
+        Returns:
+            tuple[int, int]: (x, y) coordinates on the screen.
+        """
         if self.parent:
             px, py = self.parent.global_position()
             return self.x + px, self.y + py
         return self.x, self.y
 
     def rect(self):
+        """
+        Returns the pygame.Rect of the widget.
+
+        Returns:
+            pygame.Rect: Rectangle representing widget position and size.
+        """
         gx, gy = self.global_position()
         return pygame.Rect(gx, gy, self.width, self.height)
 
     def update(self):
+        """
+        Updates the widget and its children.
+        Override in subclasses to add custom logic.
+        """
         for child in self.children:
             child.update()
 
     def draw(self, surface):
+        """
+        Draws the widget and its children.
+
+        Args:
+            surface (pygame.Surface): Surface to draw on.
+        """
         for child in self.children:
             child.draw(surface)
 
     def handle_event(self, event):
+        """
+        Handles input events, propagating to children.
+
+        Args:
+            event (pygame.Event): Input event.
+        """
         for child in self.children:
             child.handle_event(event)
 
@@ -60,44 +103,63 @@ class Button(Widget):
     Clickable button widget.
 
     Supports hover, pressed states, and click callbacks.
-    Uses Style for rendering appearance.
 
     Attributes:
         text (str): Button label.
         on_click (Callable | None): Callback when clicked.
         hovered (bool): Mouse hover state.
         pressed (bool): Mouse pressed state.
-        font (pygame.Font): Text font.
+        font (pygame.Font): Font used to render text.
     """
 
     def __init__(self, x, y, width, height, text="", on_click=None, style=None):
-        super().__init__(x, y, width, height, style)
+        """
+        Initializes the button.
 
+        Args:
+            x (int): X position.
+            y (int): Y position.
+            width (int): Width of the button.
+            height (int): Height of the button.
+            text (str): Button label.
+            on_click (Callable | None): Callback when clicked.
+            style (Style | None): Styling object.
+        """
+        super().__init__(x, y, width, height, style=style)
         self.text = text
         self.on_click = on_click
-
         self.hovered = False
         self.pressed = False
-
-        self.font = pygame.font.SysFont(
-            self.style.font_name,
-            self.style.font_size
-        )
+        self.font = pygame.font.SysFont(self.style.font_name, self.style.font_size)
 
     def update(self):
+        """
+        Updates hover state based on mouse position.
+        """
         mouse_pos = pygame.mouse.get_pos()
         self.hovered = self.rect().collidepoint(mouse_pos)
 
     def handle_event(self, event):
+        """
+        Handles mouse events for click detection.
+
+        Args:
+            event (pygame.Event): Input event.
+        """
         if event.type == pygame.MOUSEBUTTONDOWN and self.hovered:
             self.pressed = True
-
         if event.type == pygame.MOUSEBUTTONUP:
             if self.pressed and self.hovered and self.on_click:
                 self.on_click()
             self.pressed = False
 
     def draw(self, surface):
+        """
+        Draws the button with styling and text.
+
+        Args:
+            surface (pygame.Surface): Surface to draw on.
+        """
         if not self.visible:
             return
 
@@ -108,31 +170,19 @@ class Button(Widget):
             color = self.style.hover_color
 
         rect = self.rect()
-
-        pygame.draw.rect(
-            surface,
-            color,
-            rect,
-            border_radius=self.style.border_radius
-        )
+        pygame.draw.rect(surface, color, rect, border_radius=self.style.border_radius)
 
         if self.style.border_width > 0:
             pygame.draw.rect(
-                surface,
-                self.style.border_color,
-                rect,
+                surface, self.style.border_color, rect,
                 width=self.style.border_width,
                 border_radius=self.style.border_radius
             )
 
         if self.text:
-            text_surf = self.font.render(
-                self.text,
-                True,
-                self.style.text_color
-            )
+            text_surf = self.font.render(self.text, True, self.style.text_color)
             surface.blit(text_surf, text_surf.get_rect(center=rect.center))
-
+            
 class Slider(Widget):
     """
     Horizontal slider widget for selecting numeric values.
