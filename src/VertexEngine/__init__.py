@@ -124,8 +124,7 @@ class VertexScreen():
                     surface.blit(shadow_surf, shadow_rect)
 
                 surface.blit(text_surf, rect)
-
-        @dep("Unlike internal APIs, this one is fully deprecated, NEVER USE THIS. EVER :)")
+        @dep("""Unlike internal APIs, this one is fully deprecated, NEVER USE THIS. EVER :)""")
         def draw_text(
             surface,
             text,
@@ -137,6 +136,12 @@ class VertexScreen():
             shadow_color=(0, 0, 0),
             shadow_offset=(2, 2)
         ):
+            """Deprecated: This function has the same functionality as Font.draw() which is the recommended way to draw text. This function is only here for legacy support and will be removed in a future version. Please use Font.draw() instead of this function. It has more features and is more efficient.
+            ### Deprecated
+            ##### 1.6rc1
+            ### Schedule for removal
+            ##### 1.7.0
+            """
             text_surf = font.render(text, True, color)
             text_rect = text_surf.get_rect()
 
@@ -149,10 +154,11 @@ class VertexScreen():
                 surface.blit(shadow_surf, shadow_rect)
 
             surface.blit(text_surf, text_rect)
-class Rect():
+
+class Rect(pygame.rect.Rect):
     '''Define a rect to pass into VertexScreen.Draw.rect()'''
     def __init__(self, left, top, width, height):
-        pygame.Rect(left, top, width, height)
+        super().__init__(left, top, width, height)
 
 class VertexUI():
     # QPushButton *button = new QPushButton(tr("Ro&ck && Roll"), this)
@@ -184,26 +190,7 @@ class VertexUI():
             self.setFont(font)
 
     class FancyButton(QPushButton):
-        def __init__(
-            self,
-            text="Button",
-            x=0,
-            y=0,
-            width=120,
-            height=40,
-            bg_color="#4CAF50",
-            hover_color="#45A049",
-            text_color="white",
-            border_radius=10,
-            border_color="#388E3C",
-            border_width=2,
-            font_name="Arial",
-            font_size=12,
-            font_weight=QFont.Weight.Bold,
-            parent=None
-        ):
-            class FancyButton(QPushButton):
-                """
+        """
                 A customizable Button with enhanced styling and hover effects, 
                 allowing easy position placement within a parent widget.
 
@@ -283,7 +270,25 @@ class VertexUI():
                     font_weight=QFont.Weight.Bold,
                     parent=self
                 )
-                """
+        """
+        def __init__(
+            self,
+            text="Button",
+            x=0,
+            y=0,
+            width=120,
+            height=40,
+            bg_color="#4CAF50",
+            hover_color="#45A049",
+            text_color="white",
+            border_radius=10,
+            border_color="#388E3C",
+            border_width=2,
+            font_name="Arial",
+            font_size=12,
+            font_weight=QFont.Weight.Bold,
+            parent=None
+        ):
             super().__init__(text, parent)
 
             # Store params
@@ -600,7 +605,7 @@ class VertexUI():
 # This comment serves as a warning to the next developer.
 # If you are reading this, you have probably found a bug or an issue with the code.
 # Your problem.
-# Hours Wasted: 24
+# Hours Wasted: 26
 # ----------------------------------------------------------------------
 # Btw ur balls are big and i like them. I hope you have a nice day. :)
 # ~ VSCode Copilot auto-generated comment.
