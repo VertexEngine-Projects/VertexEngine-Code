@@ -81,10 +81,10 @@ class GameEngine(QWidget):
     # ---------------------- INPUT ----------------------
 
     def keyPressEvent(self, event):
-        Input.key_down(event.key())
+        Input._key_down(event.key())
 
     def keyReleaseEvent(self, event):
-        Input.key_up(event.key())
+        Input._key_up(event.key())
 
     def mousePressEvent(self, event):
         pygame_event = pygame.event.Event(

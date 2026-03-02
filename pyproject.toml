@@ -18,7 +18,7 @@ dependencies = [
 [project.urls]
 Homepage = "https://vertexengine.onrender.com"
 Documentation = "https://tyrel-homepage.onrender.com/"
-Offical Tech Site = "https://tyrel-homepage.onrender.com"
+"Official Tech Site" = "https://tyrel-homepage.onrender.com"
 Source = "https://github.com/TyrelGomez/VertexEngine-Code"
 Issues = "https://github.com/TyrelGomez/VertexEngine-Code/issues"
 Discord = "https://discord.com/channels/1468208686869643327/1468208687670890588"
