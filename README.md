@@ -4,12 +4,15 @@ VertexEngine is a GUI and Game Engine for python applications, it works best if 
 [VertexEngine-WebEngine](https://pypi.org/project/VertexEngine-WebEngine)
 [VertexEngine-CLI](https://pypi.org/project/VertexEngine-CLI/1.0/)
 ## Help
-- The documentation is in the following link: [Documentation](https://vertexenginedocs.netlify.app/") for help.
+- The documentation is in the following link: [Documentation](https://vertexenginedocs.netlify.app/) for help.
 - Support Email: FinalFacility0828@gmail.com
 ## Community
 Discord is out NOW!
 [Discord Server](https://discord.com/channels/1468208686869643327/1468208687670890588)
-## Change Logs (1.0rc1 - 1.6rc1), NEW!
+## Change Logs (1.0rc1 - 1.6rc3), NEW!
+- Wiped Accounts :(
+- Discord fixed
+- New Link :)
 ### 1.6rc2
 - Fixed some errors!
 ### 1.6rc1
