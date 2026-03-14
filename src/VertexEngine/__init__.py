@@ -9,8 +9,8 @@ Supported OSes
 --------------
 - RainOS 
 - Windows 
-- MacOS, 
-- OS X 
+- MacOS
+- OS X  
 - BeOS 
 - FreeBSD 
 - IRIX  
@@ -609,3 +609,4 @@ class VertexUI():
 # ----------------------------------------------------------------------
 # Btw ur balls are big and i like them. I hope you have a nice day. :)
 # ~ VSCode Copilot auto-generated comment.
+# ----------------------------------------------------------------------

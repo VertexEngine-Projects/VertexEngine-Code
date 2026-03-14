@@ -78,11 +78,11 @@ class ScreenScaler:
 # GAME OBJECTS
 # =====================
 class Player:
-    def __init__(self):
-        self.x = 230
-        self.y = 300
-        self.w = 40
-        self.h = 40
+    def __init__(self, x=230, y=300, w=40, h=40):
+        self.x = x
+        self.y = y
+        self.w = w
+        self.h = h
         self.vel_y = 0
         self.on_ground = True
 
