@@ -47,6 +47,9 @@ class Scene(VWidget):
     def draw(self, surface):
         pass
 
+    def handle_event(self, event):
+        pass
+
 # scenes/scene_manager.py
 class SceneManager:
     def __init__(self):
@@ -61,7 +64,7 @@ class SceneManager:
         self.current_scene.show()
         self.current_scene.on_enter()
 
-    def update(self):
+    def _update(self):
         if self.current_scene:
             self.current_scene.update()
 

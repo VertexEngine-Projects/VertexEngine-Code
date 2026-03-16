@@ -71,11 +71,11 @@ class GameEngine(QWidget):
 
     # ---------------------- UPDATE ----------------------
 
-    def update_frame(self):
+    def _update_frame(self):
         if not self.hasFocus():
             self.keys_down.clear()
 
-        self.scene_manager.update()
+        self.scene_manager._update()
         self.update()  # triggers paintEvent
 
     # ---------------------- INPUT ----------------------
