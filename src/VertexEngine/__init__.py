@@ -124,36 +124,6 @@ class VertexScreen():
                     surface.blit(shadow_surf, shadow_rect)
 
                 surface.blit(text_surf, rect)
-        @dep("""Unlike internal APIs, this one is fully deprecated, NEVER USE THIS. EVER :)""")
-        def draw_text(
-            surface,
-            text,
-            font,
-            color,
-            pos,
-            align="topleft",
-            shadow=False,
-            shadow_color=(0, 0, 0),
-            shadow_offset=(2, 2)
-        ):
-            """Deprecated: This function has the same functionality as Font.draw() which is the recommended way to draw text. This function is only here for legacy support and will be removed in a future version. Please use Font.draw() instead of this function. It has more features and is more efficient.
-            ### Deprecated
-            ##### 1.6rc1
-            ### Schedule for removal
-            ##### 1.7.0
-            """
-            text_surf = font.render(text, True, color)
-            text_rect = text_surf.get_rect()
-
-            setattr(text_rect, align, pos)
-
-            if shadow:
-                shadow_surf = font.render(text, True, shadow_color)
-                shadow_rect = shadow_surf.get_rect()
-                setattr(shadow_rect, align, (pos[0] + shadow_offset[0], pos[1] + shadow_offset[1]))
-                surface.blit(shadow_surf, shadow_rect)
-
-            surface.blit(text_surf, text_rect)
 
 class Rect(pygame.rect.Rect):
     '''Define a rect to pass into VertexScreen.Draw.rect()'''

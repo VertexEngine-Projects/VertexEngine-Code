@@ -1,4 +1,5 @@
 # scenes/scene.py
+"""This is the scene system of VertexEngine. It contains the Scene class, which is used as a scren for 1 state of a game."""
 from .Vertex import VWidget
 
 class Scene(VWidget):
