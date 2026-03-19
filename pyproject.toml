@@ -16,10 +16,10 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://vertexengine.onrender.com"
-Documentation = "https://tyrel-homepage.onrender.com/"
+Homepage = "https://vertexengine-zii6.onrender.com"
+Documentation = "https://vertexenginedocs.netlify.app"
 Tutorials = "https://www.youtube.com/watch?v=-P4t6UabuDU&t=0s"
-"Official Tech Site" = "https://tyrel-homepage.onrender.com"
+"Official Tech Site" = "https://tyrel.onrender.com"
 Source = "https://github.com/TyrelGomez/VertexEngine-Code"
 Issues = "https://github.com/TyrelGomez/VertexEngine-Code/issues"
 Discord = "https://discord.gg/jqG8kQjX"
