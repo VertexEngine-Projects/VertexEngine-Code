@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VertexEngine Colliders | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Vertex Docs</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../search.html">Search</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+        <h2>Collider.collides_with(other)</h2>
+        <p>
+            <strong>Description:</strong>
+            Checks whether this axis-aligned rectangle collides with another
+            collider using the AABB (Axis-Aligned Bounding Box) method. Returns
+            <code>True</code> if they overlap, <code>False</code> otherwise.
+        </p>
+
+        <h3>Usage</h3>
+        <pre><code>rect1 = Collider(10, 20, 50, 50)
+rect2 = Collider(30, 40, 50, 50)
+collision = rect1.collides_with(rect2)</code></pre>
+
+        <h3>Parameters</h3>
+        <ul>
+            <li><code>other</code> (<em>Collider</em>): Another collider object to test against.</li>
+        </ul>
+
+        <h3>Returns</h3>
+        <p><strong>bool</strong> — <code>True</code> if colliding, <code>False</code> otherwise.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2>RotatedCollider.get_corners()</h2>
+        <p>
+            <strong>Description:</strong>
+            Returns the four corner coordinates of this rectangle after applying
+            rotation around its center. Useful for collision detection and rendering.
+        </p>
+
+        <h3>Usage</h3>
+        <pre><code>rect = RotatedCollider(100, 50, 40, 20, angle=30)
+corners = rect.get_corners()</code></pre>
+
+        <h3>Parameters</h3>
+        <p>None — uses the rectangle's internal properties.</p>
+
+        <h3>Returns</h3>
+        <p><strong>list of tuples</strong> — A list of four (x, y) tuples representing each corner.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2>RotatedCollider.collides_with(other)</h2>
+        <p>
+            <strong>Description:</strong>
+            Checks collision with another collider (rotated rectangle or circle)
+            using SAT (Separating Axis Theorem). Returns <code>True</code> if they overlap.
+        </p>
+
+        <h3>Usage</h3>
+        <pre><code>rect1 = RotatedCollider(100, 50, 40, 20, angle=30)
+rect2 = RotatedCollider(110, 60, 30, 10, angle=15)
+collision = rect1.collides_with(rect2)</code></pre>
+
+        <h3>Parameters</h3>
+        <ul>
+            <li><code>other</code> (<em>Collider</em>): Another collider to test collision against.</li>
+        </ul>
+
+        <h3>Returns</h3>
+        <p><strong>bool</strong> — <code>True</code> if colliding, <code>False</code> otherwise.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2>Circle.collides_with(other)</h2>
+        <p>
+            <strong>Description:</strong>
+            Checks collision with another circle or polygon. Uses distance
+            checking for circles and SAT for polygons.
+        </p>
+
+        <h3>Usage</h3>
+        <pre><code>c1 = Circle(50, 50, 10)
+c2 = Circle(55, 55, 15)
+collision = c1.collides_with(c2)</code></pre>
+
+        <h3>Parameters</h3>
+        <ul>
+            <li><code>other</code> (<em>Collider</em>): Another collider object to check against.</li>
+        </ul>
+
+        <h3>Returns</h3>
+        <p><strong>bool</strong> — <code>True</code> if colliding, <code>False</code> otherwise.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2>Polygon.collides_with(other)</h2>
+        <p>
+            <strong>Description:</strong>
+            Checks collision with another polygon or circle using SAT
+            (Separating Axis Theorem) or edge projection. Supports triangles and
+            quadrilaterals.
+        </p>
+
+        <h3>Usage</h3>
+        <pre><code>triangle = Polygon([(0,0),(50,0),(25,30)])
+rect_poly = Polygon([(10,10),(60,10),(60,40),(10,40)])
+collision = triangle.collides_with(rect_poly)</code></pre>
+
+        <h3>Parameters</h3>
+        <ul>
+            <li><code>other</code> (<em>Collider</em>): Another collider object.</li>
+        </ul>
+
+        <h3>Returns</h3>
+        <p><strong>bool</strong> — <code>True</code> if colliding, <code>False</code> otherwise.</p>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 MyPythonLib. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>
