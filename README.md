@@ -9,10 +9,14 @@ VertexEngine is a GUI and Game Engine for python applications, it works best if 
 ## Community
 Discord is out NOW!
 [Discord Server](https://discord.com/channels/1468208686869643327/1468208687670890588)
-## Change Logs (1.0rc1 - 1.7.3), NEW!
+## Change Logs (1.0rc1 - 1.8rc1), NEW!
+### 1.8rc1
+- Patched some runtime errors
+- Added MATH! (from VertexEngine.math import *)
 ### 1.7.3
+- Added new functions to collisions!
 ### 1.7.2
-- Added HIGHLIGHTING to Ocean Code!
+- Added HIGHLIGHTING to Ocean Code!**
 - Fixed a lot of bugs!
 - Fixed outdated URLs (2 day server shutdown)
 ### 1.7.1
@@ -163,7 +167,8 @@ Vertex obviously has heavy dependencies since it's a game engine, the following 
 | Python           | >=3.10                               |
 
 ## About Me ❔
-I Am a solo developer in Diliman, Quezon City that makes things for fun :) 77 Rd 1, 53 Rd 3 Bg-Asa QC
+I Am a solo developer in Diliman, Quezon City that makes things for fun :)
+Address: 53 RD 3, BG-PGASA, QC
 
 ## 📄 License
-VertexEngine/Vertex is Managed by the MIT License. This license allows others to tweak the code. However, I would like my name be in the credits if you choose this as your starting ground for your next library.
+VertexEngine/Vertex is Managed by the MIT License. This license allows others to tweak the code. However, you need to have the LICENSE file from this library and add it to your library, attribution also required.

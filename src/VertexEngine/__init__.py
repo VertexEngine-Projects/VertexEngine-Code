@@ -22,8 +22,6 @@ from .engine import GameEngine
 from .scenes import Scene, SceneManager
 from .assets import AssetManager
 from .audio import AudioManager
-from pygame.base import *  # pylint: disable=wildcard-import; lgtm[py/polluting-import]
-from pygame import *  # pylint: disable=wildcard-import; lgtm[py/polluting-import]
 from PyQt6.QtWidgets import QPushButton, QLineEdit, QLabel, QWidget
 from PyQt6.QtGui import QFont, QCursor, QFontMetrics
 from PyQt6.QtCore import Qt
@@ -575,7 +573,7 @@ class VertexUI():
 # This comment serves as a warning to the next developer.
 # If you are reading this, you have probably found a bug or an issue with the code.
 # Your problem.
-# Hours Wasted: 26
+# Hours Wasted: 46
 # ----------------------------------------------------------------------
 # Btw ur balls are big and i like them. I hope you have a nice day. :)
 # ~ VSCode Copilot auto-generated comment.
