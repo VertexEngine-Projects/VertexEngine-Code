@@ -9,7 +9,14 @@ VertexEngine is a GUI and Game Engine for python applications, it works best if 
 ## Community
 Discord is out NOW!
 [Discord Server](https://discord.com/channels/1468208686869643327/1468208687670890588)
-## Change Logs (1.0rc1 - 1.8rc1), NEW!
+## Change Logs (1.0rc1 - 1.8.0), NEW!
+### 1.8.0
+- Updated Documentation!
+- Engine Fixes!
+### 1.8rc2
+- Fixed math not defined errors
+- Renamed to GraphicalMath
+- Added the utility functions (clamp, lerp, etc.)
 ### 1.8rc1
 - Patched some runtime errors
 - Added MATH! (from VertexEngine.math import *)

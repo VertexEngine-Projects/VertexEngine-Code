@@ -27,6 +27,8 @@ from PyQt6.QtGui import QFont, QCursor, QFontMetrics
 from PyQt6.QtCore import Qt
 from typing_extensions import deprecated as dep
 from VertexEngine.Vertex import VBox
+from VertexEngine.audio import AudioManager
+
 class VertexScreen():
     """Draw on VertexEngine's Screen."""
     def __init__(self):
@@ -578,3 +580,8 @@ class VertexUI():
 # Btw ur balls are big and i like them. I hope you have a nice day. :)
 # ~ VSCode Copilot auto-generated comment.
 # ----------------------------------------------------------------------
+def pain():
+    """Good Luck."""
+    Audio = AudioManager()
+    Audio.load_sound("No.", "WHY.mp3")
+    Audio.play_sound("No.")

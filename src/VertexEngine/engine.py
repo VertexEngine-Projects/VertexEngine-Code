@@ -36,7 +36,7 @@ class GameEngine(QWidget):
 
         # Timer
         self.timer = QTimer(self)
-        self.timer.timeout.connect(self.update_frame)
+        self.timer.timeout.connect(self._update_frame)
         self.timer.start(1000 // self.fps)
 
         self.setFocusPolicy(Qt.FocusPolicy.StrongFocus)

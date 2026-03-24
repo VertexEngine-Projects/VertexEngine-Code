@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graphical Math | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Vertex Docs</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../search.html">Search</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<section class="section">
+  <div class="container">
+
+    <h1>GraphicalMath</h1>
+
+    <p>
+      <strong>Description:</strong>
+      The GraphicalMath module provides mathematical tools for 2D vector operations.
+      It includes the <code>Vector2</code> class for vector math and 
+      <code>UtilityFunctions</code> for helper operations such as clamping, interpolation, and rounding.
+    </p>
+
+    <hr>
+
+    <!-- ======================= Vector2 ======================= -->
+
+    <h2>Vector2</h2>
+
+    <p>
+      <strong>Description:</strong>
+      Represents a 2D vector using <code>(x, y)</code> coordinates.
+      Supports arithmetic operations, normalization, distance calculations,
+      and geometric transformations like rotation.
+    </p>
+
+    <h3>Usage</h3>
+    <pre><code>from VertexEngine.math import Vector2
+
+v1 = Vector2(3, 4)
+v2 = Vector2(1, 2)
+
+# Basic math
+v3 = v1 + v2
+v4 = v1 * 2
+
+# Distance & normalization
+distance = v1.distance_to(v2)
+unit = v1.normalize()
+
+# Rotation
+rotated = v1.rotate(90)</code></pre>
+
+    <h3>Parameters</h3>
+    <ul>
+      <li><code>x</code> (float): X-coordinate</li>
+      <li><code>y</code> (float): Y-coordinate</li>
+    </ul>
+
+    <h3>Operators</h3>
+    <ul>
+      <li><code>v1 + v2</code>: Add vectors</li>
+      <li><code>v1 - v2</code>: Subtract vectors</li>
+      <li><code>v * scalar</code>: Scale vector</li>
+      <li><code>v / scalar</code>: Divide vector</li>
+    </ul>
+
+    <h3>Methods</h3>
+    <ul>
+      <li><code>magnitude()</code>: Returns vector length</li>
+      <li><code>magnitude_squared()</code>: Faster length squared</li>
+      <li><code>normalize()</code>: Returns unit vector</li>
+      <li><code>dot(other)</code>: Dot product</li>
+      <li><code>distance_to(other)</code>: Distance between vectors</li>
+      <li><code>angle_to(other)</code>: Angle (degrees)</li>
+      <li><code>rotate(angle)</code>: Rotates vector</li>
+    </ul>
+
+    <h3>Returns</h3>
+    <p>A Vector2 object representing the result of the operation.</p>
+
+    <hr>
+
+    <!-- ======================= UtilityFunctions ======================= -->
+
+    <h2>UtilityFunctions</h2>
+
+    <p>
+      <strong>Description:</strong>
+      A collection of helper functions for working with vectors and scalar values.
+      These include clamping, interpolation, and rounding operations.
+    </p>
+
+    <h3>Usage</h3>
+    <pre><code>from VertexEngine.math import Vector2, UtilityFunctions
+
+v = Vector2(10, 20)
+min_v = Vector2(0, 0)
+max_v = Vector2(15, 15)
+
+utils = UtilityFunctions()
+
+# Clamp vector
+clamped = utils.clamp(min_v, max_v)
+
+# Interpolate
+v2 = Vector2(20, 40)
+lerped = utils.lerp(v2, 0.5)
+
+# Clamp magnitude
+limited = utils.clamp_magnitude(10)</code></pre>
+
+    <h3>Methods</h3>
+    <ul>
+      <li><code>clamp(min_vec, max_vec)</code>: Clamp vector between bounds</li>
+      <li><code>clamp_magnitude(max_length)</code>: Limit vector length</li>
+      <li><code>lerp(other, t)</code>: Linear interpolation</li>
+      <li><code>floor()</code>: Floor components</li>
+      <li><code>ceil()</code>: Ceil components</li>
+      <li><code>round()</code>: Round components</li>
+      <li><code>abs()</code>: Absolute values</li>
+    </ul>
+
+    <h3>Static Methods</h3>
+    <ul>
+      <li><code>clamp_value(value, min, max)</code>: Clamp a number</li>
+    </ul>
+
+    <h3>Returns</h3>
+    <p>Returns a modified Vector2 or scalar value depending on the function.</p>
+
+  </div>
+</section>
+<footer>
+    <div class="container">
+        <p>&copy; 2026 VertexEngine. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>
