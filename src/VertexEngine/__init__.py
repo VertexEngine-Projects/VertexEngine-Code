@@ -28,6 +28,7 @@ from PyQt6.QtCore import Qt
 from typing_extensions import deprecated as dep
 from VertexEngine.Vertex import VBox
 from VertexEngine.audio import AudioManager
+import os
 
 class VertexScreen():
     """Draw on VertexEngine's Screen."""
@@ -583,5 +584,7 @@ class VertexUI():
 def pain():
     """Good Luck."""
     Audio = AudioManager()
-    Audio.load_sound("No.", "WHY.mp3")
+    script_path = os.path.abspath(__file__)
+    script = os.path.join(script_path, "WHY.mp3")
+    Audio.load_sound("No.", script)
     Audio.play_sound("No.")
