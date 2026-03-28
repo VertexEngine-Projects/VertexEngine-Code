@@ -1,5 +1,8 @@
+<img width="858" height="157" alt="VertexEngine_Logo" src="https://github.com/user-attachments/assets/6ba8a8dd-285a-4618-8e29-da12eb92e9ce" />
+
 # VertexEngine/Vertex
 VertexEngine is a GUI and Game Engine for python applications, it works best if you use py installer
+
 ## Offical Extensions:
 [VertexEngine-WebEngine](https://pypi.org/project/VertexEngine-WebEngine)
 [VertexEngine-CLI](https://pypi.org/project/VertexEngine-CLI/1.0/)
