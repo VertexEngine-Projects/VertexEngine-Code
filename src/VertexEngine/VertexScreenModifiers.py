@@ -55,7 +55,7 @@ class FancyWindow(BaseWindow):
 class FunWindow(BaseWindow):
     def __init__(self, title="Fun Window"):
         super().__init__(title)
-        self.add_label("Welcome to FunWindow! 🎉")
+        self.add_label("Welcome to FunWindow!")
         self.add_button("Close me", self.close)
 
 if __name__ == "__main__":

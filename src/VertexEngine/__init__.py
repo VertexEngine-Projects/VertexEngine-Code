@@ -25,7 +25,6 @@ from .audio import AudioManager
 from PyQt6.QtWidgets import QPushButton, QLineEdit, QLabel, QWidget
 from PyQt6.QtGui import QFont, QCursor, QFontMetrics
 from PyQt6.QtCore import Qt
-from typing_extensions import deprecated as dep
 from VertexEngine.Vertex import VBox
 from VertexEngine.audio import AudioManager
 import os
@@ -585,6 +584,7 @@ def pain():
     """Good Luck."""
     Audio = AudioManager()
     script_path = os.path.abspath(__file__)
-    script = os.path.join(script_path, "WHY.mp3")
+    dirname = os.path.dirname(script_path)
+    script = os.path.join(dirname, "WHY.mp3")
     Audio.load_sound("No.", script)
     Audio.play_sound("No.")

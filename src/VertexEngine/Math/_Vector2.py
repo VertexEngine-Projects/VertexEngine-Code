@@ -1,6 +1,6 @@
 import math
 
-class Vector2:
+class _Vector2:
     """Represents a 2D vector using (x, y) coordinates.
 
     Supports common vector math operations such as addition,
@@ -8,7 +8,7 @@ class Vector2:
     """
 
     def __init__(self, x=0.0, y=0.0):
-        """Initialize a Vector2.
+        """Initialize a _Vector2.
 
         Args:
             x (float): X-coordinate.
@@ -19,7 +19,7 @@ class Vector2:
 
     def __repr__(self):
         """Return a readable string representation."""
-        return f"Vector2({self.x}, {self.y})"
+        return f"_Vector2({self.x}, {self.y})"
 
     # ------------------------
     # Basic Operators
@@ -27,15 +27,15 @@ class Vector2:
 
     def __add__(self, other):
         """Add two vectors."""
-        return Vector2(self.x + other.x, self.y + other.y)
+        return _Vector2(self.x + other.x, self.y + other.y)
 
     def __sub__(self, other):
         """Subtract another vector from this vector."""
-        return Vector2(self.x - other.x, self.y - other.y)
+        return _Vector2(self.x - other.x, self.y - other.y)
 
     def __mul__(self, scalar):
         """Multiply vector by a scalar."""
-        return Vector2(self.x * scalar, self.y * scalar)
+        return _Vector2(self.x * scalar, self.y * scalar)
 
     def __rmul__(self, scalar):
         """Allow scalar * vector multiplication."""
@@ -45,7 +45,7 @@ class Vector2:
         """Divide vector by a scalar."""
         if scalar == 0:
             raise ValueError("Cannot divide by zero.")
-        return Vector2(self.x / scalar, self.y / scalar)
+        return _Vector2(self.x / scalar, self.y / scalar)
 
     # ------------------------
     # Magnitude & Normalization
@@ -63,7 +63,7 @@ class Vector2:
         """Return a normalized (unit length) version of the vector."""
         mag = self.magnitude()
         if mag == 0:
-            return Vector2(0, 0)
+            return _Vector2(0, 0)
         return self / mag
 
     # ------------------------
@@ -71,7 +71,7 @@ class Vector2:
     # ------------------------
 
     def dot(self, other):
-        """Return the dot product with another vector."""
+        """Return the dot product with another vector.""" 
         return self.x * other.x + self.y * other.y
 
     def distance_to(self, other):
@@ -92,13 +92,13 @@ class Vector2:
         angle_radians = math.radians(angle_degrees)
         cos_a = math.cos(angle_radians)
         sin_a = math.sin(angle_radians)
-        return Vector2(
+        return _Vector2(
             self.x * cos_a - self.y * sin_a,
             self.x * sin_a + self.y * cos_a
         )
 
-class UtiliyFunctions:
-    """These are the Utiliy Functions of `GraphicalMath`."""
+class _UtilityFunctions:
+    """These are the Utility Functions of `GraphicalMath`."""
     # ------------------------
     # Utility Functions
     # ------------------------
@@ -107,13 +107,13 @@ class UtiliyFunctions:
         """Clamp this vector between two vectors.
 
         Args:
-            min_vec (Vector2): Minimum bounds.
-            max_vec (Vector2): Maximum bounds.
+            min_vec (_Vector2): Minimum bounds.
+            max_vec (_Vector2): Maximum bounds.
 
         Returns:
-            Vector2: Clamped vector.
+            _Vector2: Clamped vector.
         """
-        return Vector2(
+        return _Vector2(
             max(min_vec.x, min(self.x, max_vec.x)),
             max(min_vec.y, min(self.y, max_vec.y))
         )
@@ -123,38 +123,38 @@ class UtiliyFunctions:
         mag = self.magnitude()
         if mag > max_length:
             return self.normalize() * max_length
-        return Vector2(self.x, self.y)
+        return _Vector2(self.x, self.y)
 
     def lerp(self, other, t):
         """Linearly interpolate between this vector and another.
 
         Args:
-            other (Vector2): Target vector.
+            other (_Vector2): Target vector.
             t (float): Interpolation factor (0.0 to 1.0).
 
         Returns:
-            Vector2: Interpolated vector.
+            _Vector2: Interpolated vector.
         """
-        return Vector2(
+        return _Vector2(
             self.x + (other.x - self.x) * t,
             self.y + (other.y - self.y) * t
         )
 
     def floor(self):
         """Return a vector with each component floored."""
-        return Vector2(math.floor(self.x), math.floor(self.y))
+        return _Vector2(math.floor(self.x), math.floor(self.y))
 
     def ceil(self):
         """Return a vector with each component ceiled."""
-        return Vector2(math.ceil(self.x), math.ceil(self.y))
+        return _Vector2(math.ceil(self.x), math.ceil(self.y))
 
     def round(self):
         """Return a vector with each component rounded."""
-        return Vector2(round(self.x), round(self.y))
+        return _Vector2(round(self.x), round(self.y))
 
     def abs(self):
         """Return a vector with absolute values."""
-        return Vector2(abs(self.x), abs(self.y))
+        return _Vector2(abs(self.x), abs(self.y))
 
     # ------------------------
     # Static Helpers
