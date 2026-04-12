@@ -146,11 +146,22 @@ class Button(Widget):
         Args:
             event (pygame.Event): Input event.
         """
-        if event.type == pygame.MOUSEBUTTONDOWN and self.hovered:
-            self.pressed = True
-        if event.type == pygame.MOUSEBUTTONUP:
-            if self.pressed and self.hovered and self.on_click:
-                self.on_click()
+        if not self.visible:
+            return
+    
+        pos = getattr(event, "pos", None)
+        if pos is None:
+            return
+    
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if self.rect().collidepoint(pos):
+                self.pressed = True
+    
+        elif event.type == pygame.MOUSEBUTTONUP:
+            if self.pressed and self.rect().collidepoint(pos):
+                if self.on_click:
+                    self.on_click()
+    
             self.pressed = False
 
     def draw(self, surface):
