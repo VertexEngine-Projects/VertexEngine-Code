@@ -1,176 +1,176 @@
 import pygame
 
+
+# =========================================================
+# STYLE
+# =========================================================
+class Style:
+    """
+    Defines visual styling properties for UI widgets.
+
+    A Style object can be shared across multiple widgets to create
+    consistent themes.
+
+    Attributes:
+        bg_color (tuple[int,int,int]): Base background color.
+        hover_color (tuple[int,int,int]): Hover state color.
+        pressed_color (tuple[int,int,int]): Active/pressed color.
+        border_color (tuple[int,int,int]): Border color.
+        text_color (tuple[int,int,int]): Text color.
+        border_radius (int): Rounded corner radius.
+        border_width (int): Border thickness.
+        font_name (str): Font family name.
+        font_size (int): Font size.
+        padding (int): Internal padding.
+    """
+
+    def __init__(
+        self,
+        bg_color=(70, 70, 90),
+        hover_color=(90, 90, 120),
+        pressed_color=(120, 120, 160),
+        border_color=(30, 30, 40),
+        text_color=(255, 255, 255),
+        border_radius=8,
+        border_width=0,
+        font_name="Arial",
+        font_size=20,
+        padding=4,
+    ):
+        self.bg_color = bg_color
+        self.hover_color = hover_color
+        self.pressed_color = pressed_color
+        self.border_color = border_color
+        self.text_color = text_color
+
+        self.border_radius = border_radius
+        self.border_width = border_width
+
+        self.font_name = font_name
+        self.font_size = font_size
+        self.padding = padding
+
+
+# =========================================================
+# BASE WIDGET
+# =========================================================
 class Widget:
     """
     Base class for all UI widgets.
 
-    Provides core functionality such as positioning, visibility,
-    parenting hierarchy, styling, and basic lifecycle methods.
+    Handles positioning, hierarchy, and stable frame caching.
+
+    IMPORTANT:
+    Rect is cached per frame to avoid input mismatch bugs.
 
     Attributes:
-        x (int): Local x position.
-        y (int): Local y position.
-        width (int): Widget width.
-        height (int): Widget height.
-        visible (bool): Whether the widget is rendered.
+        x, y (int): Local position.
+        width, height (int): Size.
+        visible (bool): Render toggle.
+        parent (Widget|None): Parent widget.
         children (list[Widget]): Child widgets.
-        parent (Widget | None): Parent widget.
-        style (Style): Visual styling object.
+        style (Style): Visual style.
+        _rect (pygame.Rect): Cached screen-space rect.
     """
 
     def __init__(self, x, y, width, height, style=None):
-        """
-        Initializes the widget.
-
-        Args:
-            x (int): X position.
-            y (int): Y position.
-            width (int): Width of the widget.
-            height (int): Height of the widget.
-            style (Style | None): Style object for appearance.
-        """
         self.x = x
         self.y = y
         self.width = width
         self.height = height
+
         self.visible = True
-        self.children = []
         self.parent = None
+        self.children = []
         self.style = style or Style()
 
-    def add_child(self, widget):
-        """
-        Adds a child widget to this widget.
+        self._rect = pygame.Rect(x, y, width, height)
 
-        Args:
-            widget (Widget): Child to add.
-        """
+    def add_child(self, widget):
+        """Adds a child widget."""
         widget.parent = self
         self.children.append(widget)
 
     def global_position(self):
-        """
-        Computes the global position of the widget, including parent offsets.
-
-        Returns:
-            tuple[int, int]: (x, y) coordinates on the screen.
-        """
+        """Returns global screen position including parent offsets."""
         if self.parent:
             px, py = self.parent.global_position()
             return self.x + px, self.y + py
         return self.x, self.y
 
-    def rect(self):
+    def update_rect(self):
         """
-        Returns the pygame.Rect of the widget.
-
-        Returns:
-            pygame.Rect: Rectangle representing widget position and size.
+        Updates cached rect (MUST be called once per frame).
         """
         gx, gy = self.global_position()
-        return pygame.Rect(gx, gy, self.width, self.height)
+        self._rect = pygame.Rect(gx, gy, self.width, self.height)
+
+    def rect(self):
+        """Returns cached rect (frame-stable)."""
+        return self._rect
 
     def update(self):
-        """
-        Updates the widget and its children.
-        Override in subclasses to add custom logic.
-        """
-        for child in self.children:
-            child.update()
+        """Override in subclasses."""
+        for c in self.children:
+            c.update()
 
     def draw(self, surface):
-        """
-        Draws the widget and its children.
-
-        Args:
-            surface (pygame.Surface): Surface to draw on.
-        """
-        for child in self.children:
-            child.draw(surface)
+        """Override in subclasses."""
+        for c in self.children:
+            c.draw(surface)
 
     def handle_event(self, event):
-        """
-        Handles input events, propagating to children.
+        """Forwards events to children."""
+        for c in self.children:
+            c.handle_event(event)
 
-        Args:
-            event (pygame.Event): Input event.
-        """
-        for child in self.children:
-            child.handle_event(event)
 
+# =========================================================
+# BUTTON
+# =========================================================
 class Button(Widget):
     """
-    Clickable button widget.
-
-    Supports hover, pressed states, and click callbacks.
+    Clickable UI button with hover + press states.
 
     Attributes:
-        text (str): Button label.
-        on_click (Callable | None): Callback when clicked.
-        hovered (bool): Mouse hover state.
-        pressed (bool): Mouse pressed state.
-        font (pygame.Font): Font used to render text.
+        text (str): Label text.
+        on_click (callable): Click callback.
+        hovered (bool): Hover state.
+        pressed (bool): Press state.
     """
 
     def __init__(self, x, y, width, height, text="", on_click=None, style=None):
-        """
-        Initializes the button.
-
-        Args:
-            x (int): X position.
-            y (int): Y position.
-            width (int): Width of the button.
-            height (int): Height of the button.
-            text (str): Button label.
-            on_click (Callable | None): Callback when clicked.
-            style (Style | None): Styling object.
-        """
-        super().__init__(x, y, width, height, style=style)
+        super().__init__(x, y, width, height, style)
         self.text = text
         self.on_click = on_click
         self.hovered = False
         self.pressed = False
-        self.font = pygame.font.SysFont(self.style.font_name, self.style.font_size)
+
+        self.font = pygame.font.SysFont(
+            self.style.font_name,
+            self.style.font_size
+        )
 
     def update(self):
-        """
-        Updates hover state based on mouse position.
-        """
-        mouse_pos = pygame.mouse.get_pos()
-        self.hovered = self.rect().collidepoint(mouse_pos)
+        """Updates hover state."""
+        mouse = pygame.mouse.get_pos()
+        self.hovered = self.rect().collidepoint(mouse)
 
     def handle_event(self, event):
-        """
-        Handles mouse events for click detection.
-
-        Args:
-            event (pygame.Event): Input event.
-        """
-        if not self.visible:
-            return
-    
-        pos = getattr(event, "pos", None)
-        if pos is None:
-            return
-    
+        """Handles click input."""
         if event.type == pygame.MOUSEBUTTONDOWN:
-            if self.rect().collidepoint(pos):
+            if self.rect().collidepoint(event.pos):
                 self.pressed = True
-    
+
         elif event.type == pygame.MOUSEBUTTONUP:
-            if self.pressed and self.rect().collidepoint(pos):
+            if self.pressed and self.rect().collidepoint(event.pos):
                 if self.on_click:
                     self.on_click()
-    
+
             self.pressed = False
 
     def draw(self, surface):
-        """
-        Draws the button with styling and text.
-
-        Args:
-            surface (pygame.Surface): Surface to draw on.
-        """
+        """Renders button."""
         if not self.visible:
             return
 
@@ -181,32 +181,28 @@ class Button(Widget):
             color = self.style.hover_color
 
         rect = self.rect()
+
         pygame.draw.rect(surface, color, rect, border_radius=self.style.border_radius)
 
-        if self.style.border_width > 0:
-            pygame.draw.rect(
-                surface, self.style.border_color, rect,
-                width=self.style.border_width,
-                border_radius=self.style.border_radius
-            )
-
         if self.text:
-            text_surf = self.font.render(self.text, True, self.style.text_color)
-            surface.blit(text_surf, text_surf.get_rect(center=rect.center))
-            
+            text = self.font.render(self.text, True, self.style.text_color)
+            surface.blit(text, text.get_rect(center=rect.center))
+
+
+# =========================================================
+# SLIDER
+# =========================================================
 class Slider(Widget):
     """
-    Horizontal slider widget for selecting numeric values.
+    Horizontal numeric slider.
 
-    Allows dragging a knob along a track to adjust a value
-    between a minimum and maximum range.
+    Fully event-driven + rect-stable design.
 
     Attributes:
-        min (float): Minimum value.
-        max (float): Maximum value.
+        min, max (float): Range.
         value (float): Current value.
-        on_change (Callable | None): Callback when value changes.
-        dragging (bool): Whether slider is being dragged.
+        dragging (bool): Drag state.
+        on_change (callable): Callback.
         knob_radius (int): Knob size.
     """
 
@@ -232,158 +228,110 @@ class Slider(Widget):
         self.dragging = False
         self.knob_radius = height // 2 + 4
 
+    # -----------------------------
+    # VALUE MAPPING
+    # -----------------------------
     def value_to_pos(self):
-        """
-        Converts current value to screen position.
+        rect = self.rect()
+        if self.max == self.min:
+            return rect.x
 
-        Returns:
-            int: X coordinate of knob.
-        """
         t = (self.value - self.min) / (self.max - self.min)
-        return self.rect().x + int(t * self.width)
+        return rect.x + int(t * rect.width)
 
     def pos_to_value(self, px):
-        """
-        Converts mouse position to slider value.
+        rect = self.rect()
+        if rect.width == 0:
+            return self.min
 
-        Args:
-            px (int): Mouse x coordinate.
-
-        Returns:
-            float: Computed value.
-        """
-        t = (px - self.rect().x) / self.width
+        t = (px - rect.x) / rect.width
         t = max(0, min(1, t))
+
         return self.min + t * (self.max - self.min)
 
-    def update(self):
-        """Updates value while dragging."""
-        if self.dragging:
-            mx, _ = pygame.mouse.get_pos()
-            self.value = self.pos_to_value(mx)
-
-            if self.on_change:
-                self.on_change(self.value)
-
+    # -----------------------------
+    # EVENTS
+    # -----------------------------
     def handle_event(self, event):
-        """Handles mouse dragging events."""
+        rect = self.rect()
+        print("SLIDER GOT:", event.type)
+
         if event.type == pygame.MOUSEBUTTONDOWN:
-            if self.rect().collidepoint(event.pos):
+            if rect.collidepoint(event.pos):
                 self.dragging = True
 
-        if event.type == pygame.MOUSEBUTTONUP:
+        elif event.type == pygame.MOUSEBUTTONUP:
             self.dragging = False
 
+        elif event.type == pygame.MOUSEMOTION:
+            if self.dragging:
+                self.value = self.pos_to_value(event.pos[0])
+                if self.on_change:
+                    self.on_change(self.value)
+
+    # -----------------------------
+    # DRAW
+    # -----------------------------
     def draw(self, surface):
-        """Renders slider track, fill, and knob."""
         if not self.visible:
             return
 
         rect = self.rect()
 
-        pygame.draw.rect(surface, self.style.bg_color, rect, border_radius=self.style.border_radius)
+        # track
+        pygame.draw.rect(
+            surface,
+            self.style.bg_color,
+            rect,
+            border_radius=self.style.border_radius
+        )
 
-        fill_rect = rect.copy()
-        fill_rect.width = self.value_to_pos() - rect.x
+        # fill
+        fill_width = self.value_to_pos() - rect.x
+        fill_width = max(0, min(fill_width, rect.width))
 
-        pygame.draw.rect(surface, self.style.hover_color, fill_rect, border_radius=self.style.border_radius)
+        pygame.draw.rect(
+            surface,
+            self.style.hover_color,
+            pygame.Rect(rect.x, rect.y, fill_width, rect.height),
+            border_radius=self.style.border_radius
+        )
 
-        knob_x = self.value_to_pos()
-        knob_y = rect.centery
+        # knob
+        pygame.draw.circle(
+            surface,
+            self.style.pressed_color,
+            (self.value_to_pos(), rect.centery),
+            self.knob_radius
+        )
 
-        pygame.draw.circle(surface, self.style.pressed_color, (knob_x, knob_y), self.knob_radius)
 
+# =========================================================
+# UI MANAGER
+# =========================================================
 class UIManager:
     """
-    Manages all UI widgets.
+    Handles all widgets in a scene.
 
-    Responsible for updating, drawing, and forwarding
-    input events to widgets.
-
-    Attributes:
-        widgets (list[Widget]): Registered widgets.
+    IMPORTANT:
+    Must call update_rect() every frame BEFORE update().
     """
 
     def __init__(self):
         self.widgets = []
 
     def add(self, widget):
-        """
-        Adds a widget to the manager.
-
-        Args:
-            widget (Widget): Widget to register.
-        """
         self.widgets.append(widget)
 
     def update(self):
-        """Updates all widgets."""
         for w in self.widgets:
+            w.update_rect()
             w.update()
 
     def draw(self, surface):
-        """
-        Draws all widgets.
-
-        Args:
-            surface (pygame.Surface): Target surface.
-        """
         for w in self.widgets:
             w.draw(surface)
 
     def handle_event(self, event):
-        """
-        Forwards events to widgets.
-
-        Args:
-            event (pygame.Event): Input event.
-        """
         for w in self.widgets:
             w.handle_event(event)
-
-class Style:
-    """
-    Defines visual styling properties for UI widgets.
-
-    A Style object can be shared across multiple widgets to create
-    consistent themes. Widgets read styling values such as colors,
-    font settings, borders, and padding from this class.
-
-    Attributes:
-        bg_color (tuple[int, int, int]): Background color.
-        hover_color (tuple[int, int, int]): Color when widget is hovered.
-        pressed_color (tuple[int, int, int]): Color when widget is pressed/active.
-        border_color (tuple[int, int, int]): Border color.
-        text_color (tuple[int, int, int]): Text color.
-        border_radius (int): Corner roundness.
-        border_width (int): Border thickness.
-        font_name (str): Font family name.
-        font_size (int): Font size.
-        padding (int): Internal spacing.
-    """
-    def __init__(
-        self,
-        bg_color=(70, 70, 90),
-        hover_color=(90, 90, 120),
-        pressed_color=(120, 120, 160),
-        border_color=(30, 30, 40),
-        text_color=(255, 255, 255),
-        border_radius=8,
-        border_width=0,
-        font_name="Arial",
-        font_size=20,
-        padding=4,
-    ):
-        self.bg_color = bg_color
-        self.hover_color = hover_color
-        self.pressed_color = pressed_color
-        self.border_color = border_color
-        self.text_color = text_color
-
-        self.border_radius = border_radius
-        self.border_width = border_width
-
-        self.font_name = font_name
-        self.font_size = font_size
-
-        self.padding = padding

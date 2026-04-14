@@ -101,4 +101,13 @@ class GameEngine(QWidget):
         self.scene_manager.handle_event(pygame_event)
 
     def mouseMoveEvent(self, event):
-        pygame.mouse.set_pos((event.position().x(), event.position().y()))
+        pygame_event = pygame.event.Event(
+            pygame.MOUSEMOTION,
+            {
+                "pos": (event.position().x(), event.position().y()),
+                "rel": (0, 0),
+                "buttons": pygame.mouse.get_pressed()
+            }
+        )
+    
+        self.scene_manager.handle_event(pygame_event)
