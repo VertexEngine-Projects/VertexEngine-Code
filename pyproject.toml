@@ -1,6 +1,6 @@
 [project]
 name = "VertexEngine"
-version = "1.8.6"
+version = "1.8.7"
 description = "A high-performance SDK for Python Development."
 authors = [
   { name = "Tyrel Miguel", email = "annbasilan0828@gmail.com" }
@@ -20,8 +20,8 @@ Homepage = "https://vertexengine-zii6.onrender.com"
 Documentation = "https://vertexenginedocs.netlify.app"
 Tutorials = "https://www.youtube.com/watch?v=-P4t6UabuDU&t=0s"
 "Official Tech Site" = "https://tyrel.onrender.com"
-Source = "https://github.com/TyrelGomez/VertexEngine-Code"
-Issues = "https://github.com/TyrelGomez/VertexEngine-Code/issues"
+Source = "https://github.com/VertexEngine-Projects/VertexEngine-Code"
+Issues = "https://github.com/VertexEngine-Projects/VertexEngine-Code/issues"
 Discord = "https://discord.gg/jqG8kQjX"
 [tool.setuptools.packages.find]
 where = ["src"]

@@ -1,11 +1,24 @@
-<img width="858" height="157" alt="VertexEngine_Logo" src="https://github.com/user-attachments/assets/6ba8a8dd-285a-4618-8e29-da12eb92e9ce" />
+<p align="center">
+  <img width="100%" alt="VertexEngine_Logo" src="https://github.com/user-attachments/assets/6ba8a8dd-285a-4618-8e29-da12eb92e9ce" />
+</p>
+
+<p align="center">
+  <a href="https://pypi.org/project/vertexengine/">
+    <img src="https://img.shields.io/pypi/v/vertexengine.svg" alt="PyPI version">
+    <img src="https://img.shields.io/pypi/l/vertexengine.svg" alt="License">
+    <img src="https://img.shields.io/pypi/dm/vertexengine.svg" alt="Monthly downloads">
+    <img src="https://img.shields.io/pypi/dw/vertexengine.svg" alt="Weekly downloads">
+    <img src="https://img.shields.io/pypi/pyversions/vertexengine.svg" alt="Python versions">
+    <img src="https://img.shields.io/pypi/format/vertexengine.svg" alt="Format">
+  </a>
+</p>
 
 # VertexEngine/Vertex
 VertexEngine is a GUI and Game Engine for python applications, it works best if you use py installer
 
-## Offical Extensions:
-[VertexEngine-WebEngine](https://pypi.org/project/VertexEngine-WebEngine)
-[VertexEngine-CLI](https://pypi.org/project/VertexEngine-CLI/1.0/)
+## Official Extensions:
+- [VertexEngine-WebEngine](https://pypi.org/project/VertexEngine-WebEngine)
+- [VertexEngine-CLI](https://pypi.org/project/VertexEngine-CLI/1.0/)
 
 ## Help
 - The documentation is in the following link: [Documentation](https://vertexenginedocs.netlify.app/) for help.
@@ -15,7 +28,12 @@ VertexEngine is a GUI and Game Engine for python applications, it works best if 
 Discord is out NOW!
 [Discord Server](https://discord.gg/VertexEngine)
 
-## Change Logs (1.7.0 - 1.8.5), NEW!
+## Change Logs (1.7.0 - 1.8.7), NEW!
+### 1.8.7
+- 3rd Final 1.8.x Branch Security Patch
+- Final 1.8.x update is 1.8.9
+- 1.9rc1 soon.
+
 ### 1.8.6
 - Fixed Engine bugs
 - Fixed mouse dragging events (EVENT-ID: 1024)
@@ -53,12 +71,12 @@ Discord is out NOW!
 - Fixed a lot of bugs!
 - Fixed outdated URLs (2 day server shutdown)
 ### 1.7.1
-- Offical VertexEngine Projects Browser! (RainExplorer)
+- official VertexEngine Projects Browser! (RainExplorer)
 - Accounts Wiped soon.
-- Fixed a bit to many bugs.
+- Fixed a bit too many bugs.
 ### 1.7.0
 - Fixed Collision not defined errors
-- Added an Offical Tutorial Video!
+- Added an official3 Tutorial Video!
 - Accounts will be wiped soon.
 
 ## How to install VertexEngine/Vertex:
@@ -78,8 +96,9 @@ Vertex obviously has heavy dependencies since it's a game engine, the following 
 | Python           | >=3.10                               |
 
 ## About Me ❔
-I Am a solo developer in Diliman, Quezon City that makes things for fun :)
-Or in this case, serious work.
+I’m a solo developer based in Quezon City, building tools and engines for both fun and serious projects.
 
 ## 📄 License
-VertexEngine/Vertex is Managed by the MIT License. This license allows others to tweak the code. However, you need to have the LICENSE file from this library and add it to your library, attribution also required. Read the LICENSE file for more details.
+VertexEngine is licensed under the MIT License.
+
+You are free to use, modify, and distribute this project, as long as proper attribution is given. See the LICENSE file for details.
