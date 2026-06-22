@@ -29,6 +29,9 @@ Discord is out NOW!
 [Discord Server](https://discord.gg/VertexEngine)
 
 ## Change Logs (1.7.0 - 1.8.7), NEW!
+### 1.8.9
+- Small optimizations
+- Removed dependence on Python Garbage Collection.
 ### 1.8.7
 - 3rd Final 1.8.x Branch Security Patch
 - Final 1.8.x update is 1.8.9

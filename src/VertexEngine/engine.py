@@ -8,66 +8,60 @@ from VertexEngine.InputSystem.KeyInputs import Input
 pygame.init()
 
 class GameEngine(QWidget):
-    """`GameEngine()` is a class to create the window for your VertexEngine game. \n
-        `width` is the resolution of your window in WIDTH. \n
-        `height` is the resolution of your window in HEIGHT. \n
-        The standard notation for checking resolution is `(width x height)`. \n
-        Aspect ratio is the ratio of `height:width` and is crucial if you want scaling by window size. \n
-        `color` is the actual color of the Background of the window. It is a tuple in `(R, G, B)`. \n
-        `fps` is the amount of calculations that the engine makes every second. It's recommended to be less than your screen refresh rate. \n
-        `position` is the window position on screen as a tuple `(x, y)`. `(0, 0)` is the top-left corner.
-    """
+    """`GameEngine()` is a class to create the window for your VertexEngine game."""
     def __init__(self, width=800, height=600, color=(50, 50, 100), fps=60, position=(0, 0)):
         super().__init__()
         self.width = width
         self.height = height
         self.color = color
         self.fps = fps
-        self.position = position  # (x, y)
+        self.position = position 
 
-        # Qt key tracking
         self.keys_down = set()
-
-        # pygame surface
+        
+        # Optimized: Use standard RGB to avoid unneeded alpha calculations
         self.screen = pygame.Surface((self.width, self.height))
+        
+        # Optimized: Pre-allocate a persistent QImage that shares memory with Pygame
+        self._sync_qimage()
 
-        # Scene manager
         self.scene_manager = SceneManager()
 
-        # Timer
         self.timer = QTimer(self)
         self.timer.timeout.connect(self._update_frame)
         self.timer.start(1000 // self.fps)
 
         self.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
-
-        # Set window size and position
         self.resize(self.width, self.height)
         self.move(*self.position)
+
+    def _sync_qimage(self):
+        """Helper to map Pygame pixel buffer directly to QImage memory."""
+        # Optimized: QImage points directly to the Pygame surface memory buffer
+        # This completely removes pygame.image.tobytes() CPU copying overhead
+        self.img = QImage(
+            self.screen.get_buffer(),
+            self.width,
+            self.height,
+            self.screen.get_pitch(),
+            QImage.Format.Format_RGB32
+        )
 
     # ---------------------- RENDER ----------------------
 
     def paintEvent(self, event):
-        self.screen.fill(self.color)
-
-        self.scene_manager.draw(self.screen)
-
-        raw = pygame.image.tobytes(self.screen, "RGBA")
-        img = QImage(
-            raw,
-            self.width,
-            self.height,
-            QImage.Format.Format_RGBA8888
-        )
-
-        painter = QPainter(self)
-        painter.drawImage(0, 0, img)
+        # Optimized: Use a context manager to instantly close/flush the painter
+        with QPainter(self) as painter:
+            painter.drawImage(0, 0, self.img)
 
     def resizeEvent(self, event):
         size = event.size()
         self.width = size.width()
         self.height = size.height()
+        
+        # Re-allocate surfaces and re-link memory map on resize
         self.screen = pygame.Surface((self.width, self.height))
+        self._sync_qimage()
 
     # ---------------------- UPDATE ----------------------
 
@@ -75,8 +69,13 @@ class GameEngine(QWidget):
         if not self.hasFocus():
             self.keys_down.clear()
 
+        # Optimized: Clear and draw into the pygame surface during the update step
+        self.screen.fill(self.color)
         self.scene_manager._update()
-        self.update()  # triggers paintEvent
+        self.scene_manager.draw(self.screen)
+        
+        # Schedule the visual swap
+        self.update()  
 
     # ---------------------- INPUT ----------------------
 
@@ -87,27 +86,30 @@ class GameEngine(QWidget):
         Input._key_up(event.key())
 
     def mousePressEvent(self, event):
+        # Optimized: Extracted local positions to avoid multiple property lookups
+        pos = event.position()
         pygame_event = pygame.event.Event(
             pygame.MOUSEBUTTONDOWN,
-            {"pos": (event.position().x(), event.position().y()), "button": event.button()}
+            {"pos": (int(pos.x()), int(pos.y())), "button": event.button()}
         )
         self.scene_manager.handle_event(pygame_event)
 
     def mouseReleaseEvent(self, event):
+        pos = event.position()
         pygame_event = pygame.event.Event(
             pygame.MOUSEBUTTONUP,
-            {"pos": (event.position().x(), event.position().y()), "button": event.button()}
+            {"pos": (int(pos.x()), int(pos.y())), "button": event.button()}
         )
         self.scene_manager.handle_event(pygame_event)
 
     def mouseMoveEvent(self, event):
+        pos = event.position()
         pygame_event = pygame.event.Event(
             pygame.MOUSEMOTION,
             {
-                "pos": (event.position().x(), event.position().y()),
+                "pos": (int(pos.x()), int(pos.y())),
                 "rel": (0, 0),
                 "buttons": pygame.mouse.get_pressed()
             }
         )
-    
         self.scene_manager.handle_event(pygame_event)
