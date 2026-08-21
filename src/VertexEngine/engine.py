@@ -36,16 +36,17 @@ class GameEngine(QWidget):
         self.move(*self.position)
 
     def _sync_qimage(self):
-        """Helper to map Pygame pixel buffer directly to QImage memory."""
-        # Optimized: QImage points directly to the Pygame surface memory buffer
-        # This completely removes pygame.image.tobytes() CPU copying overhead
+        """Helper to sync the Pygame surface into a Qt-friendly image buffer."""
+        # Always rebuild the image from the current frame so the Qt widget
+        # doesn't keep rendering the stale black buffer created at startup.
+        raw = pygame.image.tobytes(self.screen, "RGB")
         self.img = QImage(
-            self.screen.get_buffer(),
+            raw,
             self.width,
             self.height,
-            self.screen.get_pitch(),
-            QImage.Format.Format_RGB32
-        )
+            self.width * 3,
+            QImage.Format.Format_RGB888
+        ).copy()
 
     # ---------------------- RENDER ----------------------
 
@@ -73,9 +74,10 @@ class GameEngine(QWidget):
         self.screen.fill(self.color)
         self.scene_manager._update()
         self.scene_manager.draw(self.screen)
-        
+        self._sync_qimage()
+
         # Schedule the visual swap
-        self.update()  
+        self.update()
 
     # ---------------------- INPUT ----------------------
 

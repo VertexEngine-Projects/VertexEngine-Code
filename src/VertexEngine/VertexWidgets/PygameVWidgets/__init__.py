@@ -217,6 +217,7 @@ class Slider(Widget):
         start_value=50,
         on_change=None,
         style=None,
+        debug=True
     ):
         super().__init__(x, y, width, height, style)
 
@@ -254,7 +255,6 @@ class Slider(Widget):
     # -----------------------------
     def handle_event(self, event):
         rect = self.rect()
-        print("SLIDER GOT:", event.type)
 
         if event.type == pygame.MOUSEBUTTONDOWN:
             if rect.collidepoint(event.pos):

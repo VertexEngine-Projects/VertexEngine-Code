@@ -108,16 +108,13 @@ if __name__ == "__main__":
         fps=FPS
     )
 
-    engine.setWindowTitle("Snake 🐍 — RC Survivor Edition")
+    engine.setWindowTitle("Snake")
     engine.show()
 
     scene = SnakeScene(engine)
     engine.scene_manager.add_scene("main", scene)
     engine.scene_manager.switch_to("main")
 
-    # =============================
-    # 🔑 QT INPUT — THIS IS THE FIX
-    # =============================
     def engine_key_press(event):
         key = event.key()
 
