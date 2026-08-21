@@ -104,7 +104,7 @@ components, styling support, interaction handling, and layout-friendly design.
 <pre><code>def on_click():
     print("Clicked!")
 
-btn = Button("Play", 300, 200, callback=on_click)
+btn = Button("Play", 300, 200, on_click=on_click)
 </code></pre>
 
 <h3>Responsibilities</h3>
@@ -120,7 +120,7 @@ btn = Button("Play", 300, 200, callback=on_click)
 <li><code>text</code> (str): Button label</li>
 <li><code>x, y</code> (int): Position</li>
 <li><code>width, height</code> (int): Size</li>
-<li><code>callback</code> (callable): Function called on click</li>
+<li><code>on_click</code> (callable): Function called on click</li>
 <li><code>style</code> (Style): Visual style</li>
 <li><code>toggle</code> (bool): Toggle mode</li>
 </ul>
