@@ -305,6 +305,167 @@ class Slider(Widget):
             self.knob_radius
         )
 
+class Card(Widget):
+    """A drawable container for grouping related widgets."""
+
+    def __init__(self, x, y, width, height, style=None):
+        super().__init__(x, y, width, height, style)
+
+    def update_rect(self):
+        """Update this card and all child rects in screen coordinates."""
+        super().update_rect()
+        for child in self.children:
+            child.update_rect()
+
+    def draw(self, surface):
+        if not self.visible:
+            return
+
+        rect = self.rect()
+        pygame.draw.rect(
+            surface,
+            self.style.bg_color,
+            rect,
+            border_radius=self.style.border_radius
+        )
+        if self.style.border_width:
+            pygame.draw.rect(
+                surface,
+                self.style.border_color,
+                rect,
+                width=self.style.border_width,
+                border_radius=self.style.border_radius
+            )
+
+        for child in self.children:
+            child.draw(surface)
+
+
+class ProgressBar(Widget):
+    """Displays progress between a configurable minimum and maximum."""
+
+    def __init__(
+        self,
+        x,
+        y,
+        width,
+        height=20,
+        min_value=0,
+        max_value=100,
+        value=0,
+        on_change=None,
+        style=None
+    ):
+        super().__init__(x, y, width, height, style)
+        if max_value < min_value:
+            raise ValueError("max_value must be greater than or equal to min_value")
+
+        self.min = min_value
+        self.max = max_value
+        self.value = max(self.min, min(self.max, value))
+        self.on_change = on_change
+
+    def set_value(self, value):
+        """Set the value, clamp it to the range, and notify on changes."""
+        new_value = max(self.min, min(self.max, value))
+        if new_value != self.value:
+            self.value = new_value
+            if self.on_change:
+                self.on_change(self.value)
+
+    def draw(self, surface):
+        if not self.visible:
+            return
+
+        rect = self.rect()
+        pygame.draw.rect(
+            surface,
+            self.style.bg_color,
+            rect,
+            border_radius=self.style.border_radius
+        )
+
+        progress = 0
+        if self.max != self.min:
+            progress = (self.value - self.min) / (self.max - self.min)
+        fill_width = int(rect.width * progress)
+        if fill_width:
+            pygame.draw.rect(
+                surface,
+                self.style.hover_color,
+                pygame.Rect(rect.x, rect.y, fill_width, rect.height),
+                border_radius=self.style.border_radius
+            )
+
+        if self.style.border_width:
+            pygame.draw.rect(
+                surface,
+                self.style.border_color,
+                rect,
+                width=self.style.border_width,
+                border_radius=self.style.border_radius
+            )
+
+
+class Toggle(Widget):
+    """A clickable two-state control."""
+
+    def __init__(self, x, y, width=60, height=30, value=False, on_toggle=None, style=None):
+        super().__init__(x, y, width, height, style)
+        self.value = bool(value)
+        self.on_toggle = on_toggle
+        self.hovered = False
+        self.pressed = False
+
+    @property
+    def is_on(self):
+        return self.value
+
+    def set_value(self, value):
+        """Set the state and notify only when it changes."""
+        new_value = bool(value)
+        if new_value != self.value:
+            self.value = new_value
+            if self.on_toggle:
+                self.on_toggle(self.value)
+
+    def update(self):
+        self.hovered = self.rect().collidepoint(pygame.mouse.get_pos())
+
+    def handle_event(self, event):
+        if event.type == pygame.MOUSEBUTTONDOWN and self.rect().collidepoint(event.pos):
+            self.pressed = True
+        elif event.type == pygame.MOUSEBUTTONUP:
+            if self.pressed and self.rect().collidepoint(event.pos):
+                self.set_value(not self.value)
+            self.pressed = False
+
+    def draw(self, surface):
+        if not self.visible:
+            return
+
+        rect = self.rect()
+        color = self.style.pressed_color if self.value else self.style.bg_color
+        if self.hovered and not self.value:
+            color = self.style.hover_color
+        pygame.draw.rect(
+            surface,
+            color,
+            rect,
+            border_radius=min(self.style.border_radius, rect.height // 2)
+        )
+        if self.style.border_width:
+            pygame.draw.rect(
+                surface,
+                self.style.border_color,
+                rect,
+                width=self.style.border_width,
+                border_radius=min(self.style.border_radius, rect.height // 2)
+            )
+
+        knob_radius = max(1, rect.height // 2 - self.style.padding)
+        knob_x = rect.right - rect.height // 2 if self.value else rect.left + rect.height // 2
+        pygame.draw.circle(surface, self.style.text_color, (knob_x, rect.centery), knob_radius)
 
 # =========================================================
 # UI MANAGER

@@ -24,14 +24,16 @@ VertexEngine is a GUI and Game Engine for python applications, it works best if 
 - The documentation is in the following link: [Documentation](https://vertexenginedocs.netlify.app/) for help.
 - Support Email: FinalFacility0828@gmail.com
 
-## Community
-Discord is out NOW!
-[Discord Server](https://discord.gg/VertexEngine)
-
-## Change Logs (1.7.0 - 1.9)
+## Change Logs (1.7.0 - 1.9.3)
+### 1.9.3
+- 3 NEW WIDGETS
+- Card, Progess Bar, Toggle
+### 1.9.2
+- NEW DEMO
+- How to run: python3.x -m VertexEngine.examples.MajorSystemTest.main
 ### 1.9.1
 - NEW DEMO
-- How to Run: python3.x -m VertexEngine.examples.pywidget_test
+- How to Run: python3.x -m VertexEngine.examples.pygwidget_test
 - Fixed engine clash bug (pygame and pyqt6 bug)
 ### 1.9
 - FINALLY fixed the demos!

@@ -40,8 +40,7 @@ components, styling support, interaction handling, and layout-friendly design.
 <pre><code>style = Style(
     bg_color=(40,40,40),
     hover_color=(60,60,60),
-    active_color=(20,20,20),
-    text_color=(255,255,255)
+    pressed_color=(20,20,20)
 )
 </code></pre>
 
@@ -49,7 +48,7 @@ components, styling support, interaction handling, and layout-friendly design.
 <ul>
 <li><code>bg_color</code> (tuple): Background color</li>
 <li><code>hover_color</code> (tuple): Color when hovered</li>
-<li><code>active_color</code> (tuple): Color when pressed</li>
+<li><code>pressed_color</code> (tuple): Color when pressed</li>
 <li><code>border_color</code> (tuple): Border color</li>
 <li><code>text_color</code> (tuple): Text color</li>
 <li><code>border_width</code> (int): Border thickness</li>
@@ -122,7 +121,6 @@ btn = Button("Play", 300, 200, on_click=on_click)
 <li><code>width, height</code> (int): Size</li>
 <li><code>on_click</code> (callable): Function called on click</li>
 <li><code>style</code> (Style): Visual style</li>
-<li><code>toggle</code> (bool): Toggle mode</li>
 </ul>
 
 <h3>Returns</h3>
@@ -172,14 +170,61 @@ slider = Slider(250, 300, min_val=0, max_val=100, on_change=on_change)
 
 <hr>
 
+<h2>Card</h2>
+<p><strong>Description:</strong>It's a drawable card widget that houses other widgets</p>
+<pre><code>
+from VertexEngine import GameEngine, Scene
+from VertexEngine.VertexWidgets.PygameVWidgets import *
+from VertexEngine.Vertex import App
+
+class Main(Scene):
+    def __init__(self, engine):
+        super().__init__(engine)
+        self.ui = UIManager()
+        self.styleBase = Style(bg_color=(255, 0, 0), pressed_color=(125,0,0))
+        self.button = Button(100, 75, 200, 50, "Example", lambda: self.respond(), self.styleBase)
+
+        # TIP: val is the DATA collected from the position of the slider handle based on how far it is to the right.
+        # You don't need to define val, you can name it anything, but val is reccomended
+        self.slider = Slider(200, 50, 400, 20, 0, 100, 50, lambda val: self.printIt(val))
+        self.card = Card(200, 200, 400, 300)
+        self.card.add_child(self.button)
+        self.ui.add(self.card)
+        self.ui.add(self.slider)
+
+    def printIt(self, val):
+        # print an INTEGER format of value
+        print(int(val))
+
+    def respond(self):
+        print("respond")
+
+    def draw(self, surface):
+        self.ui.draw(surface)
+
+    def update(self):
+        self.ui.update()
+
+    def handle_event(self, event):
+        self.ui.handle_event(event)
+
+if __name__ == "__main__":
+    app = App()
+    engine = GameEngine(color=(0,0,0))
+    engine.setWindowTitle("Example")
+    engine.show()
+
+    engine.scene_manager.set_scene(Main(engine))
+    app.run()
+</code></pre>
 <h2>UIManager</h2>
 
 <p><strong>Description:</strong> Central manager responsible for updating, drawing, and dispatching events to all widgets.</p>
 
 <h3>Example: Usage</h3>
-<pre><code>ui = UIManager()
-ui.add(Button("Play", 100,100))
-ui.add(Slider(200,200))
+<pre><code>self.ui = UIManager()
+self.ui.add(self.button)
+self.ui.add(self.slider)
 </code></pre>
 
 <h3>Responsibilities</h3>
@@ -203,17 +248,6 @@ ui.add(Slider(200,200))
 <p>A manager instance controlling all UI components.</p>
 
 <hr>
-
-<h2>Full Example</h2>
-
-<pre><code>ui = UIManager()
-
-btn = Button("Play", 300, 200)
-slider = Slider(250, 300)
-
-ui.add(btn)
-ui.add(slider)
-</code></pre>
 
 </div>
 </section>

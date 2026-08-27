@@ -1,6 +1,6 @@
 [project]
 name = "VertexEngine"
-version = "1.9.1"
+version = "1.9.3"
 description = "A high-performance SDK for Python Development."
 authors = [
   { name = "Tyrel Miguel", email = "annbasilan0828@gmail.com" }
@@ -36,6 +36,9 @@ classifiers = [
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Programming Language :: Python :: 3.15",
   "Operating System :: OS Independent"
 ]
 
@@ -47,5 +50,14 @@ Tutorials = "https://www.youtube.com/watch?v=-P4t6UabuDU&t=0s"
 Source = "https://github.com/VertexEngine-Projects/VertexEngine-Code"
 Issues = "https://github.com/VertexEngine-Projects/VertexEngine-Code/issues"
 Discord = "https://discord.gg/jqG8kQjX"
+
+[tool.setuptools]
+# Instructs setuptools to bundle non-python data assets
+include-package-data = false
+
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+# Tells setuptools to look inside src/VertexEngine for these asset types
+"*" = ["*.json", "*.txt", "*.png", "*.jpg", "*.wav", "*.ogg", "*.mp3"]
