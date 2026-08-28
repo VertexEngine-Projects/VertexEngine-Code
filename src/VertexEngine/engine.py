@@ -9,13 +9,14 @@ pygame.init()
 
 class GameEngine(QWidget):
     """`GameEngine()` is a class to create the window for your VertexEngine game."""
-    def __init__(self, width=800, height=600, color=(50, 50, 100), fps=60, position=(0, 0)):
+    def __init__(self, width=800, height=600, color=(50, 50, 100), fps=60, position=(0, 0), resizable=True):
         super().__init__()
         self.width = width
         self.height = height
         self.color = color
         self.fps = fps
         self.position = position 
+        self.resizable = resizable
 
         self.keys_down = set()
         
@@ -33,6 +34,8 @@ class GameEngine(QWidget):
 
         self.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
         self.resize(self.width, self.height)
+        if not self.resizable:
+            self.setFixedSize(self.width, self.height)
         self.move(*self.position)
 
     def _sync_qimage(self):

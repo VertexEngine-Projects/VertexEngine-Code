@@ -24,7 +24,9 @@ VertexEngine is a GUI and Game Engine for python applications, it works best if 
 - The documentation is in the following link: [Documentation](https://vertexenginedocs.netlify.app/) for help.
 - Support Email: FinalFacility0828@gmail.com
 
-## Change Logs (1.7.0 - 1.9.3)
+## Change Logs (1.7.0 - 1.9.4)
+### 1.9.4
+- NEW ENGINE FLAG: resizable (bool)
 ### 1.9.3
 - 3 NEW WIDGETS
 - Card, Progess Bar, Toggle
