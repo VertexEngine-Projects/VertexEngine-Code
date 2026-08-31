@@ -24,6 +24,19 @@ class Style:
         padding (int): Internal padding.
     """
 
+    _STYLE_ATTRS = (
+        "bg_color",
+        "hover_color",
+        "pressed_color",
+        "border_color",
+        "text_color",
+        "border_radius",
+        "border_width",
+        "font_name",
+        "font_size",
+        "padding",
+    )
+
     def __init__(
         self,
         bg_color=(70, 70, 90),
@@ -49,6 +62,20 @@ class Style:
         self.font_name = font_name
         self.font_size = font_size
         self.padding = padding
+
+    @classmethod
+    def coerce(cls, style=None):
+        """Return a Style instance, even when a style-like object is passed."""
+        if style is None:
+            return cls()
+        if isinstance(style, cls):
+            return style
+
+        normalized = cls()
+        for attr in cls._STYLE_ATTRS:
+            if hasattr(style, attr):
+                setattr(normalized, attr, getattr(style, attr))
+        return normalized
 
 
 # =========================================================
@@ -82,7 +109,7 @@ class Widget:
         self.visible = True
         self.parent = None
         self.children = []
-        self.style = style or Style()
+        self.style = Style.coerce(style)
 
         self._rect = pygame.Rect(x, y, width, height)
 
@@ -137,19 +164,41 @@ class Button(Widget):
         on_click (callable): Click callback.
         hovered (bool): Hover state.
         pressed (bool): Press state.
+        image (pygame.Surface | str | None): Optional button image.
     """
 
-    def __init__(self, x, y, width, height, text="", on_click=None, style=None):
+    def __init__(self, x, y, width, height, text="", on_click=None, style=None, image=None):
         super().__init__(x, y, width, height, style)
         self.text = text
         self.on_click = on_click
         self.hovered = False
         self.pressed = False
+        self.image = self._load_image(image)
 
         self.font = pygame.font.SysFont(
             self.style.font_name,
             self.style.font_size
         )
+
+    @staticmethod
+    def _load_image(image):
+        if image is None:
+            return None
+        if isinstance(image, str):
+            return pygame.image.load(image)
+        if isinstance(image, pygame.Surface):
+            return image
+        return None
+
+    def _tint_surface(self, image, tint_color, alpha=120):
+        if image is None:
+            return None
+
+        tinted = image.copy()
+        overlay = pygame.Surface(tinted.get_size(), pygame.SRCALPHA)
+        overlay.fill((tint_color[0], tint_color[1], tint_color[2], alpha))
+        tinted.blit(overlay, (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+        return tinted
 
     def update(self):
         """Updates hover state."""
@@ -174,15 +223,28 @@ class Button(Widget):
         if not self.visible:
             return
 
-        color = self.style.bg_color
-        if self.pressed:
-            color = self.style.pressed_color
-        elif self.hovered:
-            color = self.style.hover_color
-
         rect = self.rect()
 
-        pygame.draw.rect(surface, color, rect, border_radius=self.style.border_radius)
+        if self.image:
+            image = pygame.transform.smoothscale(self.image, rect.size)
+            tint_color = None
+            if self.pressed:
+                tint_color = self.style.pressed_color
+            elif self.hovered:
+                tint_color = self.style.hover_color
+
+            if tint_color is not None:
+                image = self._tint_surface(image, tint_color, alpha=150)
+
+            surface.blit(image, rect.topleft)
+        else:
+            color = self.style.bg_color
+            if self.pressed:
+                color = self.style.pressed_color
+            elif self.hovered:
+                color = self.style.hover_color
+
+            pygame.draw.rect(surface, color, rect, border_radius=self.style.border_radius)
 
         if self.text:
             text = self.font.render(self.text, True, self.style.text_color)

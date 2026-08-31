@@ -25,6 +25,8 @@ VertexEngine is a GUI and Game Engine for python applications, it works best if 
 - Support Email: FinalFacility0828@gmail.com
 
 ## Change Logs (1.7.0 - 1.9.4)
+### 1.9.5
+- Widget Fixes
 ### 1.9.4
 - NEW ENGINE FLAG: resizable (bool)
 ### 1.9.3
