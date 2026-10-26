@@ -14,7 +14,6 @@
             <nav>
                 <ul>
                     <li><a href="https://vertexengine-zii6.onrender.com/">Home</a></li>
-                    <li><a href="https://discord.com/channels/1468208686869643327/1468208687670890588">Discord</a></li>
                     <li><a href="#quickstart">Quick Start</a></li>
                     <li><a href="#features">Features</a></li>
                     <li><a href="/search.html">Find...</a></li>
@@ -25,78 +24,9 @@
 
     <section class="hero">
         <div class="container">
-            <h2>Powerful. Simple. Pythonic.</h2>
+            <h2>VertexEngine - Documentation</h2>
             <p>The ultimate library for making your Python apps faster and easier.</p>
             <a href="search.html" class="btn">Get Started</a>
-            <a href="#quickstart" class="btn">Copyable template</a>
-        </div>
-    </section>
-
-    <section id="quickstart" class="section">
-        <div class="container">
-            <h2>Quick Start</h2>
-            <pre><code>pip install VertexEngine
-                -------------------------------------------------------------------------------------
-                from VertexEngine.Vertex import App from VertexEngine.engine import GameEngine
-                from VertexEngine.scenes import Scene 
-                from VertexEngine import VertexScreen 
-                from VertexEngine.InputSystem.KeyInputs import Input 
-                from VertexEngine.InputSystem.Events import ButtonEvents 
-                from VertexEngine import VertexUI 
-                from PyQt6.QtWidgets import QVBoxLayout 
-                import sys 
-                RED = (255, 0, 0) 
-                class Player: 
-                    def __init__(self): 
-                        self.x = 250 
-                        self.y = 200 
-                        self.width = 80 
-                        self.height = 80 
-
-                    def update(self): 
-                        if Input.is_pressed("w") or Input.is_pressed("up"): 
-                            self.y -= 5 
-
-                        if Input.is_pressed("s") or Input.is_pressed("down"):   
-                            self.y += 5
-
-                        if Input.is_pressed("a") or Input.is_pressed("left"): 
-                            self.x -= 5
-
-                        if Input.is_pressed("d") or Input.is_pressed("right"): 
-                            self.x += 5 
-                        class Main(Scene): 
-                            def __init__(self, engine): 
-                                super().__init__(engine) 
-                                self.engine = engine 
-                                self.button1 = VertexUI.FancyButton("Hallo") 
-                                events = ButtonEvents() 
-                                events.on_click(self.button1, self.do_something) 
-                                layout = QVBoxLayout() 
-                                layout.addWidget(self.button1) 
-                                self.setLayout(layout) 
-                                self.player = Player() 
-
-                            def do_something(self): 
-                                ("click clickity click click :D") 
-                                
-                            def update(self): 
-                                self.player.update() 
-                                Input.input_update() 
-                                
-                            def draw(self, surface): 
-                                draw = VertexScreen.Draw() 
-                                draw.rect(surface, RED, (self.player.x, self.player.y, self.player.width, self.player.height)) 
-                            
-                            if __name__ == "__main__": 
-                                app = App() 
-                                engine = GameEngine() # defaults to 800x600@60 
-                                engine.setWindowTitle("VertexEngine Full template!") 
-                                engine.show()
-                                scene1 = Main(engine) 
-                                engine.scene_manager.set_scene(scene1) 
-                                sys.exit(app.exec()) # make it loop forever until 'x' button is clicked
-            </code></pre>
         </div>
     </section>
 
@@ -104,12 +34,9 @@
         <div class="container">
             <h2>Features</h2>
             <ul>
-                <li>⚡ Lightning-fast execution</li>
-                <li>🛠️ Easy-to-use API</li>
-                <li>🚀 Fast Deployment</li>
-                <li>🐍 Available on Python</li>
-                <li>📚 Extensive documentation</li>
-                <li>🔧 Fully customizable</li>
+                <li>Easy-to-use API</li>
+                <li>Fast Deployment</li>
+                <li>Extensive documentation</li>
             </ul>
         </div>
     </section>

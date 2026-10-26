@@ -1,5 +1,5 @@
-from PyQt6.QtCore import pyqtSignal
-from PyQt6.QtWidgets import QWidget, QPushButton, QVBoxLayout
+from PySide6.QtCore import pyqtSignal
+from PySide6.QtWidgets import QWidget, QPushButton, QVBoxLayout
 
 class CounterWidget(QWidget):
 

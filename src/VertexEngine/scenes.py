@@ -57,6 +57,8 @@ class SceneManager:
         self.current_scene = None
 
     def set_scene(self, scene):
+        if scene is self.current_scene:
+            return
         if self.current_scene:
             self.current_scene.on_exit()
             self.current_scene.hide()
@@ -66,13 +68,16 @@ class SceneManager:
         self.current_scene.on_enter()
 
     def _update(self):
-        if self.current_scene:
-            self.current_scene.update()
+        scene = self.current_scene
+        if scene is not None:
+            scene.update()
 
     def draw(self, surface):
-        if self.current_scene:
-            self.current_scene.draw(surface)
+        scene = self.current_scene
+        if scene is not None:
+            scene.draw(surface)
 
     def handle_event(self, event):
-        if self.current_scene:
-            self.current_scene.handle_event(event)
+        scene = self.current_scene
+        if scene is not None:
+            scene.handle_event(event)

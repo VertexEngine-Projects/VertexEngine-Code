@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delta Time | VertexEngine Docs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <h1 class="logo">VertexEngine Docs</h1>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../search.html">Search</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <h2>Delta Time</h2>
+            <p><strong>Description:</strong>
+                Delta Time is a concept that is widely used in Game Engines. 
+                It makes movement more consistent across many computers by multiplying a variable's change with it. 
+                It makes it so that more FPS will have the same speed as less FPS, so 2 computers with different specs share the same game experience.
+            </p>
+            <p><strong>Example:</strong>
+                <pre><code>
+                    class MainScene(Scene):
+                        def __init__(self, engine):
+                            super().__init__(engine)
+                            self.x = 100
+                            self.speed = 240  # pixels per second
+
+                        def update(self):
+                            self.x += self.speed * self.engine.delta_time
+                </code></pre>
+            </p>
+        </div>
+    </section>
+</body>
+<footer>
+    <div class="container">
+        <p>&copy; 2026 VertexEngine. All rights reserved.</p>
+    </div>
+</footer>
+</html>

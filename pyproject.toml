@@ -1,16 +1,16 @@
 [project]
 name = "VertexEngine"
-version = "1.9.5"
+version = "2.0rc1"
 description = "A high-performance SDK for Python Development."
 authors = [
-  { name = "Tyrel Miguel", email = "annbasilan0828@gmail.com" }
+  { name = "Tyrel Miguel", email = "FinalFacility0828@gmail.com" }
 ]
 readme = "README.md"
 license = { text = "MIT" }
 requires-python = ">=3.10"
 
 dependencies = [
-  "PyQt6>=6.7",
+  "PySide6>=6.7.0",
   "pygame>=2.6; python_version < '3.14'",
   "pygame-ce>=2.5.0; python_version >= '3.14'"
 ]
@@ -19,7 +19,7 @@ keywords = [
   "gamedev", 
   "game-development", 
   "game-engine", 
-  "pyqt6", 
+  "PySide6", 
   "pygame", 
   "pygame-ce", 
   "sdk", 
@@ -45,11 +45,9 @@ classifiers = [
 [project.urls]
 Homepage = "https://vertexengine-zii6.onrender.com"
 Documentation = "https://vertexenginedocs.netlify.app"
-Tutorials = "https://www.youtube.com/watch?v=-P4t6UabuDU&t=0s"
-"Official Tech Site" = "https://tyrel.onrender.com"
+"Developer Site" = "https://tyrel.onrender.com"
 Source = "https://github.com/VertexEngine-Projects/VertexEngine-Code"
 Issues = "https://github.com/VertexEngine-Projects/VertexEngine-Code/issues"
-Discord = "https://discord.gg/jqG8kQjX"
 
 [tool.setuptools]
 # Instructs setuptools to bundle non-python data assets

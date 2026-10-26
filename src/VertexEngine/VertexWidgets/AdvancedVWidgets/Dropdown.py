@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QComboBox
+from PySide6.QtWidgets import QComboBox
 
 class VDropdown(QComboBox):
     def __init__(self, items=None):

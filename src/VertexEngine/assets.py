@@ -1,5 +1,5 @@
 import pygame
-from PyQt6.QtGui import QImage
+from PySide6.QtGui import QImage
 import typing_extensions as typing
 
 @typing.deprecated('This is not a public API, use AssetManager pls :D')
@@ -46,6 +46,7 @@ class AssetManager:
     """The `AssetManager` is a class to draw and load images and assets of any kind."""
     def __init__(self):
         self.images = {}
+        self.spritesheets = {}
         self._scaled_cache = {}  # cache for scaled versions
 
     def load_image(self, name: str, path: str):
@@ -58,6 +59,10 @@ class AssetManager:
         try:
             surface = pygame.image.load(path)
             self.images[name] = surface
+            self._scaled_cache = {
+                key: value for key, value in self._scaled_cache.items()
+                if key[0] != name
+            }
             return surface
 
         except FileNotFoundError:
@@ -78,7 +83,7 @@ class AssetManager:
         """
         img = self.images.get(name)
 
-        if not img:
+        if img is None:
             print(f"[Warning] Image '{name}' not loaded!")
             return
 
@@ -88,6 +93,7 @@ class AssetManager:
             return
 
         # Use cache key
+        size = tuple(size)
         cache_key = (name, size)
 
         # Check if scaled version exists
@@ -98,3 +104,50 @@ class AssetManager:
             scaled_img = self._scaled_cache[cache_key]
 
         target_surface.blit(scaled_img, pos)
+
+    def load_spritesheet(self, name: str, path: str, frame_size):
+        """Load a spritesheet and split it into equally sized frames.
+
+        ``frame_size`` is ``(width, height)``. Incomplete frames at the
+        right or bottom edges are ignored.
+        """
+        if name in self.spritesheets:
+            return self.spritesheets[name]
+
+        frame_width, frame_height = (int(value) for value in frame_size)
+        if frame_width <= 0 or frame_height <= 0:
+            raise ValueError("frame_size values must be greater than zero")
+
+        try:
+            sheet = pygame.image.load(path)
+        except FileNotFoundError:
+            print(f"[Warning] Spritesheet '{path}' not found!")
+            return None
+
+        sheet_width, sheet_height = sheet.get_size()
+        frames = [
+            sheet.subsurface((x, y, frame_width, frame_height)).copy()
+            for y in range(0, sheet_height - frame_height + 1, frame_height)
+            for x in range(0, sheet_width - frame_width + 1, frame_width)
+        ]
+        self.spritesheets[name] = frames
+        return frames
+
+    def get_sprite(self, name: str, index: int):
+        """Return one frame from a loaded spritesheet."""
+        spritesheet = self.spritesheets.get(name)
+        if spritesheet is None:
+            print(f"[Warning] Spritesheet '{name}' not loaded!")
+            return None
+        return spritesheet[index]
+
+    def draw_sprite(self, target_surface, name: str, index: int,
+                    pos=(0, 0), size=None):
+        """Draw one frame from a loaded spritesheet."""
+        sprite = self.get_sprite(name, index)
+        if sprite is None:
+            return
+
+        if size is not None:
+            sprite = pygame.transform.smoothscale(sprite, tuple(size))
+        target_surface.blit(sprite, pos)

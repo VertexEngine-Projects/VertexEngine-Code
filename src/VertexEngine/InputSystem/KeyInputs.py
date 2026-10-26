@@ -1,5 +1,5 @@
-from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QShortcut, QKeySequence
+from PySide6.QtCore import Qt
+from PySide6.QtGui import QShortcut, QKeySequence
 
 KEY_MAP = {
     # Arrows
@@ -70,11 +70,11 @@ for key, qt_name in punctuation_map.items():
     try:
         KEY_MAP[key] = getattr(Qt.Key, f"Key_{qt_name}")
     except AttributeError:
-        # Some symbols might not exist in PyQt6's Qt.Key
+        # Some symbols might not exist in PySide6's Qt.Key
         pass
 
-from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QShortcut, QKeySequence
+from PySide6.QtCore import Qt
+from PySide6.QtGui import QShortcut, QKeySequence
 
 KEY_MAP = {
     # Arrows
@@ -145,7 +145,7 @@ for key, qt_name in punctuation_map.items():
     try:
         KEY_MAP[key] = getattr(Qt.Key, f"Key_{qt_name}")
     except AttributeError:
-        # Some symbols might not exist in PyQt6's Qt.Key
+        # Some symbols might not exist in PySide6's Qt.Key
         pass
 
 class Input:
@@ -157,6 +157,12 @@ class Input:
 
     @classmethod
     def input_update(cls):
+        cls._just_pressed.clear()
+        cls._just_released.clear()
+
+    @classmethod
+    def clear(cls):
+        cls._pressed.clear()
         cls._just_pressed.clear()
         cls._just_released.clear()
 
@@ -195,15 +201,15 @@ class Input:
     # === Direct Key API ===
     @classmethod
     def is_pressed(cls, key):
-        return KEY_MAP[key] in cls._pressed
+        return KEY_MAP.get(key, key) in cls._pressed
 
     @classmethod
     def is_just_pressed(cls, key):
-        return KEY_MAP[key] in cls._just_pressed
+        return KEY_MAP.get(key, key) in cls._just_pressed
 
     @classmethod
     def is_released(cls, key):
-        return KEY_MAP[key] in cls._just_released
+        return KEY_MAP.get(key, key) in cls._just_released
 
     # === Action API ===
     @classmethod

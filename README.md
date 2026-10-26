@@ -13,18 +13,23 @@
   </a>
 </p>
 
-# VertexEngine/Vertex
-VertexEngine is a GUI and Game Engine for python applications, it works best if you use py installer
+# VertexEngine
+VertexEngine is a GUI and Game Engine for Python applications.
 
 ## Official Extensions:
-- [VertexEngine-WebEngine](https://pypi.org/project/VertexEngine-WebEngine)
+- [VertexEngine-JSON](https://pypi.org/project/VertexEngine-json)
 - [VertexEngine-CLI](https://pypi.org/project/VertexEngine-CLI/1.0/)
 
 ## Help
 - The documentation is in the following link: [Documentation](https://vertexenginedocs.netlify.app/) for help.
 - Support Email: FinalFacility0828@gmail.com
 
-## Change Logs (1.7.0 - 1.9.4)
+## Change Logs (1.8rc1 - 2.0)
+### 2.0rc1
+- Added Spritesheets, Delta Time, New Import Shortcuts
+- Fundemental Change: All Code references of PyQt6 have been replaced with the more lenient PySide6.
+### 1.9.6
+- Engine Optimizations
 ### 1.9.5
 - Widget Fixes
 ### 1.9.4
@@ -38,7 +43,7 @@ VertexEngine is a GUI and Game Engine for python applications, it works best if 
 ### 1.9.1
 - NEW DEMO
 - How to Run: python3.x -m VertexEngine.examples.pygwidget_test
-- Fixed engine clash bug (pygame and pyqt6 bug)
+- Fixed engine clash bug (pygame and PySide6 bug)
 ### 1.9
 - FINALLY fixed the demos!
 - how to run:
@@ -83,41 +88,36 @@ VertexEngine is a GUI and Game Engine for python applications, it works best if 
 ### 1.8rc1
 - Patched some runtime errors
 - Added MATH! (from VertexEngine.math import *)
-### 1.7.3
-- Added new functions to collisions!
-### 1.7.2
-- Added HIGHLIGHTING to Ocean Code!**
-- Fixed a lot of bugs!
-- Fixed outdated URLs (2 day server shutdown)
-### 1.7.1
-- official VertexEngine Projects Browser! (RainExplorer)
-- Accounts Wiped soon.
-- Fixed a bit too many bugs.
-### 1.7.0
-- Fixed Collision not defined errors
-- Added an official3 Tutorial Video!
-- Accounts will be wiped soon.
 
-## How to install VertexEngine/Vertex:
-Step 1: Type in pip install VertexEngine
+## How to install VertexEngine:
+Step 1: Type in `pip install VertexEngine`
 
-Step 2: Wait a few min, don't worry if it takes 1 hr or more, it will finish
+Step 2: Wait a few minutes.
 
-Pygame or PyQt6 systems are compatible with Vertex so you can use pygame collision system or PyQt6's UI system in VertexEngine.
+Pygame or PySide6 systems are compatible with VertexEngine so you can use pygame collision system or PySide6's UI system in VertexEngine.
+
+## Delta time
+
+`GameEngine.delta_time` contains the elapsed time since the previous frame, in seconds. Use it to make movement independent of the frame rate:
+
+```python
+def update(self):
+  self.player.x += self.speed * self.engine.delta_time
+```
 
 ## Dependencies
-Vertex obviously has heavy dependencies since it's a game engine, the following requirements are:
+VertexEngine obviously has heavy dependencies since it's a game engine, the following requirements are:
 
 | Dependency       | Version                              |
 |------------------|--------------------------------------|
-| PyQt6            | >=6.7                                |   
+| PySide6            | >=6.7                                |   
 | Pygame           | >=2.0                                |
 | Python           | >=3.10                               |
 
-## About Me ❔
+## About Me
 I’m a solo developer based in Quezon City, building tools and engines for both fun and serious projects.
 
-## 📄 License
+## License
 VertexEngine is licensed under the MIT License.
 
 You are free to use, modify, and distribute this project, as long as proper attribution is given. See the LICENSE file for details.

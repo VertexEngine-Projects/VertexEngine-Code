@@ -9,7 +9,7 @@
 <body>
 <header>
     <div class="container header-container">
-        <h1 class="logo">Vertex Docs</h1>
+        <h1 class="logo">VertexEngine Docs</h1>
         <nav>
             <ul>
                 <li><a href="../index.html">Home</a></li>
@@ -52,7 +52,7 @@
 
     <h3>Usage</h3>
     <pre><code>from VertexWebEngineCore.Interceptor import VertexInterceptor
-from PyQt6.QtWebEngineCore import QWebEngineProfile
+from PySide6.QtWebEngineCore import QWebEngineProfile
 
 profile = QWebEngineProfile()
 
@@ -79,7 +79,7 @@ profile.setUrlRequestInterceptor(VertexInterceptor())</code></pre>
 
     <h3>Usage</h3>
     <pre><code>from VertexWebEngineCore.WebPage import VertexWebPage
-from PyQt6.QtWebEngineWidgets import QWebEngineView
+from PySide6.QtWebEngineWidgets import QWebEngineView
 
 view = QWebEngineView()
 view.setPage(VertexWebPage(view))
@@ -102,7 +102,7 @@ view.load("https://example.com")</code></pre>
 
     <h3>Usage</h3>
     <pre><code>from VertexWebEngineCore.Profile import VertexProfile
-from PyQt6.QtWebEngineWidgets import QWebEngineView
+from PySide6.QtWebEngineWidgets import QWebEngineView
 
 view = QWebEngineView()
 

@@ -1,6 +1,6 @@
-from PyQt6.QtWidgets import QWidget
-from PyQt6.QtCore import Qt, pyqtSignal, QRect
-from PyQt6.QtGui import QPainter, QColor
+from PySide6.QtWidgets import QWidget
+from PySide6.QtCore import Qt, pyqtSignal, QRect
+from PySide6.QtGui import QPainter, QColor
 
 class ToggleSwitch(QWidget):
 

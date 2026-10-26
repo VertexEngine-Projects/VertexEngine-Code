@@ -1,13 +1,10 @@
 # VertexEngine/__init__.py
-# Copyright (C) 2025
+# Copyright (C) 2026
 # This library/SDK is free. You can redistribute it.
-# Tyrel Gomez (email as annbasilan)
-# annbasilan0828@gmail.com
-"""VertexEngine is an SDK for Application Development. It's also supported by many others.
+"""VertexEngine is an SDK for Application Development. Specifically games, or heavier Applications
 
 Supported OSes 
 --------------
-- RainOS 
 - Windows 
 - MacOS
 - OS X  
@@ -15,14 +12,16 @@ Supported OSes
 - FreeBSD 
 - IRIX  
 - and Linux
-
-It is written on top of the excellent Pygame library which is ran on the even more excellent SDL library which runs on every Desktop OS with SDL."""
-import pygame
+"""
 from ._base import *
 from .engine import GameEngine
 from .scenes import Scene, SceneManager
 from .assets import AssetManager
 from .audio import AudioManager
+from .Vertex import App
+from .InputSystem.KeyInputs import *
+from .InputSystem.BtnInputs import *
+from .InputSystem.Events import *
 import os
 
 
@@ -586,7 +585,7 @@ import os
 # This comment serves as a warning to the next developer.
 # If you are reading this, you have probably found a bug or an issue with the code.
 # Your problem.
-# Hours Wasted: 46
+# Hours Wasted: 78
 # ----------------------------------------------------------------------
 # Btw ur balls are big and i like them. I hope you have a nice day. :)
 # ~ VSCode Copilot auto-generated comment.

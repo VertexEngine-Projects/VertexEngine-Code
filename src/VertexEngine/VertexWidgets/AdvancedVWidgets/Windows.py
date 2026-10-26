@@ -1,6 +1,6 @@
-from PyQt6.QtWidgets import QMessageBox, QFileDialog, QSlider, QProgressBar, QSpinBox, QToolBar
-from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QAction
+from PySide6.QtWidgets import QMessageBox, QFileDialog, QSlider, QProgressBar, QSpinBox, QToolBar
+from PySide6.QtCore import Qt
+from PySide6.QtGui import QAction
 class VPopup:
     @staticmethod
     def info(text, title="Info"):

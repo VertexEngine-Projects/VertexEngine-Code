@@ -1,7 +1,8 @@
-from PyQt6.QtWidgets import QWidget
-from PyQt6.QtGui import QImage, QPainter
-from PyQt6.QtCore import QTimer, Qt
+from PySide6.QtWidgets import QWidget
+from PySide6.QtGui import QImage, QPainter
+from PySide6.QtCore import QTimer, Qt
 import pygame
+import time
 from .scenes import SceneManager
 from VertexEngine.InputSystem.KeyInputs import Input
 
@@ -17,6 +18,8 @@ class GameEngine(QWidget):
         self.fps = fps
         self.position = position 
         self.resizable = resizable
+        self.delta_time = 0.0
+        self._last_frame_time = time.perf_counter()
 
         self.keys_down = set()
         
@@ -42,14 +45,14 @@ class GameEngine(QWidget):
         """Helper to sync the Pygame surface into a Qt-friendly image buffer."""
         # Always rebuild the image from the current frame so the Qt widget
         # doesn't keep rendering the stale black buffer created at startup.
-        raw = pygame.image.tobytes(self.screen, "RGB")
+        self._frame_bytes = pygame.image.tobytes(self.screen, "RGB")
         self.img = QImage(
-            raw,
+            self._frame_bytes,
             self.width,
             self.height,
             self.width * 3,
             QImage.Format.Format_RGB888
-        ).copy()
+        )
 
     # ---------------------- RENDER ----------------------
 
@@ -70,14 +73,19 @@ class GameEngine(QWidget):
     # ---------------------- UPDATE ----------------------
 
     def _update_frame(self):
+        current_time = time.perf_counter()
+        self.delta_time = current_time - self._last_frame_time
+        self._last_frame_time = current_time
+
         if not self.hasFocus():
-            self.keys_down.clear()
+            Input.clear()
 
         # Optimized: Clear and draw into the pygame surface during the update step
         self.screen.fill(self.color)
         self.scene_manager._update()
         self.scene_manager.draw(self.screen)
         self._sync_qimage()
+        Input.input_update()
 
         # Schedule the visual swap
         self.update()

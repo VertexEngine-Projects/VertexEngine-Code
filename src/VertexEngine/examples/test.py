@@ -1,8 +1,8 @@
 from VertexEngine.InputSystem.Events import ButtonEvents
 from VertexEngine import VertexUI
-from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout
-from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QFont
+from PySide6.QtWidgets import QApplication, QWidget, QVBoxLayout
+from PySide6.QtCore import Qt
+from PySide6.QtGui import QFont
 import sys
 import random
 Buttons = ButtonEvents()
@@ -35,7 +35,7 @@ def random_text():
     messages = [
         "VertexEngine 🔥",
         "Buttons clicked 😄",
-        "PyQt6 is clean ✨",
+        "PySide6 is clean ✨",
         "Event system FTW 🎮",
         "Random works 🎲"
     ]

@@ -3,7 +3,8 @@ import pygame
 class AudioManager:
     """The `AudioManager` class allows you to play audio in your VertexEngine app. It has only 4 functions for sound and music."""
     def __init__(self):
-        pygame.mixer.init()
+        if not pygame.mixer.get_init():
+            pygame.mixer.init()
         self.sounds = {}
         self.music = None
 

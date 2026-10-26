@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QListWidget
+from PySide6.QtWidgets import QListWidget
 
 class VList(QListWidget):
     def __init__(self, items=None):

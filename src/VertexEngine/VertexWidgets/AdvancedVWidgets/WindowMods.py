@@ -1,12 +1,12 @@
-from PyQt6.QtWidgets import (
+from PySide6.QtWidgets import (
     QTreeWidget, QTreeWidgetItem,
     QTableWidget, QTableWidgetItem,
     QSplitter,
     QScrollArea,
     QDockWidget, QWidget
 )
-from PyQt6.QtCore import Qt, QThread, pyqtSignal, QSettings
-from PyQt6.QtGui import QPainter, QFont
+from PySide6.QtCore import Qt, QThread, pyqtSignal, QSettings
+from PySide6.QtGui import QPainter, QFont
 
 class StarRating(QWidget):
     def __init__(self, stars=5):

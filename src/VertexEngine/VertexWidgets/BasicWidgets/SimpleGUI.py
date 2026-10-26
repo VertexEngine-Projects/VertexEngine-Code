@@ -1,9 +1,9 @@
-from PyQt6.QtWidgets import QPushButton, QLineEdit
-from PyQt6.QtGui import QFont
-from PyQt6.QtWidgets import QPushButton
-from PyQt6.QtGui import QCursor
-from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import QLabel
+from PySide6.QtWidgets import QPushButton, QLineEdit
+from PySide6.QtGui import QFont
+from PySide6.QtWidgets import QPushButton
+from PySide6.QtGui import QCursor
+from PySide6.QtCore import Qt
+from PySide6.QtWidgets import QLabel
 
 class LegacyButton(QPushButton):
     def __init__(

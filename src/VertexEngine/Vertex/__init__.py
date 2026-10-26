@@ -1,11 +1,11 @@
 """VertexEngine.Vertex: VWidget, Layouts, Dialogs, App Management"""
 
 import sys
-from PyQt6.QtWidgets import (
+from PySide6.QtWidgets import (
     QApplication, QWidget, QVBoxLayout, QHBoxLayout,
     QDialog, QLabel, QPushButton, QLineEdit
 )
-from PyQt6.QtCore import Qt
+from PySide6.QtCore import Qt
 # ------------------------
 # Base widget wrapper
 # ------------------------
